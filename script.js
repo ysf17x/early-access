@@ -109,3 +109,37 @@ if (form){
     }, SUCCESS_VISIBLE_MS);
   });
 }
+
+/* =========================
+   MOBILE DOTS (carousel indicator)
+   ========================= */
+const carousel = document.getElementById("mCarousel");
+const dotsWrap = document.getElementById("mDots");
+const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll(".mDot")) : [];
+
+function setActiveDot(i){
+  dots.forEach((d, idx) => d.classList.toggle("isActive", idx === i));
+}
+
+if (carousel && dots.length){
+  const slides = Array.from(carousel.querySelectorAll(".mSlide"));
+
+  // Update active dot on swipe/scroll
+  let raf = 0;
+  carousel.addEventListener("scroll", () => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      const w = carousel.clientWidth || 1;
+      const idx = Math.round(carousel.scrollLeft / w);
+      setActiveDot(Math.max(0, Math.min(dots.length - 1, idx)));
+    });
+  }, { passive: true });
+
+  // Tap dots to jump
+  dots.forEach((dot, idx) => {
+    dot.addEventListener("click", () => {
+      slides[idx]?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+      setActiveDot(idx);
+    });
+  });
+}

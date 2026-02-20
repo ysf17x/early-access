@@ -20,14 +20,12 @@
   --ctaFill1: rgba(11, 42, 91, 0.78);
   --ctaFill2: rgba(8, 25, 55, 0.78);
 }
-html,body {
-  margin: 0;
-  padding: 0;
-}
-*{ box-sizing: border-box; }
-html{ scroll-behavior: smooth; }
+
+/* ===== Base ===== */
+html,body{ margin:0; padding:0; }
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
 body{
-  margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
@@ -38,9 +36,8 @@ body{
     radial-gradient(1050px 700px at 48% 78%, rgba(6,20,46,0.78), transparent 70%),
     linear-gradient(180deg, rgba(7,11,20,1) 0%, rgba(6,20,46,1) 55%, rgba(7,11,20,1) 100%);
 }
-
-a{ color: inherit; text-decoration: none; }
-button, input{ font: inherit; color: inherit; }
+a{ color:inherit; text-decoration:none; }
+button, input{ font:inherit; color:inherit; }
 
 .container{
   width: min(1120px, calc(100% - 32px));
@@ -65,41 +62,27 @@ button, input{ font: inherit; color: inherit; }
   z-index: 1000;
 }
 
-.header {
+/* ===== Header / Nav ===== */
+.header{
   position: sticky;
   top: 0;
   z-index: 1000;
 
-  background: rgba(8, 16, 35, 0.72); /* deep navy */
+  background: rgba(8, 16, 35, 0.72);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 
   border-bottom: 1px solid rgba(255,255,255,0.06);
-
   box-shadow:
     0 1px 0 rgba(255,255,255,0.04),
     0 8px 30px rgba(0,0,0,0.35);
 }
 
-.nav {
+.nav{
   height: 72px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-/* Add this for the links to make them look professional */
-.nav-link {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 14px;
-  font-weight: 500;
-  transition: color 0.2s ease;
-  text-decoration: none;
-}
-
-.nav-link:hover {
-  color: #fff;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .brand{ display:flex; align-items:center; gap:10px; }
@@ -124,16 +107,19 @@ button, input{ font: inherit; color: inherit; }
   white-space: nowrap;
   box-shadow: 0 12px 34px rgba(11,42,91,0.18);
 }
-.navCta:hover{ transform: translateY(-1px); filter: brightness(1.08); border-color: rgba(51,225,255,0.22); }
+.navCta:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+  border-color: rgba(51,225,255,0.22);
+}
 .navCta:active{ transform: translateY(0px); }
 
-/* Hero */
+/* ===== Hero ===== */
 .hero{
   padding: 56px 0 10px;
   position: relative;
   overflow: visible;
 }
-
 .hero::before{
   content:"";
   position:absolute;
@@ -145,7 +131,6 @@ button, input{ font: inherit; color: inherit; }
     radial-gradient(980px 640px at 58% 74%, rgba(51,225,255,0.07), transparent 74%);
   z-index: 0;
 }
-
 .heroGrid{
   display: grid;
   grid-template-columns: 1.08fr 0.92fr;
@@ -165,8 +150,8 @@ button, input{ font: inherit; color: inherit; }
   background: rgba(255,255,255,0.045);
   color: var(--muted);
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
-
 .dot{
   width: 8px; height: 8px;
   border-radius: 999px;
@@ -174,56 +159,48 @@ button, input{ font: inherit; color: inherit; }
   box-shadow: 0 0 0 4px rgba(124,92,255,0.12);
 }
 
+.heroCopy{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
 .heroTitle{
   margin: 18px 0 12px;
   font-size: clamp(36px, 5.2vw, 58px);
   line-height: 1.02;
   letter-spacing: -1.2px;
-  text-align: center;          /* center text */
-  max-width: 16ch;             /* keeps lines balanced */
-  margin-left: auto;           /* center block */
-  margin-right: auto;
+  text-align: center;
+  max-width: 16ch;
+  margin-left:auto;
+  margin-right:auto;
 }
 
-.heroCopy{
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* centers pill + title + text blocks */
-}
-
-/* Lead line (Archive what you wear today...) */
 .heroLead{
-  margin-top: 26px;        /* creates breathing room from heading */
+  margin-top: 26px;
   margin-bottom: 0;
   font-size: 16.5px;
   line-height: 1.55;
-  text-align: center;      /* center it */
+  text-align: center;
   max-width: 60ch;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left:auto;
+  margin-right:auto;
 }
+.heroLead strong{ font-weight: 850; }
+.heroLeadMuted{ color: rgba(255,255,255,0.74); }
 
-.heroLead strong{
-  font-weight: 850;
-}
-
-.heroLeadMuted{
-  color: rgba(255,255,255,0.74);
-}
-
-/* Sub paragraph */
 .sub{
   margin-top: 14px;
   color: var(--muted);
   font-size: 16px;
   line-height: 1.65;
   max-width: 62ch;
-  text-align: center;      /* center this too */
-  margin-left: auto;
-  margin-right: auto;
+  text-align: center;
+  margin-left:auto;
+  margin-right:auto;
 }
 
-/* 1/2/3 */
+/* Steps */
 .trustRow{
   margin-top: auto;
   margin-bottom: auto;
@@ -233,9 +210,8 @@ button, input{ font: inherit; color: inherit; }
   max-width: 440px;
   justify-items: center;
   position: relative;
-  top: 70px; /* change this value */
+  top: 70px;
 }
-
 .trustItem{
   width: 100%;
   display: flex;
@@ -243,33 +219,17 @@ button, input{ font: inherit; color: inherit; }
   gap: 12px;
 
   padding: 12px 14px;
-  border-radius: 16px;       /* softer */
+  border-radius: 16px;
   border: 1px solid rgba(255,255,255,0.10);
   background: rgba(255,255,255,0.035);
 
-  text-align: left;          /* less “boxy poster” feel */
+  text-align: left;
   transition: transform .12s ease, background .12s ease;
 }
-
-.trustItem:nth-child(1){    /*move boxes up or down*/
-  position: relative;
-  top: -10px;
-}
-
-.trustItem:nth-child(2){
-  position: relative;
-  top: 15px;
-}
-
-.trustItem:nth-child(3){
-  position: relative;
-  top: 45px;
-}
-
-.trustItem:hover{
-  background: rgba(255,255,255,0.05);
-  transform: translateY(-1px);
-}
+.trustItem:nth-child(1){ position: relative; top: -10px; }
+.trustItem:nth-child(2){ position: relative; top: 15px; }
+.trustItem:nth-child(3){ position: relative; top: 45px; }
+.trustItem:hover{ background: rgba(255,255,255,0.05); transform: translateY(-1px); }
 
 .trustNum{
   width: 30px;
@@ -283,13 +243,9 @@ button, input{ font: inherit; color: inherit; }
   font-size: 13px;
   flex: 0 0 auto;
 }
+.trustText{ color: rgba(255,255,255,0.86); font-size: 13.5px; }
 
-.trustText{
-  color: rgba(255,255,255,0.86);
-  font-size: 13.5px;
-}
-
-/* How it works */
+/* ===== How it works ===== */
 .howBlock{
   margin-top: 26px;
   border: 1px solid rgba(255,255,255,0.09);
@@ -297,20 +253,15 @@ button, input{ font: inherit; color: inherit; }
   border-radius: 18px;
   padding: 16px;
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   margin-bottom: 0%;
 }
-
-.howTitle{
-  margin: 0;
-  font-size: 18px;
-  letter-spacing: -0.3px;
-}
+.howTitle{ margin:0; font-size:18px; letter-spacing:-0.3px; }
 .howSub{
   margin: 8px 0 0;
   color: rgba(255,255,255,0.70);
   line-height: 1.5;
 }
-
 .whyGrid{
   margin-top: 14px;
   display: grid;
@@ -337,7 +288,7 @@ button, input{ font: inherit; color: inherit; }
   text-align: center;
 }
 
-/* Phone */
+/* ===== Phone (desktop + legacy) ===== */
 .heroVisual{ position: relative; display:grid; place-items:center; }
 .glow{
   position:absolute;
@@ -349,7 +300,6 @@ button, input{ font: inherit; color: inherit; }
   filter: blur(10px);
   z-index:-1;
 }
-
 .phone{
   width: min(360px, 100%);
   border-radius: 34px;
@@ -358,18 +308,16 @@ button, input{ font: inherit; color: inherit; }
   box-shadow: var(--shadow);
   overflow: hidden;
 }
-
 .phoneTop{
   display:flex; gap:10px; align-items:center;
   padding: 14px 16px 10px;
   border-bottom: 1px solid rgba(255,255,255,0.10);
   background: rgba(0,0,0,0.16);
 }
-
 .cam{ width:10px; height:10px; border-radius:999px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.10); }
 .speaker{ width:64px; height:8px; border-radius:999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.10); }
-
 .screen{ padding: 14px; }
+
 .miniBrand{ display:flex; align-items:center; gap:10px; }
 .miniMark{
   width: 26px; height: 26px;
@@ -405,10 +353,7 @@ button, input{ font: inherit; color: inherit; }
   overflow:hidden;
   transition: transform 120ms ease, background 120ms ease;
 }
-.lookCard:hover{
-  background: rgba(255,255,255,0.05);
-}
-
+.lookCard:hover{ background: rgba(255,255,255,0.05); }
 .lookImg{
   height: 108px;
   display:grid;
@@ -421,8 +366,6 @@ button, input{ font: inherit; color: inherit; }
     radial-gradient(380px 180px at 75% 25%, rgba(51,225,255,0.12), transparent 62%),
     linear-gradient(135deg, rgba(10,30,61,0.55), rgba(7,11,20,0.12));
 }
-
-/* Real images */
 .lookImg.realImg{
   position: relative;
   overflow: hidden;
@@ -444,7 +387,6 @@ button, input{ font: inherit; color: inherit; }
 .lookImg.realImg.pos-med img{ object-position: center 10%; }
 .lookImg.realImg.pos-bottom img{ object-position: center 30%; }
 
-/* Meta */
 .lookMeta{ padding: 10px 12px; display:grid; gap:8px; }
 .row{ display:flex; justify-content:space-between; align-items:center; gap:10px; }
 .badge{
@@ -464,24 +406,23 @@ button, input{ font: inherit; color: inherit; }
   border-radius: 999px;
 }
 
-/* Footer */
+.tiny{ font-size: 12px; }
+.muted{ color: var(--muted); }
+
+/* ===== Footer ===== */
 .footer{
   padding: 6px 0;
   border-top: 1px solid rgba(255,255,255,0.06);
   background: rgba(0,0,0,0.10);
 }
-
 .footerRow{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
-.tiny{ font-size: 12px; }
-.muted{ color: var(--muted); }
 
+/* ===== Modal ===== */
 .label{
   font-size: 12px;
   color: rgba(255,255,255,0.70);
   margin-bottom: 8px;
 }
-
-/* Modal */
 .modalBackdrop{
   position: fixed;
   inset: 0;
@@ -491,7 +432,6 @@ button, input{ font: inherit; color: inherit; }
   padding: 18px;
   z-index: 1200;
 }
-
 .modalBackdrop.show{ display: grid; }
 .modal{
   width: min(520px, 100%);
@@ -501,6 +441,7 @@ button, input{ font: inherit; color: inherit; }
   box-shadow: var(--shadow);
   padding: 16px;
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 .modalTop{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
 .modalTop h3{ margin:0; }
@@ -534,137 +475,18 @@ button, input{ font: inherit; color: inherit; }
 }
 .btnPrimary:hover{ filter: brightness(1.08); }
 
-/* =========================
-   Success Toast (replaces alert)
-   ========================= */
-.successToast{
-  margin-top: 12px;
-  display: none;
-  align-items: center;
-  gap: 12px;
-  position: relative;
-
-  padding: 14px 14px;
-  border-radius: 16px;
-  border: 1px solid rgba(51,225,255,0.18);
-  background:
-    radial-gradient(600px 220px at 15% 30%, rgba(124,92,255,0.18), transparent 60%),
-    radial-gradient(600px 220px at 85% 20%, rgba(51,225,255,0.12), transparent 60%),
-    rgba(7,11,20,0.72);
-
-  box-shadow: 0 20px 60px rgba(0,0,0,0.42);
-  backdrop-filter: blur(14px);
-
-  transform: translateY(8px);
-  opacity: 0;
-  overflow: hidden;
-}
-
-.successToast.show{
-  display: flex;
-  animation: toastIn 420ms cubic-bezier(.2,.9,.2,1) forwards;
-}
-
-@keyframes toastIn{
-  to{ transform: translateY(0); opacity: 1; }
-}
-
-.toastIcon{
-  width: 38px;
-  height: 38px;
-  border-radius: 14px;
-  display: grid;
-  place-items: center;
-
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.10);
-  box-shadow: 0 14px 40px rgba(0,0,0,0.25);
-  font-size: 18px;
-  flex: 0 0 auto;
-}
-
-.toastText{ display: grid; gap: 2px; }
-.toastTitle{
-  font-weight: 850;
-  letter-spacing: -0.2px;
-}
-.toastSub{
-  font-size: 12.5px;
-  color: rgba(255,255,255,0.72);
-  line-height: 1.35;
-}
-
-.toastClose{
-  margin-left: auto;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.04);
-  padding: 8px 10px;
-  border-radius: 12px;
-  cursor: pointer;
-}
-.toastClose:hover{ background: rgba(255,255,255,0.06); }
-
-/* sparkles */
-.sparkles{
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0;
-}
-
-.successToast.show .sparkles{
-  animation: sparkleFade 900ms ease forwards;
-}
-
-@keyframes sparkleFade{
-  0%{ opacity: 0; }
-  15%{ opacity: 1; }
-  100%{ opacity: 0; }
-}
-
-.sparkles span{
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  background: rgba(51,225,255,0.85);
-  filter: blur(0.2px);
-  transform: translateY(0) scale(0.9);
-  opacity: 0;
-  animation: pop 900ms ease forwards;
-}
-
-.sparkles span:nth-child(1){ left: 18%; top: 55%; animation-delay: 0ms; }
-.sparkles span:nth-child(2){ left: 30%; top: 25%; animation-delay: 40ms; background: rgba(124,92,255,0.9); }
-.sparkles span:nth-child(3){ left: 48%; top: 40%; animation-delay: 70ms; }
-.sparkles span:nth-child(4){ left: 62%; top: 20%; animation-delay: 110ms; background: rgba(124,92,255,0.9); }
-.sparkles span:nth-child(5){ left: 74%; top: 48%; animation-delay: 140ms; }
-.sparkles span:nth-child(6){ left: 86%; top: 30%; animation-delay: 180ms; background: rgba(124,92,255,0.9); }
-
-@keyframes pop{
-  0%{ opacity: 0; transform: translateY(10px) scale(0.6); }
-  20%{ opacity: 1; }
-  100%{ opacity: 0; transform: translateY(-14px) scale(1.1); }
-}
-
-/* ===== Success state transition ===== */
-
-#formWrap{
-  transition: opacity .35s ease, transform .35s ease;
-}
-
+/* Success state */
+#formWrap{ transition: opacity .35s ease, transform .35s ease; }
 .successState{
   display: none;
   text-align: center;
   padding: 30px 10px 10px;
   animation: fadeUp .45s cubic-bezier(.2,.9,.2,1) forwards;
 }
-
 @keyframes fadeUp{
   from { opacity:0; transform: translateY(8px); }
   to   { opacity:1; transform: translateY(0); }
 }
-
 .checkCircle{
   width: 64px;
   height: 64px;
@@ -675,7 +497,6 @@ button, input{ font: inherit; color: inherit; }
   place-items: center;
   border: 1px solid rgba(112, 111, 111, 0.25);
 }
-
 .checkCircle svg{
   width: 28px;
   height: 28px;
@@ -688,290 +509,79 @@ button, input{ font: inherit; color: inherit; }
   stroke-dashoffset: 40;
   animation: drawCheck .6s ease forwards .2s;
 }
+@keyframes drawCheck{ to { stroke-dashoffset: 0; } }
+.successTitle{ font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.successSub{ font-size: 14px; opacity: .7; line-height: 1.5; }
+.modal.isClosing{ animation: modalOut 260ms ease forwards; }
+@keyframes modalOut{ to { opacity: 0; transform: translateY(6px) scale(0.99); } }
+.modalBackdrop.isClosing{ animation: backdropOut 260ms ease forwards; }
+@keyframes backdropOut{ to { opacity: 0; } }
 
-@keyframes drawCheck{
-  to { stroke-dashoffset: 0; }
-}
-
-.successTitle{
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.successSub{
-  font-size: 14px;
-  opacity: .7;
-  line-height: 1.5;
-}
-
-/* Success fade-out */
-.modal.isClosing {
-  animation: modalOut 260ms ease forwards;
-}
-
-@keyframes modalOut {
-  to { opacity: 0; transform: translateY(6px) scale(0.99); }
-}
-
-.modalBackdrop.isClosing {
-  animation: backdropOut 260ms ease forwards;
-}
-
-@keyframes backdropOut {
-  to { opacity: 0; }
-}
-
-html {
-  background: transparent; /* same as your hero dark */
-}
-
-body {
-  margin: 0;
-}
-
-/* =========================
-   MOBILE POLISH (existing desktop mobile tweaks)
-   ========================= */
-@media (max-width: 768px){
-
-  /* Make the page feel "native" (no white behind during iOS bounce) */
-  html, body{
-    background: #050b18 !important;
-    height: 100%;
-  }
-  body{
-    min-height: 100dvh; /* better than 100vh on mobile */
-  }
-
-  /* Slightly wider layout on phone (less “boxed”) */
-  .container{
-    width: calc(100% - 24px);
-  }
-
-  /* Header spacing + notch safety */
-  .header{
-    padding-top: env(safe-area-inset-top);
-  }
-  .nav{
-    height: auto;
-    padding: 10px 0;
-  }
-
-  /* HERO: make it feel like a mobile landing page, not compressed desktop */
-  .hero{
-    padding: 22px 0 14px;
-  }
-
-  .heroGrid{
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-
-  /* Your heroCopy is centered on desktop; on mobile it should be left-aligned */
-  .heroCopy{
-    align-items: flex-start;
-  }
-
-  .pill{
-    max-width: 100%;
-    padding: 10px 12px;
-    font-size: 13.5px;
-  }
-
-  .heroTitle{
-    font-size: clamp(34px, 10.5vw, 46px);
-    line-height: 1.06;
-    letter-spacing: -0.02em;
-    text-align: left;
-    margin: 14px 0 10px;
-    max-width: 16ch;
-  }
-
-  .heroLead{
-    font-size: 16px;
-    line-height: 1.6;
-    margin-top: 12px;
-    max-width: 46ch;
-  }
-
-  .sub{
-    font-size: 14.5px;
-    line-height: 1.7;
-    max-width: 48ch;
-  }
-
-  /* ✅ BIG FIX: remove the desktop vertical offset that makes it feel “compressed” */
-  .trustRow{
-    position: static; /* kills the top:70px desktop trick */
-    top: auto;
-    margin: 22px 0 0;
-    gap: 12px;
-    max-width: 520px;
-    justify-items: stretch;
-  }
-
-  .trustItem{
-    padding: 14px 14px;
-    border-radius: 16px;
-  }
-
-  .trustNum{
-    width: 34px;
-    height: 34px;
-    border-radius: 14px;
-    font-size: 13px;
-    flex: 0 0 auto;
-  }
-
-  .trustText{
-    font-size: 15px;
-    line-height: 1.25;
-  }
-
-  /* Phone preview: smaller + more “section-like” */
-  .heroVisual{
-    margin-top: 6px;
-  }
-
-  .phone{
-    width: min(340px, 100%);
-    border-radius: 28px;
-  }
-
-  .screen{
-    padding: 12px;
-  }
-
-  /* How it works: make it breathe + stack clean */
-  .howBlock{
-    margin-top: 18px;
-    padding: 16px;
-    border-radius: 18px;
-  }
-
-  .howTitle{
-    font-size: 20px;
-    margin-bottom: 6px;
-  }
-
-  .howSub{
-    font-size: 14.5px;
-    line-height: 1.65;
-  }
-
-  .whyGrid{
-    grid-template-columns: 1fr;
-    gap: 12px;
-    margin-top: 14px;
-  }
-
-  .whyCard{
-    padding: 16px;
-    border-radius: 16px;
-  }
-
-  .whyCard h3{
-    font-size: 16px;
-  }
-  .whyCard p{
-    font-size: 14px;
-    line-height: 1.65;
-  }
-
-  /* Footer stack */
-  .footerRow{
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-}
-
-/* ===== MOBILE HOTFIX: stop steps colliding with phone mockup ===== */
-@media (max-width: 768px){
-
-  /* Remove the desktop offsets that push the step cards down */
-  .trustRow{
-    position: static !important;
-    top: auto !important;
-    margin-top: 18px !important;
-    margin-bottom: 0 !important;
-    justify-items: stretch !important;
-  }
-
-  /* Kill any per-item stagger */
-  .trustItem,
-  .trustItem:nth-child(1),
-  .trustItem:nth-child(2),
-  .trustItem:nth-child(3){
-    position: static !important;
-    top: auto !important;
-    transform: none !important;
-  }
-
-  /* Give the phone mockup breathing room under the steps */
-  .heroVisual{
-    margin-top: 18px !important;
-  }
-
-  /* Slightly smaller phone so it doesn't crowd */
-  .phone{
-    width: min(330px, 100%) !important;
-  }
-}
-
-/* =========================
-   MOBILE APP-LIKE SLIDES (NAV + SLIDES ONLY)
-   ========================= */
+/* =========================================================
+   MOBILE APP-LIKE SLIDES (nav + slides ONLY)
+   ========================================================= */
 
 /* Desktop: keep mobile slider hidden */
 .mOnly{ display: none; }
 
 @media (max-width: 768px){
 
-  /* Only show mobile slider. Hide desktop page content entirely. */
+  /* Hide desktop page content entirely */
   main#top{ display:none !important; }
   footer.footer{ display:none !important; }
 
-  /* Lock page scroll on mobile (the carousel handles motion) */
+  /* Lock page scroll on mobile (carousel handles movement) */
   html, body{
     height: 100%;
     overflow: hidden;
     background: #050b18 !important;
   }
 
-  /* ✅ NAV POLISH (mobile proportions) */
+  /* Make header feel more premium on mobile */
+  .header{
+    background: rgba(8, 16, 35, 0.78);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 10px 34px rgba(0,0,0,0.42);
+    padding-top: env(safe-area-inset-top);
+  }
+
+  /* NAV polish */
   .nav{
-    height: 64px !important;
+    height: 66px !important;
     padding: 10px 0 !important;
     align-items: center !important;
   }
+  .brand{ gap:10px; }
   .brandMark{
-    width: 32px !important;
-    height: 32px !important;
-    border-radius: 12px !important;
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 13px !important;
+    box-shadow: 0 18px 50px rgba(11,42,91,0.22) !important;
   }
   .brandText{
-    font-size: 16px !important;
-    letter-spacing: -0.2px !important;
+    font-size: 17px !important;
+    font-weight: 820 !important;
+    letter-spacing: -0.3px !important;
   }
   .navCta{
-    padding: 10px 12px !important;
-    border-radius: 16px !important;
+    padding: 10px 14px !important;
+    border-radius: 18px !important;
     font-size: 14px !important;
-    box-shadow: 0 12px 30px rgba(11,42,91,0.22) !important;
+    border: 1px solid rgba(51,225,255,0.16) !important;
+    box-shadow: 0 16px 46px rgba(11,42,91,0.22) !important;
   }
 
-  /* Show mobile slider container */
+  /* Mobile slider stage under nav */
   .mOnly{
     display: grid;
     place-items: center;
-    height: calc(100dvh - 64px);
+    height: calc(100dvh - 66px);
     padding: 14px 12px 16px;
   }
 
   /* Post card container */
   .mCard{
+    position: relative; /* required for dots */
     width: min(420px, 100%);
     height: 100%;
     max-height: 680px;
@@ -981,6 +591,7 @@ body {
     border: 1px solid rgba(255,255,255,0.08);
     background: rgba(255,255,255,0.025);
     backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     box-shadow:
       0 26px 90px rgba(0,0,0,0.55),
       inset 0 1px 0 rgba(255,255,255,0.05);
@@ -995,18 +606,51 @@ body {
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
 
-    /* hide scrollbar track/line */
     scrollbar-width: none;
   }
   .mCarousel::-webkit-scrollbar{ height: 0; }
   .mCarousel::-webkit-scrollbar-track{ background: transparent; }
   .mCarousel::-webkit-scrollbar-thumb{ background: transparent; }
 
-  /* Each slide is fixed to card size */
+  /* Premium Apple-like dots */
+  .mDots{
+    position: absolute;
+    left: 50%;
+    bottom: 14px;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.05);
+    z-index: 5;
+  }
+  .mDot{
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    border: 0;
+    padding: 0;
+    background: rgba(255,255,255,0.28);
+    transition: width 180ms ease, background 180ms ease, transform 180ms ease, opacity 180ms ease;
+    opacity: 0.9;
+  }
+  .mDot.isActive{
+    width: 22px;
+    background: rgba(255,255,255,0.9);
+    opacity: 1;
+  }
+  .mDot:active{ transform: scale(0.95); }
+
+  /* Slides */
   .mSlide{
     flex: 0 0 100%;
     height: 100%;
-    padding: 18px 16px 54px; /* bottom space reserved (if you add dots later) */
+    padding: 18px 16px 54px; /* bottom reserved for dots */
     scroll-snap-align: start;
     overflow: hidden;
     display: grid;
@@ -1020,7 +664,7 @@ body {
       linear-gradient(180deg, rgba(7,11,20,1) 0%, rgba(6,20,46,1) 55%, rgba(7,11,20,1) 100%);
   }
 
-  /* ✅ Make slides feel distinct (still same content) */
+  /* Subtle per-slide atmosphere */
   .mCarousel .mSlide:nth-child(1){
     background:
       radial-gradient(720px 520px at 22% 12%, rgba(124,92,255,0.18), transparent 66%),
@@ -1043,7 +687,7 @@ body {
       linear-gradient(180deg, rgba(7,11,20,1) 0%, rgba(6,20,46,1) 100%);
   }
 
-  /* Slide 1 typography tuned for card */
+  /* Slide 1 typography */
   .mSlide .heroTitle{
     text-align: left !important;
     margin: 0 !important;
@@ -1063,76 +707,193 @@ body {
     max-width: 100%;
   }
 
-  /* Slide 2: onboarding card feel (same text) */
+  /* ===== Slide 2 redesign: timeline stepper (same text) ===== */
   .mCarousel .mSlide:nth-child(2) .trustRow{
-    position: static !important;
+    position: relative !important;
     top: auto !important;
     margin: 0 !important;
     gap: 14px !important;
     max-width: 100% !important;
     justify-items: stretch !important;
   }
+
+  /* Kill desktop stagger offsets */
   .mCarousel .mSlide:nth-child(2) .trustItem,
   .mCarousel .mSlide:nth-child(2) .trustItem:nth-child(1),
   .mCarousel .mSlide:nth-child(2) .trustItem:nth-child(2),
   .mCarousel .mSlide:nth-child(2) .trustItem:nth-child(3){
-    position: static !important;
+    position: relative !important;
     top: auto !important;
     transform: none !important;
+  }
 
-    padding: 16px 16px !important;
+  .mCarousel .mSlide:nth-child(2) .trustRow::before{
+    content:"";
+    position: absolute;
+    left: 26px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: linear-gradient(180deg, rgba(124,92,255,0.0), rgba(255,255,255,0.14), rgba(51,225,255,0.0));
+    opacity: 0.9;
+  }
+
+  .mCarousel .mSlide:nth-child(2) .trustItem{
+    padding: 16px 16px 16px 58px !important;
     border-radius: 18px !important;
     background: rgba(255,255,255,0.03) !important;
     border: 1px solid rgba(255,255,255,0.09) !important;
-    box-shadow: 0 18px 50px rgba(0,0,0,0.28) !important;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.24) !important;
   }
+
   .mCarousel .mSlide:nth-child(2) .trustNum{
-    width: 44px !important;
-    height: 44px !important;
-    border-radius: 16px !important;
-    font-size: 14px !important;
-    background: rgba(10,30,61,0.6) !important;
-    border: 1px solid rgba(51,225,255,0.14) !important;
+    position: absolute !important;
+    left: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 12px !important;
+    background: rgba(10,30,61,0.7) !important;
+    border: 1px solid rgba(255,255,255,0.10) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
   }
+
   .mCarousel .mSlide:nth-child(2) .trustText{
     font-size: 16px !important;
     font-weight: 650 !important;
   }
 
-  /* Slide 3: BULLETPROOF phone fit + remove double-border feel */
-  .mCarousel .mSlide:nth-child(3){
-    display: grid !important;
-    place-items: center !important;
-    padding: 14px 12px 54px !important;
-    overflow: hidden !important;
+  /* ===== Slide 3 redesign: app preview panel (fits always) ===== */
+  .mSlidePreview{ align-content: center; }
+
+  .appPreview{
+    width: 100%;
+    max-width: 390px;
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,0.09);
+    background: rgba(255,255,255,0.025);
+    box-shadow: 0 26px 80px rgba(0,0,0,0.48), inset 0 1px 0 rgba(255,255,255,0.05);
+    overflow: hidden;
   }
 
-  .mCarousel .mSlide:nth-child(3) .phone{
-    width: min(360px, 100%) !important;
-    max-height: calc(100% - 12px) !important;
-    height: auto !important;
-
-    border: 0 !important;
-    outline: 1px solid rgba(255,255,255,0.06) !important;
-    background: rgba(255,255,255,0.02) !important;
-    box-shadow: 0 22px 70px rgba(0,0,0,0.55) !important;
-
-    transform: scale(0.86) !important;
-    transform-origin: center top !important;
+  .appTop{
+    padding: 14px 14px 10px;
+    background: rgba(0,0,0,0.14);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
   }
 
-  @media (max-width: 390px){
-    .mCarousel .mSlide:nth-child(3) .phone{
-      transform: scale(0.78) !important;
-    }
+  .appBrand{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
   }
 
-  /* Tighten inner phone content slightly so it never grows tall */
-  .mCarousel .mSlide:nth-child(3) .screen{ padding: 12px !important; }
-  .mCarousel .mSlide:nth-child(3) .lookImg{ height: 96px !important; }
-  .mCarousel .mSlide:nth-child(3) .lookMeta{ padding: 9px 11px !important; gap: 7px !important; }
+  .appMark{
+    width: 28px;
+    height: 28px;
+    border-radius: 11px;
+    display: grid;
+    place-items: center;
+    font-weight: 900;
+    background: linear-gradient(135deg, rgba(11,42,91,1), rgba(7,23,50,1));
+    border: 1px solid rgba(255,255,255,0.10);
+  }
 
-  /* Slide 4: make it look different from Slide 2 (header panels) */
+  .appTitle{
+    font-weight: 850;
+    letter-spacing: -0.2px;
+  }
+
+  .appPills{
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .appPill{
+    padding: 7px 10px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.72);
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.03);
+  }
+
+  .appPill.isActive{
+    color: rgba(255,255,255,0.92);
+    border-color: rgba(51,225,255,0.18);
+    background: rgba(10,30,61,0.55);
+  }
+
+  .appFeed{
+    max-height: 420px;
+    overflow: auto;
+    padding: 12px;
+    display: grid;
+    gap: 12px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .appFeed::-webkit-scrollbar{ display:none; }
+
+  .appCard{
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.03);
+  }
+
+  .appImg{
+    height: 118px;
+    position: relative;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .appImg img{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .appMeta{
+    padding: 10px 12px 12px;
+    display: grid;
+    gap: 8px;
+  }
+
+  .appRow{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .appBadge{
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.72);
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(0,0,0,0.10);
+  }
+
+  .appTags{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .appTags span{
+    font-size: 12px;
+    color: rgba(255,255,255,0.72);
+    border: 1px dashed rgba(255,255,255,0.16);
+    padding: 4px 8px;
+    border-radius: 999px;
+  }
+
+  /* ===== Slide 4: “panel header” cards (looks different from slide 2) ===== */
   .mCarousel .mSlide:nth-child(4) .howBlock{
     margin: 0 !important;
     padding: 16px !important;
