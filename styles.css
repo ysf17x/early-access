@@ -525,6 +525,7 @@ button, input{ font:inherit; color:inherit; }
 .mOnly{ display: none; }
 
 @media (max-width: 768px){
+  
 
   /* ===== MOBILE: Card is the ONLY frame ===== */
 
@@ -556,11 +557,57 @@ button, input{ font:inherit; color:inherit; }
 }
 
 /* Slide 3 = app screen layout */
+/* ===== Slide 3: Poster card = app screen (keep meta visible) ===== */
+
+/* Make slide 3 layout allocate space properly */
 .mOnly .mSlideFeed{
   display: grid;
   grid-template-rows: auto 1fr;
   gap: 12px;
+  padding: 16px 14px 62px;
 }
+
+/* Header stays, feed scrolls */
+.mOnly .appFeed{
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  display: grid;
+  gap: 12px;
+  padding: 2px;
+  min-height: 0;              /* IMPORTANT: allows inner scroll */
+}
+
+/* Each look card must be a 2-part layout: image + meta */
+.mOnly .lookCard{
+  display: grid;
+  grid-template-rows: 140px auto;  /* image height + meta */
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+/* Image fixed height inside grid */
+.mOnly .lookImg{
+  height: auto;               /* let grid control height */
+  min-height: 140px;
+}
+
+/* Meta MUST show */
+.mOnly .lookMeta{
+  display: grid;
+  gap: 8px;
+  padding: 10px 12px;
+}
+
+/* Make tags fit nicely on mobile */
+.mOnly .tags{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Slightly tighter text so it fits */
+.mOnly .lookMeta strong{ font-size: 18px; }
+.mOnly .row.tiny{ font-size: 12.5px; }
 
 /* Header looks like an app header (NOT a phone) */
 .mOnly .appHeader{
