@@ -891,162 +891,36 @@ body {
   }
 }
 
-/* =========================
-   MOBILE SLIDES (Swipe UI)
-   ========================= */
+
+/* ===== MOBILE HOTFIX: stop steps colliding with phone mockup ===== */
 @media (max-width: 768px){
 
-  /* Hide your current desktop hero layout on mobile (optional but recommended) */
-  .heroGrid{ display: none !important; }
-
-  .mSlides{
-    display: block;
-    margin-top: 6px;
+  /* Remove the desktop offsets that push the step cards down */
+  .trustRow{
+    position: static !important;
+    top: auto !important;
+    margin-top: 18px !important;
+    margin-bottom: 0 !important;
+    justify-items: stretch !important;
   }
 
-  .mSlidesTrack{
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-
-    /* no ugly scrollbar */
-    scrollbar-width: none;
-  }
-  .mSlidesTrack::-webkit-scrollbar{ display:none; }
-
-  .mSlide{
-    scroll-snap-align: start;
-    flex: 0 0 100%;
-    padding: 10px 0 6px;
+  /* Kill any per-item stagger */
+  .trustItem,
+  .trustItem:nth-child(1),
+  .trustItem:nth-child(2),
+  .trustItem:nth-child(3){
+    position: static !important;
+    top: auto !important;
+    transform: none !important;
   }
 
-  .mSlideInner{
-    width: calc(100% - 24px);
-    margin: 0 auto;
-    padding: 18px 16px;
-    border-radius: 20px;
-    background: rgba(0,0,0,0.10);
-    border: 1px solid rgba(255,255,255,0.08);
-    backdrop-filter: blur(10px);
+  /* Give the phone mockup breathing room under the steps */
+  .heroVisual{
+    margin-top: 18px !important;
   }
 
-  .mTitle{
-    margin: 14px 0 10px;
-    font-size: clamp(34px, 10.5vw, 46px);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
+  /* Slightly smaller phone so it doesn't crowd */
+  .phone{
+    width: min(330px, 100%) !important;
   }
-
-  .accent{ opacity: 0.85; }
-
-  .mLead{
-    margin: 12px 0 0;
-    font-size: 16px;
-    line-height: 1.6;
-  }
-
-  .mBody{
-    margin: 14px 0 0;
-    font-size: 14.5px;
-    line-height: 1.7;
-    opacity: 0.88;
-  }
-
-  .mH2{
-    margin: 0 0 10px;
-    font-size: 18px;
-    letter-spacing: -0.01em;
-  }
-
-  .mHint{
-    margin-top: 14px;
-    font-size: 13px;
-    opacity: 0.6;
-  }
-
-  /* Steps */
-  .mSteps{
-    display: grid;
-    gap: 12px;
-    margin-top: 10px;
-  }
-  .mStep{
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 14px;
-    border-radius: 16px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.08);
-  }
-  .mStepNum{
-    width: 34px;
-    height: 34px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 14px;
-    background: rgba(0,0,0,0.18);
-    border: 1px solid rgba(255,255,255,0.10);
-    font-weight: 700;
-  }
-
-  /* How it works cards */
-  .mHowGrid{
-    display: grid;
-    gap: 12px;
-    margin-top: 14px;
-  }
-  .mHowCard{
-    padding: 14px;
-    border-radius: 16px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.08);
-  }
-  .mHowCard h3{
-    margin: 0 0 6px;
-    font-size: 16px;
-  }
-  .mHowCard p{
-    margin: 0;
-    font-size: 14px;
-    line-height: 1.65;
-    opacity: 0.9;
-  }
-
-  /* CTA on last slide */
-  .mSecondaryCta{
-    margin-top: 14px;
-    width: 100%;
-    padding: 14px 16px;
-    border-radius: 16px;
-    border: 1px solid rgba(255,255,255,0.10);
-    background: rgba(255,255,255,0.06);
-    color: inherit;
-    font-weight: 600;
-  }
-
-  /* Dots */
-  .mDots{
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    padding: 10px 0 2px;
-  }
-  .mDot{
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.25);
-  }
-  .mDot.isActive{
-    background: rgba(255,255,255,0.70);
-  }
-}
-
-/* Desktop: hide mobile slides */
-@media (min-width: 769px){
-  .mSlides{ display:none; }
 }
