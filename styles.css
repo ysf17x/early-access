@@ -926,46 +926,59 @@ body {
 }
 
 /* =========================
-   MOBILE SWIPE HERO (mobile-only)
+   MOBILE SWIPE HERO (LOCKED 4 PAGES, NO VERTICAL SCROLL PER SLIDE)
    ========================= */
 
-/* default: hidden everywhere */
+/* default hidden everywhere */
 .mobileSwipe { display: none; }
 
-/* mobile: show swipe, hide desktop grid */
 @media (max-width: 900px) {
+  /* mobile uses swipe hero, hides desktop grid */
   .heroGrid { display: none !important; }
-  .mobileSwipe { display: block; padding: 14px 14px 18px; }
+  .mobileSwipe { display: block; padding: 12px 12px 14px; }
 
+  /* horizontal paging only */
   .mobileSwipeTrack{
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: 100%;
     overflow-x: auto;
+    overflow-y: hidden; /* key */
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     border-radius: 22px;
   }
-  .mobileSwipeTrack::-webkit-scrollbar { display: none; }
+  .mobileSwipeTrack::-webkit-scrollbar{ display:none; }
 
-  .mobileSlide { scroll-snap-align: start; }
+  .mobileSlide{
+    scroll-snap-align: start;
+    overflow: hidden; /* key */
+  }
 
+  /* each slide = a fixed “page” */
   .mobileCard{
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+
     border-radius: 22px;
     padding: 18px 16px 16px;
-    min-height: calc(100svh - 180px);
+
+    /* key: fixed page height; prevents inner scrolling */
+    height: calc(100svh - 150px);
+    overflow: hidden;
+
     background: rgba(0,0,0,0.12);
     border: 1px solid rgba(255,255,255,0.10);
     box-shadow: 0 20px 70px rgba(0,0,0,0.35);
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
+
+    display: flex;
+    flex-direction: column;
   }
 
-  .mobileCardPhone{ justify-content:flex-start; }
-
+  /* Slide 1 layout */
   .mobilePill{
     display:inline-flex;
     align-items:center;
@@ -985,91 +998,129 @@ body {
   }
 
   .mobileH1{
-    font-size: 44px;
+    font-size: 42px;
     line-height: 1.03;
     letter-spacing: -0.02em;
-    margin: 0 0 14px;
+    margin: 0 0 12px;
   }
   .mobileAccent{ opacity: .6; }
 
   .mobileLead{
-    margin: 0 0 14px;
-    font-size: 18px;
-    line-height: 1.4;
+    margin: 0 0 12px;
+    font-size: 17px;
+    line-height: 1.45;
     color: rgba(255,255,255,0.9);
   }
 
   .mobileBody{
-    margin: 0 0 14px;
-    font-size: 17px;
+    margin: 0 0 12px;
+    font-size: 16px;
     line-height: 1.55;
     color: rgba(255,255,255,0.72);
   }
 
   .mobileH2{
-    margin: 0 0 14px;
-    font-size: 26px;
+    margin: 0 0 12px;
+    font-size: 24px;
     letter-spacing: -0.01em;
   }
 
-  .mobileSteps{
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-    margin-top: 6px;
+  /* keep CTA at bottom of slide 1/4 */
+  .mobileCTA{
+    width: 100%;
+    margin-top: auto;
   }
+
+  .mobileHint{
+    margin-top: 10px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* Slide 2: perfectly aligned stacked boxes */
+  .mobileSteps{
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+    justify-content: center; /* centers within page height */
+  }
+
   .mobileStep{
-    display:grid;
+    display: grid;
     grid-template-columns: 52px 1fr;
-    gap:14px;
+    align-items: center;
+    gap: 14px;
     padding: 16px 14px;
     border-radius: 18px;
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.10);
-    align-items: center;
   }
   .mobileStepNum{
-    width:44px; height:44px;
-    border-radius:999px;
-    display:grid;
-    place-items:center;
-    font-weight:700;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
     background: rgba(0,0,0,0.18);
     border: 1px solid rgba(120,200,255,0.25);
+    color: rgba(255,255,255,0.9);
   }
   .mobileStepText{
-    font-size:18px;
+    font-size: 18px;
     color: rgba(255,255,255,0.88);
   }
 
+  /* Slide 3: phone must fit, no collision, no scroll */
+  .mobileCardPhone{
+    padding-top: 18px;
+  }
+
   .mobilePhoneWrap{
-    margin-top:14px;
-    display:grid;
-    place-items:center;
-    overflow:hidden;
-    border-radius:18px;
+    margin-top: 12px;
+    flex: 1;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border-radius: 18px;
   }
 
-  /* ✅ anti-collision: forces desktop phone to behave inside mobile slide */
+  /* the key: kill desktop transforms/positioning inside mobile */
   .mobilePhoneWrap .phone{
-    width: min(360px, 92vw);
+    width: min(360px, 92vw) !important;
     transform: none !important;
-    margin: 0 auto;
+    margin: 0 auto !important;
   }
 
+  /* Slide 4: fit 3 cards inside one page */
   .mobileHowGrid{
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-    margin-top:8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+    justify-content: center;
+    overflow: hidden;
   }
   .mobileHowCard{
-    padding:16px 14px;
-    border-radius:18px;
+    padding: 14px 14px;
+    border-radius: 18px;
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.10);
   }
+  .mobileHowCard h3{
+    margin: 0 0 6px;
+    font-size: 18px;
+  }
+  .mobileHowCard p{
+    margin: 0;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.5;
+    font-size: 14.5px;
+  }
 
+  /* Dots */
   .mobileDots{
     display:flex;
     justify-content:center;
@@ -1084,6 +1135,12 @@ body {
   .mobileDotItem.active{
     background: rgba(255,255,255,0.65);
   }
+}
+
+/* desktop: keep swipe hidden */
+@media (min-width: 901px) {
+  .mobileSwipe { display: none !important; }
+  .heroGrid { display: grid !important; }
 }
 
 /* desktop: keep swipe hidden, keep grid visible */
