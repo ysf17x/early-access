@@ -926,212 +926,156 @@ body {
 }
 
 /* =========================
-   MOBILE SLIDESHOW (PHONE ONLY)
+   MOBILE APP-LIKE SLIDES (ONLY NAV + SLIDES)
    ========================= */
-@media (max-width: 900px){
 
+/* Desktop: hide mobile container */
+.mOnly{ display:none; }
+
+@media (max-width: 768px){
+
+  /* Mobile: hide desktop main + footer completely */
+  main#top{ display:none !important; }
+  footer.footer{ display:none !important; }
+
+  /* Only show the mobile slides area */
+  .mOnly{ display:block; }
+
+  /* Prevent any accidental page scroll on mobile */
   html, body{
     height: 100%;
     overflow: hidden;
-    background: #050b18;
+    background: #050b18 !important;
   }
 
-  main > section:not(.hero){
-    display: none !important;
-  }
-  footer{ display: none !important; }
-
-  .hero{
-    padding: 0 !important;
-    height: calc(100svh - 72px);
-    display: flex;
+  /* Header stays as-is (your existing nav) */
+  .header{
+    position: sticky;
+    top: 0;
+    z-index: 2000;
   }
 
-  .heroGrid{ display: none !important; }
+  /* Stage = remaining viewport under the navbar */
+  .mOnly{
+    height: calc(100dvh - 72px);
+    display: grid;
+    place-items: center;
+    padding: 14px 12px 16px;
+  }
 
-  .mobileSwipe{
-    display: block;
-    width: 100%;
+  /* Instagram-post-like card */
+  .mCard{
+    width: min(420px, 100%);
     height: 100%;
-    position: relative;
-    padding: 14px 14px calc(16px + env(safe-area-inset-bottom));
+    max-height: 680px;                 /* hard cap */
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 22px 70px rgba(0,0,0,0.46);
+    overflow: hidden;                  /* IMPORTANT: nothing can spill out */
   }
 
-  .mobileTrack{
+  /* Horizontal swipe area */
+  .mCarousel{
     height: 100%;
     display: flex;
-    gap: 14px;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-    padding-bottom: 46px;
-    touch-action: pan-x;
-    overscroll-behavior-x: contain;
-    overscroll-behavior-y: none;
+    scrollbar-width: none;
   }
-  .mobileTrack::-webkit-scrollbar{ height: 0; }
+  .mCarousel::-webkit-scrollbar{ display:none; }
 
+  /* Each slide is fixed to card size */
   .mSlide{
     flex: 0 0 100%;
-    scroll-snap-align: center;
     height: 100%;
-    display: flex;
-  }
-
-  .mCard{
-    width: 100%;
-    height: 100%;
-    border-radius: 24px;
-    border: 1px solid rgba(255,255,255,0.10);
-    background: rgba(7,12,26,0.55);
-    box-shadow: 0 22px 70px rgba(0,0,0,0.45);
-    padding: 18px 16px 18px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    padding: 18px 16px;
+    scroll-snap-align: start;
+    overflow: hidden;                  /* IMPORTANT: slide content clipped if needed */
+    display: grid;
+    align-content: center;
     gap: 12px;
-    overflow: hidden;
+    background:
+      radial-gradient(720px 520px at 25% 10%, rgba(124,92,255,0.14), transparent 66%),
+      radial-gradient(720px 520px at 85% 18%, rgba(51,225,255,0.09), transparent 68%),
+      radial-gradient(980px 640px at 50% 85%, rgba(6,20,46,0.78), transparent 70%),
+      linear-gradient(180deg, rgba(7,11,20,1) 0%, rgba(6,20,46,1) 55%, rgba(7,11,20,1) 100%);
   }
 
-  .mTitle{
-    font-size: 28px;
-    line-height: 1.1;
+  /* Slide 1 typography tuned for card */
+  .mSlide .heroTitle{
+    text-align: left !important;
+    margin: 0 !important;
+    max-width: 18ch;
+    font-size: clamp(34px, 9.6vw, 46px);
+    line-height: 1.05;
     letter-spacing: -0.02em;
-    margin: 0;
   }
 
-  .mHeroTitle{
-    font-size: clamp(42px, 10.5vw, 54px);
-    line-height: 1.02;
-    letter-spacing: -0.03em;
-    margin: 0;
+  .mSlide .heroLead,
+  .mSlide .sub{
+    text-align: left !important;
+    margin: 0 !important;
+    max-width: 46ch;
   }
 
-  .mAccent{ color: rgba(96, 120, 255, 0.9); }
-
-  .mHeroLead{
-    font-size: 16px;
-    line-height: 1.6;
-    opacity: 0.95;
+  .mSlide .pill{
+    width: fit-content;
+    max-width: 100%;
   }
 
-  .mSub{
-    font-size: 14.5px;
-    line-height: 1.65;
-    opacity: 0.8;
+  /* Slide 2 steps: no desktop offsets, no weird scaling */
+  .mSlide .trustRow{
+    position: static !important;
+    top: auto !important;
+    margin: 0 !important;
+    gap: 12px;
+    max-width: 100%;
+    justify-items: stretch;
+  }
+  .mSlide .trustItem,
+  .mSlide .trustItem:nth-child(1),
+  .mSlide .trustItem:nth-child(2),
+  .mSlide .trustItem:nth-child(3){
+    position: static !important;
+    top: auto !important;
+    transform: none !important;
   }
 
-  .mSteps{
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-top: 6px;
-  }
-
-  .mStep{
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 16px 16px;
-    border-radius: 20px;
-    border: 1px solid rgba(255,255,255,0.12);
-    background: rgba(255,255,255,0.04);
-  }
-
-  .mStepNum{
-    width: 44px;
-    height: 44px;
-    border-radius: 18px;
-    display: grid;
+  /* Slide 3: the critical part — phone NEVER spills out */
+  .mSlide .heroVisual{
     place-items: center;
-    font-weight: 700;
-    border: 1px solid rgba(255,255,255,0.14);
-    background: rgba(255,255,255,0.03);
-    flex: 0 0 auto;
+    margin: 0 !important;
   }
 
-  .mStepText{
-    font-size: 18px;
-    line-height: 1.2;
-    font-weight: 600;
-  }
-
-  .mPhoneWrap{
-    display: grid;
-    place-items: center;
-    margin-top: 4px;
-  }
-
-  .mPhoneWrap .phone{
-    width: min(330px, 100%);
+  .mSlide .phone{
+    width: 100% !important;
+    max-width: 360px !important;
+    max-height: 92%;                  /* keeps it inside the card */
+    transform: scale(0.92);           /* slight scale-down for safety */
     transform-origin: top center;
   }
 
-  @media (max-height: 740px){
-    .mPhoneWrap .phone{ transform: scale(0.92); }
-  }
-  @media (max-height: 690px){
-    .mPhoneWrap .phone{ transform: scale(0.86); }
-  }
+  /* Make inner card content slightly tighter on mobile slide */
+  .mSlide .screen{ padding: 12px !important; }
+  .mSlide .lookImg{ height: 96px !important; }  /* prevents vertical growth */
+  .mSlide .lookMeta{ padding: 9px 11px !important; gap: 7px !important; }
 
-  .mHow{
-    justify-content: flex-start;
-    padding-top: 20px;
-  }
-  .mHow .howBlock{
+  /* Slide 4: stack the 3 cards vertically (no 3-column desktop grid) */
+  .mSlide .howBlock{
     margin: 0 !important;
-    padding: 0 !important;
-    background: transparent !important;
-    border: 0 !important;
-    box-shadow: none !important;
-  }
-  .mHow .howTitle{
-    font-size: 28px !important;
-    margin-bottom: 8px !important;
-  }
-  .mHow .howSub{
-    font-size: 15px !important;
-    line-height: 1.6 !important;
-    margin-bottom: 14px !important;
-    opacity: 0.85 !important;
-  }
-  .mHow .whyGrid{
-    grid-template-columns: 1fr !important;
-    gap: 14px !important;
-    margin-top: 10px !important;
-  }
-  .mHow .whyCard{
     padding: 16px !important;
-    border-radius: 20px !important;
+  }
+  .mSlide .whyGrid{
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  .mSlide .whyCard h3,
+  .mSlide .whyCard p{
+    text-align: left !important;
   }
 
-  .mobileDots{
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: calc(12px + env(safe-area-inset-bottom));
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    pointer-events: none;
-  }
-  .mobileDots .dot{
-    pointer-events: auto;
-    width: 10px;
-    height: 10px;
-    border-radius: 999px;
-    border: 0;
-    background: rgba(255,255,255,0.25);
-    padding: 0;
-  }
-  .mobileDots .dot.isActive{
-    background: rgba(255,255,255,0.7);
-  }
-}
-
-/* Desktop: hide slideshow */
-@media (min-width: 901px){
-  .mobileSwipe{ display: none !important; }
 }
