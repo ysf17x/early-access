@@ -526,6 +526,68 @@ button, input{ font:inherit; color:inherit; }
 
 @media (max-width: 768px){
 
+  /* ===== Slide 3: card IS the app UI ===== */
+.mSlideFeed{
+  align-content: start;
+  gap: 12px;
+}
+
+/* App header (sticky inside the slide) */
+.appHeader{
+  position: sticky;
+  top: 0;
+  z-index: 2;
+
+  padding: 10px 12px 12px;
+  border-radius: 18px;
+  background: rgba(0,0,0,0.18);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 12px 34px rgba(0,0,0,0.28);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Feed scrolls INSIDE the card (not the page) */
+.appFeed{
+  flex: 1;
+  max-height: 420px; /* safe inside your mCard */
+  overflow: auto;
+  display: grid;
+  gap: 12px;
+  padding: 2px 2px 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.appFeed::-webkit-scrollbar{ display:none; }
+
+/* Make the look cards more “app” */
+.mSlideFeed .lookCard{
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.03);
+  box-shadow: 0 16px 44px rgba(0,0,0,0.22);
+}
+
+.mSlideFeed .lookImg{
+  height: 128px; /* slightly taller, feels more app-like */
+}
+
+/* Slightly tighter meta spacing for mobile */
+.mSlideFeed .lookMeta{
+  padding: 10px 12px 12px;
+  gap: 8px;
+}
+
+/* Chips: make them feel more iOS segmented */
+.mSlideFeed .chipRow{
+  margin-top: 10px;
+  gap: 8px;
+}
+.mSlideFeed .chip{
+  padding: 8px 10px;
+  border-radius: 999px;
+}
+
   /* Hide desktop page content entirely */
   main#top{ display:none !important; }
   footer.footer{ display:none !important; }

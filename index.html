@@ -30,180 +30,168 @@
   <!-- ================= MOBILE: APP-LIKE SLIDES ONLY ================= -->
   <!-- (Nav + Slides only on mobile. Desktop main is hidden via CSS.) -->
   <div class="mOnly" id="mOnly" aria-label="Mobile slides">
-  <div class="mCard" aria-label="Swipe container">
+    <div class="mCard" aria-label="Swipe container">
 
-    <div class="mCarousel" id="mCarousel">
+      <div class="mCarousel" id="mCarousel">
 
-      <!-- SLIDE 1 -->
-      <section class="mSlide" aria-label="Slide 1">
-        <div class="pill">
-          <span class="dot"></span>
-          <span>Fashion memory, not just inspiration.</span>
-        </div>
-
-        <h1 class="heroTitle">
-          Archive your style.
-          <span class="accentText">Discover taste.</span>
-          Find your people.
-        </h1>
-
-        <p class="heroLead">
-          <strong>Archive what you wear today.</strong>
-          <span class="heroLeadMuted">Explore what you’ll wear next.</span>
-        </p>
-
-        <p class="sub">
-          A personal style archive where your real outfits become a timeline —
-          and your taste connects you to people who get it.
-        </p>
-      </section>
-
-      <!-- SLIDE 2 -->
-      <section class="mSlide" aria-label="Slide 2">
-        <div class="trustRow" aria-label="Quick steps">
-          <div class="trustItem">
-            <div class="trustNum">1</div>
-            <div class="trustText">Tap to archive outfits</div>
+        <!-- SLIDE 1 -->
+        <section class="mSlide" aria-label="Slide 1">
+          <div class="pill">
+            <span class="dot"></span>
+            <span>Fashion memory, not just inspiration.</span>
           </div>
-          <div class="trustItem">
-            <div class="trustNum">2</div>
-            <div class="trustText">Tag pieces + vibe</div>
-          </div>
-          <div class="trustItem">
-            <div class="trustNum">3</div>
-            <div class="trustText">Taste feed finds you</div>
-          </div>
-        </div>
-      </section>
 
-      <!-- SLIDE 3 -->
-      <section class="mSlide mSlidePreview" aria-label="Slide 3">
-        <div class="heroVisual">
-          <div class="glow" aria-hidden="true"></div>
+          <h1 class="heroTitle">
+            Archive your style.
+            <span class="accentText">Discover taste.</span>
+            Find your people.
+          </h1>
 
-          <div class="phone" role="img" aria-label="App preview phone mock">
-            <div class="phoneTop">
-              <div class="cam"></div>
-              <div class="speaker"></div>
+          <p class="heroLead">
+            <strong>Archive what you wear today.</strong>
+            <span class="heroLeadMuted">Explore what you’ll wear next.</span>
+          </p>
+
+          <p class="sub">
+            A personal style archive where your real outfits become a timeline —
+            and your taste connects you to people who get it.
+          </p>
+        </section>
+
+        <!-- SLIDE 2 -->
+        <section class="mSlide" aria-label="Slide 2">
+          <div class="trustRow" aria-label="Quick steps">
+            <div class="trustItem">
+              <div class="trustNum">1</div>
+              <div class="trustText">Tap to archive outfits</div>
+            </div>
+            <div class="trustItem">
+              <div class="trustNum">2</div>
+              <div class="trustText">Tag pieces + vibe</div>
+            </div>
+            <div class="trustItem">
+              <div class="trustNum">3</div>
+              <div class="trustText">Taste feed finds you</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 3 (Card = App UI, no phone mock) -->
+        <section class="mSlide mSlideFeed" aria-label="Slide 3">
+
+          <div class="appHeader">
+            <div class="miniBrand">
+              <div class="miniMark">W</div>
+              <div class="miniText">Your Archive</div>
             </div>
 
-            <div class="screen">
-              <div class="screenHeader">
-                <div class="miniBrand">
-                  <div class="miniMark">W</div>
-                  <div class="miniText">Your Archive</div>
-                </div>
+            <div class="chipRow" aria-label="Archive filters">
+              <button class="chip isActive" type="button">Saved</button>
+              <button class="chip" type="button">Tagged</button>
+              <button class="chip" type="button">Archived</button>
+            </div>
+          </div>
 
-                <div class="chipRow" aria-label="Archive filters">
-                  <button class="chip isActive" type="button">Saved</button>
-                  <button class="chip" type="button">Tagged</button>
-                  <button class="chip" type="button">Archived</button>
+          <div class="appFeed" aria-label="Outfit feed">
+
+            <div class="lookCard">
+              <div class="lookImg realImg pos-top">
+                <img src="images/look1.jpg" alt="Outfit 1">
+              </div>
+              <div class="lookMeta">
+                <div class="row">
+                  <div><strong>Casual dinner fit</strong></div>
+                  <div class="badge">Saved</div>
+                </div>
+                <div class="row tiny muted">
+                  <div>@arman00</div><div>2h</div>
+                </div>
+                <div class="tags">
+                  <span>#dinner</span><span>#denim</span><span>#clean</span>
                 </div>
               </div>
+            </div>
 
-              <div class="cards" aria-label="Outfit cards">
-                <div class="lookCard">
-                  <div class="lookImg realImg pos-top">
-                    <img src="images/look1.jpg" alt="Outfit 1">
-                  </div>
-                  <div class="lookMeta">
-                    <div class="row">
-                      <div><strong>Casual dinner fit</strong></div>
-                      <div class="badge">Saved</div>
-                    </div>
-                    <div class="row tiny muted">
-                      <div>@arman00</div><div>2h</div>
-                    </div>
-                    <div class="tags">
-                      <span>#dinner</span><span>#denim</span><span>#clean</span>
-                    </div>
-                  </div>
+            <div class="lookCard">
+              <div class="lookImg realImg pos-med">
+                <img src="images/look2.jpg" alt="Outfit 2">
+              </div>
+              <div class="lookMeta">
+                <div class="row">
+                  <div><strong>Weekend essentials</strong></div>
+                  <div class="badge">Saved</div>
                 </div>
-
-                <div class="lookCard">
-                  <div class="lookImg realImg pos-med">
-                    <img src="images/look2.jpg" alt="Outfit 2">
-                  </div>
-                  <div class="lookMeta">
-                    <div class="row">
-                      <div><strong>Weekend essentials</strong></div>
-                      <div class="badge">Saved</div>
-                    </div>
-                    <div class="row tiny muted">
-                      <div>@boywhocriedniche</div><div>Yesterday</div>
-                    </div>
-                    <div class="tags">
-                      <span>#layered</span><span>#larping</span><span>#rotation</span>
-                    </div>
-                  </div>
+                <div class="row tiny muted">
+                  <div>@boywhocriedniche</div><div>Yesterday</div>
                 </div>
-
-                <div class="lookCard">
-                  <div class="lookImg realImg pos-bottom">
-                    <img src="images/look3.jpg" alt="Outfit 3">
-                  </div>
-                  <div class="lookMeta">
-                    <div class="row">
-                      <div><strong>Night in paris</strong></div>
-                      <div class="badge">Saved</div>
-                    </div>
-                    <div class="row tiny muted">
-                      <div>@sarxxh</div><div>1w</div>
-                    </div>
-                    <div class="tags">
-                      <span>#vintage</span><span>#fall</span><span>#leather</span>
-                    </div>
-                  </div>
+                <div class="tags">
+                  <span>#layered</span><span>#larping</span><span>#rotation</span>
                 </div>
+              </div>
+            </div>
 
+            <div class="lookCard">
+              <div class="lookImg realImg pos-bottom">
+                <img src="images/look3.jpg" alt="Outfit 3">
+              </div>
+              <div class="lookMeta">
+                <div class="row">
+                  <div><strong>Night in paris</strong></div>
+                  <div class="badge">Saved</div>
+                </div>
+                <div class="row tiny muted">
+                  <div>@sarxxh</div><div>1w</div>
+                </div>
+                <div class="tags">
+                  <span>#vintage</span><span>#fall</span><span>#leather</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- SLIDE 4 -->
+        <section class="mSlide" aria-label="Slide 4">
+          <div class="howBlock" aria-label="How it works">
+            <div class="howIntro">
+              <h2 class="howTitle">How it works</h2>
+              <p class="howSub">
+                Not just saving images — you’re archiving your wardrobe history.
+              </p>
+            </div>
+
+            <div class="whyGrid">
+              <div class="whyCard">
+                <h3>Archive real outfits</h3>
+                <p>Document what you actually wear. Your style becomes a timeline — not a feed you forget.</p>
+              </div>
+
+              <div class="whyCard">
+                <h3>Tag the exact pieces</h3>
+                <p>Save the fit and label the items. Later you can search “that jacket” and see every look.</p>
+              </div>
+
+              <div class="whyCard">
+                <h3>Explore your taste</h3>
+                <p>Find people with similar style and save future outfit ideas without losing your identity.</p>
               </div>
             </div>
           </div>
+        </section>
 
-        </div>
-      </section>
+      </div>
 
-      <!-- SLIDE 4 -->
-      <section class="mSlide" aria-label="Slide 4">
-        <div class="howBlock" aria-label="How it works">
-          <div class="howIntro">
-            <h2 class="howTitle">How it works</h2>
-            <p class="howSub">
-              Not just saving images — you’re archiving your wardrobe history.
-            </p>
-          </div>
-
-          <div class="whyGrid">
-            <div class="whyCard">
-              <h3>Archive real outfits</h3>
-              <p>Document what you actually wear. Your style becomes a timeline — not a feed you forget.</p>
-            </div>
-
-            <div class="whyCard">
-              <h3>Tag the exact pieces</h3>
-              <p>Save the fit and label the items. Later you can search “that jacket” and see every look.</p>
-            </div>
-
-            <div class="whyCard">
-              <h3>Explore your taste</h3>
-              <p>Find people with similar style and save future outfit ideas without losing your identity.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <!-- ✅ DOTS GO HERE (outside mCarousel) -->
+      <div class="mDots" id="mDots" aria-label="Slides">
+        <button class="mDot isActive" type="button" aria-label="Slide 1"></button>
+        <button class="mDot" type="button" aria-label="Slide 2"></button>
+        <button class="mDot" type="button" aria-label="Slide 3"></button>
+        <button class="mDot" type="button" aria-label="Slide 4"></button>
+      </div>
 
     </div>
-
-    <!-- ✅ DOTS GO HERE (outside mCarousel) -->
-    <div class="mDots" id="mDots" aria-label="Slides">
-      <button class="mDot isActive" type="button" aria-label="Slide 1"></button>
-      <button class="mDot" type="button" aria-label="Slide 2"></button>
-      <button class="mDot" type="button" aria-label="Slide 3"></button>
-      <button class="mDot" type="button" aria-label="Slide 4"></button>
-    </div>
-
   </div>
-</div>
 
   <!-- ================= DESKTOP (UNCHANGED) ================= -->
   <main id="top">
