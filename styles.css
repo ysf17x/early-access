@@ -1222,3 +1222,63 @@ main{ display:none; } /* desktop hidden on phone */
   opacity: 1;
 }
 }
+
+/* =========================================================
+   HARD OVERRIDE PATCH (mobile Slide 3 meta missing)
+   Put this at the VERY BOTTOM of styles.css
+   ========================================================= */
+@media (max-width: 768px){
+
+  /* Make sure Slide 3 is using the app layout */
+  .mOnly .mSlideFeed{
+    display: grid !important;
+    grid-template-rows: auto 1fr !important;
+    align-content: start !important;
+    gap: 12px !important;
+  }
+
+  /* Feed scroll area */
+  .mOnly .appFeed{
+    min-height: 0 !important;
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    display: grid !important;
+    gap: 12px !important;
+    padding: 2px !important;
+  }
+
+  /* FORCE cards to be Image + Meta (not image-only) */
+  .mOnly .lookCard{
+    display: grid !important;
+    grid-template-rows: 150px auto !important;
+    height: auto !important;
+    overflow: hidden !important;
+  }
+
+  .mOnly .lookImg{
+    height: 150px !important;
+    min-height: 150px !important;
+  }
+
+  /* THIS is the key: your meta is currently being hidden somewhere */
+  .mOnly .lookMeta{
+    display: grid !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    padding: 10px 12px !important;
+    gap: 8px !important;
+    position: relative !important;
+    z-index: 2 !important;
+  }
+
+  .mOnly .tags{
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+
+  .mOnly .badge{
+    display: inline-flex !important;
+  }
+}
