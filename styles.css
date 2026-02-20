@@ -366,7 +366,6 @@ button, input{ font: inherit; color: inherit; }
   background: rgba(0,0,0,0.16);
 }
 
-
 .cam{ width:10px; height:10px; border-radius:999px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.10); }
 .speaker{ width:64px; height:8px; border-radius:999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.10); }
 
@@ -470,13 +469,11 @@ button, input{ font: inherit; color: inherit; }
   padding: 6px 0;
   border-top: 1px solid rgba(255,255,255,0.06);
   background: rgba(0,0,0,0.10);
-  
 }
 
 .footerRow{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
 .tiny{ font-size: 12px; }
 .muted{ color: var(--muted); }
-
 
 .label{
   font-size: 12px;
@@ -734,8 +731,7 @@ body {
 }
 
 /* =========================
-   MOBILE POLISH (real phone feel)
-   Paste at END of styles.css
+   MOBILE POLISH (existing desktop mobile tweaks)
    ========================= */
 @media (max-width: 768px){
 
@@ -891,7 +887,6 @@ body {
   }
 }
 
-
 /* ===== MOBILE HOTFIX: stop steps colliding with phone mockup ===== */
 @media (max-width: 768px){
 
@@ -926,54 +921,69 @@ body {
 }
 
 /* =========================
-   MOBILE APP-LIKE SLIDES (ONLY NAV + SLIDES)
+   MOBILE APP-LIKE SLIDES (NAV + SLIDES ONLY)
    ========================= */
 
-/* Desktop: hide mobile container */
-.mOnly{ display:none; }
+/* Desktop: keep mobile slider hidden */
+.mOnly{ display: none; }
 
 @media (max-width: 768px){
 
-  /* Mobile: hide desktop main + footer completely */
+  /* Only show mobile slider. Hide desktop page content entirely. */
   main#top{ display:none !important; }
   footer.footer{ display:none !important; }
 
-  /* Only show the mobile slides area */
-  .mOnly{ display:block; }
-
-  /* Prevent any accidental page scroll on mobile */
+  /* Lock page scroll on mobile (the carousel handles motion) */
   html, body{
     height: 100%;
     overflow: hidden;
     background: #050b18 !important;
   }
 
-  /* Header stays as-is (your existing nav) */
-  .header{
-    position: sticky;
-    top: 0;
-    z-index: 2000;
+  /* ✅ NAV POLISH (mobile proportions) */
+  .nav{
+    height: 64px !important;
+    padding: 10px 0 !important;
+    align-items: center !important;
+  }
+  .brandMark{
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 12px !important;
+  }
+  .brandText{
+    font-size: 16px !important;
+    letter-spacing: -0.2px !important;
+  }
+  .navCta{
+    padding: 10px 12px !important;
+    border-radius: 16px !important;
+    font-size: 14px !important;
+    box-shadow: 0 12px 30px rgba(11,42,91,0.22) !important;
   }
 
-  /* Stage = remaining viewport under the navbar */
+  /* Show mobile slider container */
   .mOnly{
-    height: calc(100dvh - 72px);
     display: grid;
     place-items: center;
+    height: calc(100dvh - 64px);
     padding: 14px 12px 16px;
   }
 
-  /* Instagram-post-like card */
+  /* Post card container */
   .mCard{
     width: min(420px, 100%);
     height: 100%;
-    max-height: 680px;                 /* hard cap */
+    max-height: 680px;
     border-radius: 22px;
-    border: 1px solid rgba(255,255,255,0.10);
-    background: rgba(255,255,255,0.03);
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.025);
     backdrop-filter: blur(14px);
-    box-shadow: 0 22px 70px rgba(0,0,0,0.46);
-    overflow: hidden;                  /* IMPORTANT: nothing can spill out */
+    box-shadow:
+      0 26px 90px rgba(0,0,0,0.55),
+      inset 0 1px 0 rgba(255,255,255,0.05);
   }
 
   /* Horizontal swipe area */
@@ -984,25 +994,53 @@ body {
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+
+    /* hide scrollbar track/line */
     scrollbar-width: none;
   }
-  .mCarousel::-webkit-scrollbar{ display:none; }
+  .mCarousel::-webkit-scrollbar{ height: 0; }
+  .mCarousel::-webkit-scrollbar-track{ background: transparent; }
+  .mCarousel::-webkit-scrollbar-thumb{ background: transparent; }
 
   /* Each slide is fixed to card size */
   .mSlide{
     flex: 0 0 100%;
     height: 100%;
-    padding: 18px 16px;
+    padding: 18px 16px 54px; /* bottom space reserved (if you add dots later) */
     scroll-snap-align: start;
-    overflow: hidden;                  /* IMPORTANT: slide content clipped if needed */
+    overflow: hidden;
     display: grid;
     align-content: center;
     gap: 12px;
+
     background:
       radial-gradient(720px 520px at 25% 10%, rgba(124,92,255,0.14), transparent 66%),
       radial-gradient(720px 520px at 85% 18%, rgba(51,225,255,0.09), transparent 68%),
       radial-gradient(980px 640px at 50% 85%, rgba(6,20,46,0.78), transparent 70%),
       linear-gradient(180deg, rgba(7,11,20,1) 0%, rgba(6,20,46,1) 55%, rgba(7,11,20,1) 100%);
+  }
+
+  /* ✅ Make slides feel distinct (still same content) */
+  .mCarousel .mSlide:nth-child(1){
+    background:
+      radial-gradient(720px 520px at 22% 12%, rgba(124,92,255,0.18), transparent 66%),
+      linear-gradient(180deg, rgba(7,11,20,1) 0%, rgba(6,20,46,1) 100%);
+  }
+  .mCarousel .mSlide:nth-child(2){
+    background:
+      radial-gradient(720px 520px at 80% 20%, rgba(51,225,255,0.10), transparent 70%),
+      linear-gradient(180deg, rgba(7,11,20,1) 0%, rgba(6,20,46,1) 100%);
+  }
+  .mCarousel .mSlide:nth-child(3){
+    background:
+      radial-gradient(720px 520px at 55% 12%, rgba(124,92,255,0.12), transparent 72%),
+      radial-gradient(720px 520px at 50% 85%, rgba(51,225,255,0.07), transparent 72%),
+      linear-gradient(180deg, rgba(7,11,20,1) 0%, rgba(6,20,46,1) 100%);
+  }
+  .mCarousel .mSlide:nth-child(4){
+    background:
+      radial-gradient(720px 520px at 22% 20%, rgba(10,30,61,0.55), transparent 70%),
+      linear-gradient(180deg, rgba(7,11,20,1) 0%, rgba(6,20,46,1) 100%);
   }
 
   /* Slide 1 typography tuned for card */
@@ -1014,68 +1052,119 @@ body {
     line-height: 1.05;
     letter-spacing: -0.02em;
   }
-
   .mSlide .heroLead,
   .mSlide .sub{
     text-align: left !important;
     margin: 0 !important;
     max-width: 46ch;
   }
-
   .mSlide .pill{
     width: fit-content;
     max-width: 100%;
   }
 
-  /* Slide 2 steps: no desktop offsets, no weird scaling */
-  .mSlide .trustRow{
+  /* Slide 2: onboarding card feel (same text) */
+  .mCarousel .mSlide:nth-child(2) .trustRow{
     position: static !important;
     top: auto !important;
     margin: 0 !important;
-    gap: 12px;
-    max-width: 100%;
-    justify-items: stretch;
+    gap: 14px !important;
+    max-width: 100% !important;
+    justify-items: stretch !important;
   }
-  .mSlide .trustItem,
-  .mSlide .trustItem:nth-child(1),
-  .mSlide .trustItem:nth-child(2),
-  .mSlide .trustItem:nth-child(3){
+  .mCarousel .mSlide:nth-child(2) .trustItem,
+  .mCarousel .mSlide:nth-child(2) .trustItem:nth-child(1),
+  .mCarousel .mSlide:nth-child(2) .trustItem:nth-child(2),
+  .mCarousel .mSlide:nth-child(2) .trustItem:nth-child(3){
     position: static !important;
     top: auto !important;
     transform: none !important;
+
+    padding: 16px 16px !important;
+    border-radius: 18px !important;
+    background: rgba(255,255,255,0.03) !important;
+    border: 1px solid rgba(255,255,255,0.09) !important;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.28) !important;
+  }
+  .mCarousel .mSlide:nth-child(2) .trustNum{
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 16px !important;
+    font-size: 14px !important;
+    background: rgba(10,30,61,0.6) !important;
+    border: 1px solid rgba(51,225,255,0.14) !important;
+  }
+  .mCarousel .mSlide:nth-child(2) .trustText{
+    font-size: 16px !important;
+    font-weight: 650 !important;
   }
 
-  /* Slide 3: the critical part — phone NEVER spills out */
-  .mSlide .heroVisual{
-    place-items: center;
-    margin: 0 !important;
+  /* Slide 3: BULLETPROOF phone fit + remove double-border feel */
+  .mCarousel .mSlide:nth-child(3){
+    display: grid !important;
+    place-items: center !important;
+    padding: 14px 12px 54px !important;
+    overflow: hidden !important;
   }
 
-  .mSlide .phone{
-    width: 100% !important;
-    max-width: 360px !important;
-    max-height: 92%;                  /* keeps it inside the card */
-    transform: scale(0.92);           /* slight scale-down for safety */
-    transform-origin: top center;
+  .mCarousel .mSlide:nth-child(3) .phone{
+    width: min(360px, 100%) !important;
+    max-height: calc(100% - 12px) !important;
+    height: auto !important;
+
+    border: 0 !important;
+    outline: 1px solid rgba(255,255,255,0.06) !important;
+    background: rgba(255,255,255,0.02) !important;
+    box-shadow: 0 22px 70px rgba(0,0,0,0.55) !important;
+
+    transform: scale(0.86) !important;
+    transform-origin: center top !important;
   }
 
-  /* Make inner card content slightly tighter on mobile slide */
-  .mSlide .screen{ padding: 12px !important; }
-  .mSlide .lookImg{ height: 96px !important; }  /* prevents vertical growth */
-  .mSlide .lookMeta{ padding: 9px 11px !important; gap: 7px !important; }
+  @media (max-width: 390px){
+    .mCarousel .mSlide:nth-child(3) .phone{
+      transform: scale(0.78) !important;
+    }
+  }
 
-  /* Slide 4: stack the 3 cards vertically (no 3-column desktop grid) */
-  .mSlide .howBlock{
+  /* Tighten inner phone content slightly so it never grows tall */
+  .mCarousel .mSlide:nth-child(3) .screen{ padding: 12px !important; }
+  .mCarousel .mSlide:nth-child(3) .lookImg{ height: 96px !important; }
+  .mCarousel .mSlide:nth-child(3) .lookMeta{ padding: 9px 11px !important; gap: 7px !important; }
+
+  /* Slide 4: make it look different from Slide 2 (header panels) */
+  .mCarousel .mSlide:nth-child(4) .howBlock{
     margin: 0 !important;
     padding: 16px !important;
+    border-radius: 18px !important;
   }
-  .mSlide .whyGrid{
+  .mCarousel .mSlide:nth-child(4) .whyGrid{
     grid-template-columns: 1fr !important;
     gap: 12px !important;
+    margin-top: 14px !important;
   }
-  .mSlide .whyCard h3,
-  .mSlide .whyCard p{
+  .mCarousel .mSlide:nth-child(4) .whyCard{
+    padding: 0 !important;
+    overflow: hidden !important;
+    border-radius: 18px !important;
+    border: 1px solid rgba(255,255,255,0.09) !important;
+    background: rgba(255,255,255,0.02) !important;
+  }
+  .mCarousel .mSlide:nth-child(4) .whyCard h3{
+    margin: 0 !important;
+    padding: 14px 14px 10px !important;
+    font-size: 15px !important;
+    font-weight: 800 !important;
     text-align: left !important;
+    background: rgba(0,0,0,0.14);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
   }
-
+  .mCarousel .mSlide:nth-child(4) .whyCard p{
+    margin: 0 !important;
+    padding: 12px 14px 14px !important;
+    font-size: 14px !important;
+    text-align: left !important;
+    line-height: 1.65 !important;
+    opacity: 0.78 !important;
+  }
 }
