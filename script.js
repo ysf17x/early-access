@@ -92,3 +92,50 @@ setTimeout(() => {
 }, SUCCESS_VISIBLE_MS);
   }); 
 }
+
+// =========================
+// Mobile Slides (scroll-snap) + dots
+// =========================
+(function () {
+  const track = document.getElementById("mSlidesTrack");
+  const dotsWrap = document.getElementById("mDots");
+  if (!track || !dotsWrap) return;
+
+  const slides = Array.from(track.children);
+  const dots = slides.map(() => {
+    const d = document.createElement("div");
+    d.className = "mDot";
+    dotsWrap.appendChild(d);
+    return d;
+  });
+
+  function setActiveDot(index) {
+    dots.forEach((d, i) => d.classList.toggle("isActive", i === index));
+  }
+
+  // initial
+  setActiveDot(0);
+
+  // update on scroll (debounced)
+  let raf = null;
+  track.addEventListener("scroll", () => {
+    if (raf) cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      const slideWidth = track.clientWidth;
+      const index = Math.round(track.scrollLeft / slideWidth);
+      setActiveDot(Math.max(0, Math.min(slides.length - 1, index)));
+    });
+  });
+
+  // Hook slide CTA buttons to your modal open
+  // If you already have a function like openModal(), call it here.
+  document.querySelectorAll("[data-open-modal]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // Try to click your existing header CTA if that already opens the modal:
+      const existing = document.querySelector(".navCta");
+      if (existing && existing !== btn) existing.click();
+      // Otherwise, call your modal open function directly if you have one:
+      // openModal();
+    });
+  });
+})();
