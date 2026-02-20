@@ -143,3 +143,37 @@ if (carousel && dots.length){
     });
   });
 }
+
+/* =========================
+   MOBILE CAROUSEL DOTS
+   ========================= */
+(function(){
+  const carousel = document.getElementById("mCarousel");
+  const dotsWrap = document.getElementById("mDots");
+  if (!carousel || !dotsWrap) return;
+
+  const dots = Array.from(dotsWrap.querySelectorAll(".mDot"));
+  const setActive = (idx) => {
+    dots.forEach((d,i) => d.classList.toggle("isActive", i === idx));
+  };
+
+  // click dots -> scroll
+  dots.forEach((dot, idx) => {
+    dot.addEventListener("click", () => {
+      const w = carousel.clientWidth;
+      carousel.scrollTo({ left: idx * w, behavior: "smooth" });
+      setActive(idx);
+    });
+  });
+
+  // swipe -> update dots
+  let raf = null;
+  carousel.addEventListener("scroll", () => {
+    if (raf) cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      const w = carousel.clientWidth || 1;
+      const idx = Math.round(carousel.scrollLeft / w);
+      setActive(Math.max(0, Math.min(dots.length - 1, idx)));
+    });
+  }, { passive: true });
+})();

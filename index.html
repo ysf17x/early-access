@@ -28,7 +28,7 @@
   </header>
 
   <!-- ================= MOBILE: APP-LIKE SLIDES ONLY ================= -->
-  <!-- (Nav + Slides only on mobile. Desktop main is hidden via CSS.) -->
+  <!-- Nav + Slides only on mobile (desktop <main> hidden via CSS on mobile) -->
   <div class="mOnly" id="mOnly" aria-label="Mobile slides">
     <div class="mCard" aria-label="Swipe container">
 
@@ -76,84 +76,80 @@
           </div>
         </section>
 
-       <!-- SLIDE 3 (Card = App UI, NO phone mock) -->
-<section class="mSlide mSlideFeed" aria-label="Slide 3">
+        <!-- SLIDE 3 (Poster card = the app UI, NO phone mock) -->
+        <section class="mSlide mSlideFeed" aria-label="Slide 3">
 
-  <div class="appHeader">
-    <div class="miniBrand">
-      <div class="miniMark">W</div>
-      <div class="miniText">Your Archive</div>
-    </div>
+          <div class="appHeader">
+            <div class="miniBrand">
+              <div class="miniMark">W</div>
+              <div class="miniText">Your Archive</div>
+            </div>
 
-    <div class="chipRow" aria-label="Archive filters">
-      <button class="chip isActive" type="button">Saved</button>
-      <button class="chip" type="button">Tagged</button>
-      <button class="chip" type="button">Archived</button>
-    </div>
-  </div>
+            <div class="chipRow" aria-label="Archive filters">
+              <button class="chip isActive" type="button">Saved</button>
+              <button class="chip" type="button">Tagged</button>
+              <button class="chip" type="button">Archived</button>
+            </div>
+          </div>
 
-  <div class="appFeed" aria-label="Outfit feed">
+          <div class="appFeed" aria-label="Outfit feed">
 
-    <!-- same lookCards as before -->
-    <!-- Card 1 -->
-    <div class="lookCard">
-      <div class="lookImg realImg pos-top">
-        <img src="images/look1.jpg" alt="Outfit 1">
-      </div>
-      <div class="lookMeta">
-        <div class="row">
-          <div><strong>Casual dinner fit</strong></div>
-          <div class="badge">Saved</div>
-        </div>
-        <div class="row tiny muted">
-          <div>@arman00</div><div>2h</div>
-        </div>
-        <div class="tags">
-          <span>#dinner</span><span>#denim</span><span>#clean</span>
-        </div>
-      </div>
-    </div>
+            <div class="lookCard">
+              <div class="lookImg realImg pos-top">
+                <img src="images/look1.jpg" alt="Outfit 1">
+              </div>
+              <div class="lookMeta">
+                <div class="row">
+                  <div><strong>Casual dinner fit</strong></div>
+                  <div class="badge">Saved</div>
+                </div>
+                <div class="row tiny muted">
+                  <div>@arman00</div><div>2h</div>
+                </div>
+                <div class="tags">
+                  <span>#dinner</span><span>#denim</span><span>#clean</span>
+                </div>
+              </div>
+            </div>
 
-    <!-- Card 2 -->
-    <div class="lookCard">
-      <div class="lookImg realImg pos-med">
-        <img src="images/look2.jpg" alt="Outfit 2">
-      </div>
-      <div class="lookMeta">
-        <div class="row">
-          <div><strong>Weekend essentials</strong></div>
-          <div class="badge">Saved</div>
-        </div>
-        <div class="row tiny muted">
-          <div>@boywhocriedniche</div><div>Yesterday</div>
-        </div>
-        <div class="tags">
-          <span>#layered</span><span>#larping</span><span>#rotation</span>
-        </div>
-      </div>
-    </div>
+            <div class="lookCard">
+              <div class="lookImg realImg pos-med">
+                <img src="images/look2.jpg" alt="Outfit 2">
+              </div>
+              <div class="lookMeta">
+                <div class="row">
+                  <div><strong>Weekend essentials</strong></div>
+                  <div class="badge">Saved</div>
+                </div>
+                <div class="row tiny muted">
+                  <div>@boywhocriedniche</div><div>Yesterday</div>
+                </div>
+                <div class="tags">
+                  <span>#layered</span><span>#larping</span><span>#rotation</span>
+                </div>
+              </div>
+            </div>
 
-    <!-- Card 3 -->
-    <div class="lookCard">
-      <div class="lookImg realImg pos-bottom">
-        <img src="images/look3.jpg" alt="Outfit 3">
-      </div>
-      <div class="lookMeta">
-        <div class="row">
-          <div><strong>Night in paris</strong></div>
-          <div class="badge">Saved</div>
-        </div>
-        <div class="row tiny muted">
-          <div>@sarxxh</div><div>1w</div>
-        </div>
-        <div class="tags">
-          <span>#vintage</span><span>#fall</span><span>#leather</span>
-        </div>
-      </div>
-    </div>
+            <div class="lookCard">
+              <div class="lookImg realImg pos-bottom">
+                <img src="images/look3.jpg" alt="Outfit 3">
+              </div>
+              <div class="lookMeta">
+                <div class="row">
+                  <div><strong>Night in paris</strong></div>
+                  <div class="badge">Saved</div>
+                </div>
+                <div class="row tiny muted">
+                  <div>@sarxxh</div><div>1w</div>
+                </div>
+                <div class="tags">
+                  <span>#vintage</span><span>#fall</span><span>#leather</span>
+                </div>
+              </div>
+            </div>
 
-  </div>
-</section>
+          </div>
+        </section>
 
         <!-- SLIDE 4 -->
         <section class="mSlide" aria-label="Slide 4">
@@ -186,7 +182,7 @@
 
       </div>
 
-      <!-- ✅ DOTS GO HERE (outside mCarousel) -->
+      <!-- Dots (outside the scroller, sits on top) -->
       <div class="mDots" id="mDots" aria-label="Slides">
         <button class="mDot isActive" type="button" aria-label="Slide 1"></button>
         <button class="mDot" type="button" aria-label="Slide 2"></button>
@@ -241,7 +237,7 @@
           </div>
         </div>
 
-        <!-- RIGHT -->
+        <!-- RIGHT (desktop phone stays) -->
         <div class="heroVisual">
           <div class="glow" aria-hidden="true"></div>
 
@@ -267,7 +263,6 @@
 
               <div class="cards" aria-label="Outfit cards">
 
-                <!-- Card 1 -->
                 <div class="lookCard">
                   <div class="lookImg realImg pos-top">
                     <img src="images/look1.jpg" alt="Outfit 1">
@@ -286,7 +281,6 @@
                   </div>
                 </div>
 
-                <!-- Card 2 -->
                 <div class="lookCard">
                   <div class="lookImg realImg pos-med">
                     <img src="images/look2.jpg" alt="Outfit 2">
@@ -305,7 +299,6 @@
                   </div>
                 </div>
 
-                <!-- Card 3 -->
                 <div class="lookCard">
                   <div class="lookImg realImg pos-bottom">
                     <img src="images/look3.jpg" alt="Outfit 3">
@@ -331,7 +324,6 @@
 
       </div>
 
-      <!-- HOW IT WORKS -->
       <div class="container">
         <div class="howBlock" aria-label="How it works">
           <div class="howIntro">
@@ -362,7 +354,6 @@
 
     </section>
 
-    <!-- FOOTER -->
     <footer class="footer">
       <div class="container footerRow">
         <div class="muted tiny">
@@ -400,7 +391,6 @@
         </form>
       </div>
 
-      <!-- SUCCESS STATE -->
       <div class="successState" id="successState" aria-hidden="true">
         <div class="checkCircle">
           <svg viewBox="0 0 24 24">

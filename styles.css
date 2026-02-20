@@ -1104,4 +1104,121 @@ button, input{ font:inherit; color:inherit; }
     line-height: 1.65 !important;
     opacity: 0.78 !important;
   }
+  /* ===== MOBILE SLIDES: ONLY nav + poster + swipe ===== */
+.mOnly{ display:block; }
+main{ display:none; } /* desktop hidden on phone */
+
+.mOnly{
+  padding-top: 10px;
+  padding-bottom: calc(10px + env(safe-area-inset-bottom));
+}
+
+.mCard{
+  position: relative;
+  width: calc(100% - 24px);
+  margin: 10px auto 0;
+  height: calc(100dvh - 120px);
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.03);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.55);
+  overflow: hidden; /* poster is the ONLY frame */
+}
+
+.mCarousel{
+  height: 100%;
+  display:flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.mCarousel::-webkit-scrollbar{ display:none; }
+
+.mSlide{
+  flex: 0 0 100%;
+  height: 100%;
+  padding: 16px 14px 70px;
+  scroll-snap-align: start;
+  display:grid;
+  align-content:center;
+  gap: 12px;
+  overflow: hidden;
+  background:
+    radial-gradient(720px 520px at 25% 10%, rgba(124,92,255,0.14), transparent 66%),
+    radial-gradient(720px 520px at 85% 18%, rgba(51,225,255,0.09), transparent 68%),
+    radial-gradient(980px 640px at 50% 85%, rgba(6,20,46,0.78), transparent 70%),
+    linear-gradient(180deg, rgba(7,11,20,1) 0%, rgba(6,20,46,1) 55%, rgba(7,11,20,1) 100%);
+}
+
+/* Slide 3: app UI inside poster card (NO phone mock) */
+.mSlideFeed{
+  align-content: start;
+  grid-template-rows: auto 1fr;
+}
+
+.appHeader{
+  padding: 12px;
+  border-radius: 18px;
+  background: rgba(0,0,0,0.16);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.appFeed{
+  min-height: 0; /* allows scrolling */
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  display: grid;
+  gap: 12px;
+  padding: 2px;
+  scrollbar-width: none;
+}
+.appFeed::-webkit-scrollbar{ display:none; }
+
+/* Keep ALL meta visible (Saved, username, tags) */
+.lookCard{
+  display:grid;
+  grid-template-rows: 140px auto;
+  border-radius: 18px;
+  overflow:hidden;
+}
+.lookImg{ height:auto; min-height:140px; }
+.lookMeta{
+  display:grid;
+  gap: 8px;
+  padding: 10px 12px;
+}
+
+/* Premium Apple-like dots */
+.mDots{
+  position:absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  display:flex;
+  align-items:center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.22);
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.mDot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.26);
+  opacity: 0.7;
+}
+.mDot.isActive{
+  width: 28px;
+  background: rgba(255,255,255,0.92);
+  opacity: 1;
+}
 }
