@@ -30,70 +30,53 @@
   <!-- ================= MAIN ================= -->
   <main id="top">
     <section class="hero">
-    
-      
-  <!-- MOBILE FULLSCREEN SWIPE (mobile only) -->
-  <div class="mobileSwipe" aria-label="Mobile swipe intro">
-    <div class="mobileSwipeTrack" id="mobileSwipeTrack">
+    <!-- ================= MOBILE SWIPE (phone only) ================= -->
+    <div class="mobileSwipe" aria-label="Mobile slideshow">
+      <div class="mobileTrack" id="mobileTrack">
 
-      <!-- Slide 1: Hero copy (UNCHANGED) -->
-      <section class="mobileSlide">
-        <div class="mobileCard">
-          <div class="mobilePill">
-            <span class="mobileDot"></span>
-            <span>Fashion memory, not just inspiration.</span>
-          </div>
-
-          <h1 class="mobileH1">
-            Archive your style.<br>
-            Discover <span class="mobileAccent">taste.</span> Find<br>
-            your people.
-          </h1>
-
-          <p class="mobileLead">
-            <strong>Archive what you wear today.</strong>
-            <span class="mobileLeadMuted">Explore what you’ll wear next.</span>
-          </p>
-
-          <p class="mobileBody">
-            A personal style archive where your real outfits become a timeline —
-            and your taste connects you to people who get it.
-          </p>
-        </div>
-      </section>
-
-      <!-- Slide 2: Steps (aligned) -->
-      <section class="mobileSlide">
-        <div class="mobileCard">
-          <h2 class="mobileH2">In 3 moves</h2>
-
-          <div class="mobileSteps" aria-label="In 3 moves">
-            <div class="mobileStep">
-              <span class="mobileStepNum">1</span>
-              <span class="mobileStepText">Tap to archive outfits</span>
+        <section class="mSlide">
+          <div class="mCard">
+            <div class="pill">Fashion memory, not just inspiration.</div>
+            <h1 class="mHeroTitle">
+              Archive your style.<br/>
+              <span class="mAccent">Discover taste.</span> Find<br/>
+              your people.
+            </h1>
+            <div class="mHeroLead">
+              <strong>Archive what you wear today.</strong> Explore what you’ll wear next.
             </div>
-
-            <div class="mobileStep">
-              <span class="mobileStepNum">2</span>
-              <span class="mobileStepText">Tag pieces + vibe</span>
-            </div>
-
-            <div class="mobileStep">
-              <span class="mobileStepNum">3</span>
-              <span class="mobileStepText">Taste feed finds you</span>
+            <div class="mSub">
+              A personal style archive where your real outfits become a timeline — and your taste connects you to people who get it.
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Slide 3: Phone UI (REUSE YOUR EXISTING DESKTOP PHONE MARKUP) -->
-      <section class="mobileSlide">
-        <div class="mobileCard mobileCardPhone">
-          <h2 class="mobileH2">Your archive, visual</h2>
-          <p class="mobileBody">A timeline of real outfits — searchable by item and vibe.</p>
+        <section class="mSlide">
+          <div class="mCard">
+            <h2 class="mTitle">In 3 moves</h2>
+            <div class="mSteps">
+              <div class="mStep">
+                <div class="mStepNum">1</div>
+                <div class="mStepText">Tap to archive outfits</div>
+              </div>
+              <div class="mStep">
+                <div class="mStepNum">2</div>
+                <div class="mStepText">Tag pieces + vibe</div>
+              </div>
+              <div class="mStep">
+                <div class="mStepNum">3</div>
+                <div class="mStepText">Taste feed finds you</div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-          <div class="mobilePhoneWrap" aria-label="Phone UI preview">
-            <div class="phone" role="img" aria-label="App preview phone mock">
+        <section class="mSlide">
+          <div class="mCard">
+            <h2 class="mTitle">Your archive, visual</h2>
+            <div class="mSub">A timeline of real outfits — searchable by item and vibe.</div>
+            <div class="mPhoneWrap">
+              <div class="phone" role="img" aria-label="App preview phone mock">
             <div class="phoneTop">
               <div class="cam"></div>
               <div class="speaker"></div>
@@ -175,53 +158,53 @@
               </div>
             </div>
           </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Slide 4: How it works (UNCHANGED COPY) -->
-      <section class="mobileSlide">
-        <div class="mobileCard">
-          <h2 class="mobileH2">How it works</h2>
-          <p class="mobileBody">Not just saving images — you’re archiving your wardrobe history.</p>
+        <section class="mSlide">
+          <div class="mCard mHow">
+            <div class="howBlock" aria-label="How it works">
+          <div class="howIntro">
+            <h2 class="howTitle">How it works</h2>
+            <p class="howSub">
+              Not just saving images — you’re archiving your wardrobe history.
+            </p>
+          </div>
 
-          <div class="mobileHowGrid" aria-label="How it works cards">
-            <div class="mobileHowCard">
+          <div class="whyGrid">
+            <div class="whyCard">
               <h3>Archive real outfits</h3>
               <p>Document what you actually wear. Your style becomes a timeline — not a feed you forget.</p>
             </div>
 
-            <div class="mobileHowCard">
+            <div class="whyCard">
               <h3>Tag the exact pieces</h3>
               <p>Save the fit and label the items. Later you can search “that jacket” and see every look.</p>
             </div>
 
-            <div class="mobileHowCard">
+            <div class="whyCard">
               <h3>Explore your taste</h3>
               <p>Find people with similar style and save future outfit ideas without losing your identity.</p>
             </div>
           </div>
         </div>
-      </section>
+          </div>
+        </section>
 
-    </div>
-
-    <!-- Bottom bar: dots + single CTA -->
-    <div class="mobileBottomBar" aria-label="Mobile controls">
-      <div class="mobileDots" aria-hidden="true">
-        <span class="mobileDotItem active"></span>
-        <span class="mobileDotItem"></span>
-        <span class="mobileDotItem"></span>
-        <span class="mobileDotItem"></span>
       </div>
 
-      <button class="btn primary mobileBottomCTA" type="button" onclick="document.querySelector('#modalBtn')?.click()">
-        Request early access
-      </button>
+      <div class="mobileDots" role="tablist" aria-label="Slide dots">
+        <button class="dot isActive" type="button" aria-label="Go to slide 1"></button>
+        <button class="dot" type="button" aria-label="Go to slide 2"></button>
+        <button class="dot" type="button" aria-label="Go to slide 3"></button>
+        <button class="dot" type="button" aria-label="Go to slide 4"></button>
+      </div>
     </div>
-  </div>
+    <!-- ================= /MOBILE SWIPE ================= -->
 
-<div class="container heroGrid">
+    
+      <div class="container heroGrid">
 
         <!-- LEFT -->
         <div class="heroCopy">
@@ -441,5 +424,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
-*/uysuf*/

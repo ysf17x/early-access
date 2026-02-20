@@ -925,232 +925,213 @@ body {
   }
 }
 
+/* =========================
+   MOBILE SLIDESHOW (PHONE ONLY)
+   ========================= */
+@media (max-width: 900px){
 
-/* =============================
-   MOBILE FULLSCREEN SWIPE HERO
-   (mobile only, no page scroll)
-============================= */
-@media (max-width: 900px) {
-
-  /* Lock the page – the swipe track is the only thing that moves */
-  html, body {
+  html, body{
     height: 100%;
     overflow: hidden;
-  }
-  body {
-    min-height: 100svh;
-  }
-  main {
-    height: calc(100svh - 72px); /* header is 72px */
-    overflow: hidden;
+    background: #050b18;
   }
 
-  /* Keep desktop layout intact by hiding desktop-only blocks on mobile */
-  .heroGrid { display: none !important; }
-  .howBlock { display: none !important; }
+  main > section:not(.hero){
+    display: none !important;
+  }
+  footer{ display: none !important; }
 
-  /* Make hero act like a full-screen “scene” */
-  .hero {
+  .hero{
     padding: 0 !important;
-  }
-
-  /* Wrapper fills the viewport under the header */
-  .mobileSwipe {
-    display: block;
     height: calc(100svh - 72px);
-    padding: 14px;
-    position: relative;
+    display: flex;
   }
 
-  /* Horizontal snap track (no vertical scrolling) */
-  .mobileSwipeTrack {
+  .heroGrid{ display: none !important; }
+
+  .mobileSwipe{
+    display: block;
+    width: 100%;
     height: 100%;
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 100%;
+    position: relative;
+    padding: 14px 14px calc(16px + env(safe-area-inset-bottom));
+  }
+
+  .mobileTrack{
+    height: 100%;
+    display: flex;
+    gap: 14px;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    border-radius: 22px;
-    scrollbar-width: none;
+    scroll-behavior: smooth;
+    padding-bottom: 46px;
+    touch-action: pan-x;
+    overscroll-behavior-x: contain;
+    overscroll-behavior-y: none;
   }
-  .mobileSwipeTrack::-webkit-scrollbar { display: none; }
+  .mobileTrack::-webkit-scrollbar{ height: 0; }
 
-  .mobileSlide { scroll-snap-align: start; }
-
-  /* Big card */
-  .mobileCard {
+  .mSlide{
+    flex: 0 0 100%;
+    scroll-snap-align: center;
     height: 100%;
-    border-radius: 22px;
-    padding: 18px 16px 120px; /* room for bottom bar overlay */
-    background: rgba(0,0,0,0.12);
+    display: flex;
+  }
+
+  .mCard{
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
     border: 1px solid rgba(255,255,255,0.10);
-    box-shadow: 0 20px 70px rgba(0,0,0,0.35);
+    background: rgba(7,12,26,0.55);
+    box-shadow: 0 22px 70px rgba(0,0,0,0.45);
+    padding: 18px 16px 18px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 12px;
     overflow: hidden;
   }
 
-  /* Typography */
-  .mobilePill {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 12px;
-    border-radius: 999px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.10);
-    color: rgba(255,255,255,0.85);
-    width: fit-content;
-    margin-bottom: 14px;
-  }
-  .mobileDot {
-    width: 10px;
-    height: 10px;
-    border-radius: 999px;
-    background: rgba(120,120,255,0.90);
-    box-shadow: 0 0 0 6px rgba(120,120,255,0.12);
-  }
-
-  .mobileH1 {
-    font-size: clamp(34px, 9.6vw, 44px);
-    line-height: 1.04;
+  .mTitle{
+    font-size: 28px;
+    line-height: 1.1;
     letter-spacing: -0.02em;
-    margin: 0 0 14px;
-  }
-  .mobileAccent { opacity: 0.6; }
-
-  .mobileLead {
-    margin: 0 0 14px;
-    font-size: 17px;
-    line-height: 1.45;
-    color: rgba(255,255,255,0.9);
-  }
-  .mobileLeadMuted { color: rgba(255,255,255,0.72); }
-
-  .mobileBody {
     margin: 0;
+  }
+
+  .mHeroTitle{
+    font-size: clamp(42px, 10.5vw, 54px);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin: 0;
+  }
+
+  .mAccent{ color: rgba(96, 120, 255, 0.9); }
+
+  .mHeroLead{
     font-size: 16px;
     line-height: 1.6;
-    color: rgba(255,255,255,0.72);
+    opacity: 0.95;
   }
 
-  .mobileH2 {
-    margin: 0 0 14px;
-    font-size: 24px;
-    letter-spacing: -0.01em;
+  .mSub{
+    font-size: 14.5px;
+    line-height: 1.65;
+    opacity: 0.8;
   }
 
-  /* Slide 2: steps */
-  .mobileSteps {
+  .mSteps{
     display: flex;
     flex-direction: column;
     gap: 14px;
     margin-top: 6px;
   }
-  .mobileStep {
-    display: grid;
-    grid-template-columns: 52px 1fr;
+
+  .mStep{
+    display: flex;
     align-items: center;
     gap: 14px;
-    padding: 16px 14px;
-    border-radius: 18px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.10);
+    padding: 16px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
   }
-  .mobileStepNum {
+
+  .mStepNum{
     width: 44px;
     height: 44px;
-    border-radius: 999px;
+    border-radius: 18px;
     display: grid;
     place-items: center;
     font-weight: 700;
-    background: rgba(0,0,0,0.18);
-    border: 1px solid rgba(120,200,255,0.25);
-    color: rgba(255,255,255,0.9);
-  }
-  .mobileStepText {
-    font-size: 18px;
-    color: rgba(255,255,255,0.88);
+    border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(255,255,255,0.03);
+    flex: 0 0 auto;
   }
 
-  /* Slide 3: phone */
-  .mobileCardPhone {
-    justify-content: flex-start;
+  .mStepText{
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 600;
   }
-  .mobilePhoneWrap {
-    margin-top: 14px;
-    flex: 1;
+
+  .mPhoneWrap{
     display: grid;
     place-items: center;
-    overflow: hidden;
-  }
-  .mobilePhoneWrap .phone {
-    width: min(360px, 92vw);
-    transform: none !important;
-    margin: 0 auto;
+    margin-top: 4px;
   }
 
-  /* Slide 4: cards */
-  .mobileHowGrid {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-top: 10px;
-  }
-  .mobileHowCard {
-    padding: 16px 14px;
-    border-radius: 18px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.10);
-  }
-  .mobileHowCard h3 {
-    margin: 0 0 8px;
-    font-size: 18px;
-  }
-  .mobileHowCard p {
-    margin: 0;
-    color: rgba(255,255,255,0.72);
-    line-height: 1.55;
-    font-size: 15px;
+  .mPhoneWrap .phone{
+    width: min(330px, 100%);
+    transform-origin: top center;
   }
 
-  /* Bottom bar (dots + single CTA) */
-  .mobileBottomBar {
+  @media (max-height: 740px){
+    .mPhoneWrap .phone{ transform: scale(0.92); }
+  }
+  @media (max-height: 690px){
+    .mPhoneWrap .phone{ transform: scale(0.86); }
+  }
+
+  .mHow{
+    justify-content: flex-start;
+    padding-top: 20px;
+  }
+  .mHow .howBlock{
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+  .mHow .howTitle{
+    font-size: 28px !important;
+    margin-bottom: 8px !important;
+  }
+  .mHow .howSub{
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 14px !important;
+    opacity: 0.85 !important;
+  }
+  .mHow .whyGrid{
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    margin-top: 10px !important;
+  }
+  .mHow .whyCard{
+    padding: 16px !important;
+    border-radius: 20px !important;
+  }
+
+  .mobileDots{
     position: absolute;
-    left: 14px;
-    right: 14px;
-    bottom: 14px;
-    display: grid;
-    gap: 10px;
-    justify-items: center;
-    pointer-events: none; /* only button should be clickable */
-  }
-  .mobileDots {
+    left: 0;
+    right: 0;
+    bottom: calc(12px + env(safe-area-inset-bottom));
     display: flex;
-    justify-content: center;
     gap: 10px;
-    pointer-events: auto;
+    justify-content: center;
+    pointer-events: none;
   }
-  .mobileDotItem {
-    width: 8px;
-    height: 8px;
+  .mobileDots .dot{
+    pointer-events: auto;
+    width: 10px;
+    height: 10px;
     border-radius: 999px;
-    background: rgba(255,255,255,0.20);
+    border: 0;
+    background: rgba(255,255,255,0.25);
+    padding: 0;
   }
-  .mobileDotItem.active { background: rgba(255,255,255,0.65); }
-
-  .mobileBottomCTA {
-    width: 100%;
-    max-width: 520px;
-    pointer-events: auto;
+  .mobileDots .dot.isActive{
+    background: rgba(255,255,255,0.7);
   }
 }
 
-/* Desktop: hide the mobile swiper */
-@media (min-width: 901px) {
-  .mobileSwipe { display: none !important; }
+/* Desktop: hide slideshow */
+@media (min-width: 901px){
+  .mobileSwipe{ display: none !important; }
 }
