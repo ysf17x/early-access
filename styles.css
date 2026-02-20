@@ -890,3 +890,37 @@ body {
     gap: 8px;
   }
 }
+
+
+/* ===== MOBILE HOTFIX: stop steps colliding with phone mockup ===== */
+@media (max-width: 768px){
+
+  /* Remove the desktop offsets that push the step cards down */
+  .trustRow{
+    position: static !important;
+    top: auto !important;
+    margin-top: 18px !important;
+    margin-bottom: 0 !important;
+    justify-items: stretch !important;
+  }
+
+  /* Kill any per-item stagger */
+  .trustItem,
+  .trustItem:nth-child(1),
+  .trustItem:nth-child(2),
+  .trustItem:nth-child(3){
+    position: static !important;
+    top: auto !important;
+    transform: none !important;
+  }
+
+  /* Give the phone mockup breathing room under the steps */
+  .heroVisual{
+    margin-top: 18px !important;
+  }
+
+  /* Slightly smaller phone so it doesn't crowd */
+  .phone{
+    width: min(330px, 100%) !important;
+  }
+}
