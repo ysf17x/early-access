@@ -526,6 +526,73 @@ button, input{ font:inherit; color:inherit; }
 
 @media (max-width: 768px){
 
+  /* ===== MOBILE: Card is the ONLY frame ===== */
+
+/* kill any leftover phone mock if it still exists */
+.mOnly .heroVisual,
+.mOnly .glow,
+.mOnly .phone,
+.mOnly .phoneTop,
+.mOnly .screen { display: none !important; }
+
+/* your poster card = the frame */
+.mOnly .mCard{
+  border-radius: 22px;              /* poster shape */
+  overflow: hidden;                 /* clip everything to poster */
+  padding: 0;                       /* no inner “frame padding” */
+}
+
+/* carousel takes full card */
+.mOnly .mCarousel{
+  height: 100%;
+}
+
+/* slides are the content area of the poster */
+.mOnly .mSlide{
+  height: 100%;
+  padding: 16px 14px 62px;          /* bottom space for dots */
+  overflow: hidden;                 /* no spill outside poster */
+  align-content: start;
+}
+
+/* Slide 3 = app screen layout */
+.mOnly .mSlideFeed{
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 12px;
+}
+
+/* Header looks like an app header (NOT a phone) */
+.mOnly .appHeader{
+  padding: 12px 12px 10px;
+  border-radius: 18px;
+  background: rgba(0,0,0,0.16);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Feed scrolls inside the poster */
+.mOnly .appFeed{
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  display: grid;
+  gap: 12px;
+  padding: 2px 2px 0;
+}
+.mOnly .appFeed::-webkit-scrollbar{ display:none; }
+
+/* Make cards fit the poster width cleanly */
+.mOnly .lookCard{
+  border-radius: 18px;
+}
+
+/* Images sized for the poster */
+.mOnly .lookImg{
+  height: 132px;   /* adjust if you want more/less */
+}
+
   /* ===== Slide 3: card IS the app UI ===== */
 .mSlideFeed{
   align-content: start;
