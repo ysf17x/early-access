@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="theme-color" content="#050b18">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Wearchive</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -30,7 +30,205 @@
   <!-- ================= MAIN ================= -->
   <main id="top">
     <section class="hero">
-    
+
+      <!-- ✅ MOBILE SWIPE HERO (only shows on mobile)
+           IMPORTANT: This is placed BEFORE your desktop .container.heroGrid -->
+      <div class="mobileSwipe" aria-label="Mobile swipe intro">
+        <div class="mobileSwipeTrack" id="mobileSwipeTrack">
+
+          <!-- Slide 1: Hero text -->
+          <section class="mobileSlide">
+            <div class="mobileCard">
+              <div class="mobilePill">
+                <span class="mobileDot"></span>
+                <span>Fashion memory, not just inspiration.</span>
+              </div>
+
+              <h1 class="mobileH1">
+                Archive your style.<br>
+                Discover <span class="mobileAccent">taste.</span> Find<br>
+                your people.
+              </h1>
+
+              <p class="mobileLead">
+                <strong>Archive what you wear today.</strong> Explore what you’ll wear next.
+              </p>
+
+              <p class="mobileBody">
+                A personal style archive where your real outfits become a timeline — and your taste connects you to people who get it.
+              </p>
+
+              <button class="btnPrimary full mobileCTA" type="button" data-open-modal>
+                Request early access
+              </button>
+
+              <div class="mobileHint">Swipe →</div>
+            </div>
+          </section>
+
+          <!-- Slide 2: 3 steps -->
+          <section class="mobileSlide">
+            <div class="mobileCard">
+              <h2 class="mobileH2">In 3 moves</h2>
+
+              <div class="mobileSteps">
+                <div class="mobileStep">
+                  <span class="mobileStepNum">1</span>
+                  <span class="mobileStepText">Tap to archive outfits</span>
+                </div>
+
+                <div class="mobileStep">
+                  <span class="mobileStepNum">2</span>
+                  <span class="mobileStepText">Tag pieces + vibe</span>
+                </div>
+
+                <div class="mobileStep">
+                  <span class="mobileStepNum">3</span>
+                  <span class="mobileStepText">Taste feed finds you</span>
+                </div>
+              </div>
+
+              <div class="mobileHint">Swipe →</div>
+            </div>
+          </section>
+
+          <!-- Slide 3: Phone UI (YOUR REAL PHONE MARKUP PASTED HERE) -->
+          <section class="mobileSlide">
+            <div class="mobileCard mobileCardPhone">
+              <h2 class="mobileH2">Your archive, visual</h2>
+              <p class="mobileBody">A timeline of real outfits — searchable by item and vibe.</p>
+
+              <div class="mobilePhoneWrap">
+                <!-- ✅ EXACT phone UI -->
+                <div class="phone" role="img" aria-label="App preview phone mock">
+                  <div class="phoneTop">
+                    <div class="cam"></div>
+                    <div class="speaker"></div>
+                  </div>
+
+                  <div class="screen">
+                    <div class="screenHeader">
+                      <div class="miniBrand">
+                        <div class="miniMark">W</div>
+                        <div class="miniText">Your Archive</div>
+                      </div>
+
+                      <div class="chipRow" aria-label="Archive filters">
+                        <button class="chip isActive" type="button">Saved</button>
+                        <button class="chip" type="button">Tagged</button>
+                        <button class="chip" type="button">Archived</button>
+                      </div>
+                    </div>
+
+                    <div class="cards" aria-label="Outfit cards">
+
+                      <!-- Card 1 -->
+                      <div class="lookCard">
+                        <div class="lookImg realImg pos-top">
+                          <img src="images/look1.jpg" alt="Outfit 1">
+                        </div>
+                        <div class="lookMeta">
+                          <div class="row">
+                            <div><strong>Casual dinner fit</strong></div>
+                            <div class="badge">Saved</div>
+                          </div>
+                          <div class="row tiny muted">
+                            <div>@arman00</div><div>2h</div>
+                          </div>
+                          <div class="tags">
+                            <span>#dinner</span><span>#denim</span><span>#clean</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Card 2 -->
+                      <div class="lookCard">
+                        <div class="lookImg realImg pos-med">
+                          <img src="images/look2.jpg" alt="Outfit 2">
+                        </div>
+                        <div class="lookMeta">
+                          <div class="row">
+                            <div><strong>Weekend essentials</strong></div>
+                            <div class="badge">Saved</div>
+                          </div>
+                          <div class="row tiny muted">
+                            <div>@boywhocriedniche</div><div>Yesterday</div>
+                          </div>
+                          <div class="tags">
+                            <span>#layered</span><span>#larping</span><span>#rotation</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Card 3 -->
+                      <div class="lookCard">
+                        <div class="lookImg realImg pos-bottom">
+                          <img src="images/look3.jpg" alt="Outfit 3">
+                        </div>
+                        <div class="lookMeta">
+                          <div class="row">
+                            <div><strong>Night in paris</strong></div>
+                            <div class="badge">Saved</div>
+                          </div>
+                          <div class="row tiny muted">
+                            <div>@sarxxh</div><div>1w</div>
+                          </div>
+                          <div class="tags">
+                            <span>#vintage</span><span>#fall</span><span>#leather</span>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mobileHint">Swipe →</div>
+            </div>
+          </section>
+
+          <!-- Slide 4: How it works -->
+          <section class="mobileSlide">
+            <div class="mobileCard">
+              <h2 class="mobileH2">How it works</h2>
+              <p class="mobileBody">Not just saving images — you’re archiving your wardrobe history.</p>
+
+              <div class="mobileHowGrid">
+                <div class="mobileHowCard">
+                  <h3>Archive real outfits</h3>
+                  <p>Document what you actually wear. Your style becomes a timeline — not a feed you forget.</p>
+                </div>
+
+                <div class="mobileHowCard">
+                  <h3>Tag the exact pieces</h3>
+                  <p>Save the fit and label the items. Later you can search “that jacket” and see every look.</p>
+                </div>
+
+                <div class="mobileHowCard">
+                  <h3>Explore your taste</h3>
+                  <p>Find people with similar style and save future outfit ideas without losing your identity.</p>
+                </div>
+              </div>
+
+              <button class="btnPrimary full mobileCTA" type="button" data-open-modal>
+                Join the early access list
+              </button>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Dots -->
+        <div class="mobileDots" aria-hidden="true">
+          <span class="mobileDotItem active"></span>
+          <span class="mobileDotItem"></span>
+          <span class="mobileDotItem"></span>
+          <span class="mobileDotItem"></span>
+        </div>
+      </div>
+
+      <!-- ================= DESKTOP HERO (unchanged) ================= -->
       <div class="container heroGrid">
 
         <!-- LEFT -->

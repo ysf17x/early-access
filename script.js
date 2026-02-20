@@ -1,4 +1,6 @@
-document.getElementById("year").textContent = new Date().getFullYear();
+// Year
+const yearEl = document.getElementById("year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 /* =========================
    MODAL
@@ -14,6 +16,7 @@ function openModal(){
   const first = modal.querySelector("input, button");
   if(first) first.focus();
 }
+
 function closeModal(){
   if (!modal) return;
   modal.classList.remove("show");
@@ -56,86 +59,82 @@ if (form){
     e.preventDefault();
 
     // Fade form out
-    formWrap.style.opacity = "0";
-    formWrap.style.transform = "translateY(-6px)";
-    modalTop.style.opacity = "0";
+    if (formWrap) {
+      formWrap.style.opacity = "0";
+      formWrap.style.transform = "translateY(-6px)";
+    }
+    if (modalTop) modalTop.style.opacity = "0";
 
     setTimeout(() => {
-      formWrap.style.display = "none";
-      modalTop.style.display = "none";
+      if (formWrap) formWrap.style.display = "none";
+      if (modalTop) modalTop.style.display = "none";
 
-      successState.style.display = "block";
-      successState.setAttribute("aria-hidden","false");
+      if (successState) {
+        successState.style.display = "block";
+        successState.setAttribute("aria-hidden","false");
+      }
     }, 350);
 
-    // Close modal after 1.8s
-   const modalBackdrop = document.getElementById("modal");
-const modalEl = modalBackdrop ? modalBackdrop.querySelector(".modal") : null;
+    // Close modal after success
+    const modalBackdrop = document.getElementById("modal");
+    const modalEl = modalBackdrop ? modalBackdrop.querySelector(".modal") : null;
 
-const SUCCESS_VISIBLE_MS = 1600; // stays on screen
-const FADE_MS = 260;            // fade duration (matches CSS)
+    const SUCCESS_VISIBLE_MS = 1600; // stays on screen
+    const FADE_MS = 260;            // fade duration (matches CSS)
 
-setTimeout(() => {
-  // start fade
-  if (modalEl) modalEl.classList.add("isClosing");
-  if (modalBackdrop) modalBackdrop.classList.add("isClosing");
+    setTimeout(() => {
+      // start fade
+      if (modalEl) modalEl.classList.add("isClosing");
+      if (modalBackdrop) modalBackdrop.classList.add("isClosing");
 
-  // close AFTER fade completes
-  setTimeout(() => {
-    if (typeof closeModal === "function") closeModal();
+      // close AFTER fade completes
+      setTimeout(() => {
+        closeModal();
 
-    // cleanup classes + reset state for next open
-    if (modalEl) modalEl.classList.remove("isClosing");
-    if (modalBackdrop) modalBackdrop.classList.remove("isClosing");
-  }, FADE_MS);
+        // cleanup classes + reset state for next open
+        if (modalEl) modalEl.classList.remove("isClosing");
+        if (modalBackdrop) modalBackdrop.classList.remove("isClosing");
+      }, FADE_MS);
 
-}, SUCCESS_VISIBLE_MS);
+    }, SUCCESS_VISIBLE_MS);
   }); 
 }
 
-// =========================
-// Mobile Slides (scroll-snap) + dots
-// =========================
+/* =========================
+   MOBILE SWIPE DOTS
+   ========================= */
 (function () {
-  const track = document.getElementById("mSlidesTrack");
-  const dotsWrap = document.getElementById("mDots");
-  if (!track || !dotsWrap) return;
+  const track = document.getElementById("mobileSwipeTrack");
+  if (!track) return;
 
-  const slides = Array.from(track.children);
-  const dots = slides.map(() => {
-    const d = document.createElement("div");
-    d.className = "mDot";
-    dotsWrap.appendChild(d);
-    return d;
-  });
+  const dots = Array.from(document.querySelectorAll(".mobileDotItem"));
+  const slideCount = dots.length;
 
-  function setActiveDot(index) {
-    dots.forEach((d, i) => d.classList.toggle("isActive", i === index));
+  function updateDots() {
+    if (!dots.length) return;
+    const index = Math.round(track.scrollLeft / track.clientWidth);
+    const clamped = Math.max(0, Math.min(slideCount - 1, index));
+    dots.forEach((d, i) => d.classList.toggle("active", i === clamped));
   }
 
-  // initial
-  setActiveDot(0);
-
-  // update on scroll (debounced)
   let raf = null;
   track.addEventListener("scroll", () => {
     if (raf) cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(() => {
-      const slideWidth = track.clientWidth;
-      const index = Math.round(track.scrollLeft / slideWidth);
-      setActiveDot(Math.max(0, Math.min(slides.length - 1, index)));
-    });
+    raf = requestAnimationFrame(updateDots);
   });
 
-  // Hook slide CTA buttons to your modal open
-  // If you already have a function like openModal(), call it here.
+  window.addEventListener("resize", updateDots);
+  updateDots();
+})();
+
+/* =========================
+   MOBILE CTA -> OPEN MODAL
+   Uses data-open-modal buttons
+   ========================= */
+(function () {
   document.querySelectorAll("[data-open-modal]").forEach((btn) => {
     btn.addEventListener("click", () => {
-      // Try to click your existing header CTA if that already opens the modal:
-      const existing = document.querySelector(".navCta");
-      if (existing && existing !== btn) existing.click();
-      // Otherwise, call your modal open function directly if you have one:
-      // openModal();
+      openModal();
     });
   });
 })();

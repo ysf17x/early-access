@@ -924,3 +924,170 @@ body {
     width: min(330px, 100%) !important;
   }
 }
+
+/* =========================
+   MOBILE SWIPE HERO (mobile-only)
+   ========================= */
+
+/* default: hidden everywhere */
+.mobileSwipe { display: none; }
+
+/* mobile: show swipe, hide desktop grid */
+@media (max-width: 900px) {
+  .heroGrid { display: none !important; }
+  .mobileSwipe { display: block; padding: 14px 14px 18px; }
+
+  .mobileSwipeTrack{
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    border-radius: 22px;
+  }
+  .mobileSwipeTrack::-webkit-scrollbar { display: none; }
+
+  .mobileSlide { scroll-snap-align: start; }
+
+  .mobileCard{
+    border-radius: 22px;
+    padding: 18px 16px 16px;
+    min-height: calc(100svh - 180px);
+    background: rgba(0,0,0,0.12);
+    border: 1px solid rgba(255,255,255,0.10);
+    box-shadow: 0 20px 70px rgba(0,0,0,0.35);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+
+  .mobileCardPhone{ justify-content:flex-start; }
+
+  .mobilePill{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 12px;
+    border-radius:999px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.10);
+    width: fit-content;
+    margin-bottom: 14px;
+  }
+  .mobileDot{
+    width:10px; height:10px;
+    border-radius:999px;
+    background: rgba(120,120,255,0.9);
+    box-shadow: 0 0 0 6px rgba(120,120,255,0.12);
+  }
+
+  .mobileH1{
+    font-size: 44px;
+    line-height: 1.03;
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+  }
+  .mobileAccent{ opacity: .6; }
+
+  .mobileLead{
+    margin: 0 0 14px;
+    font-size: 18px;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .mobileBody{
+    margin: 0 0 14px;
+    font-size: 17px;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.72);
+  }
+
+  .mobileH2{
+    margin: 0 0 14px;
+    font-size: 26px;
+    letter-spacing: -0.01em;
+  }
+
+  .mobileSteps{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    margin-top: 6px;
+  }
+  .mobileStep{
+    display:grid;
+    grid-template-columns: 52px 1fr;
+    gap:14px;
+    padding: 16px 14px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.10);
+    align-items: center;
+  }
+  .mobileStepNum{
+    width:44px; height:44px;
+    border-radius:999px;
+    display:grid;
+    place-items:center;
+    font-weight:700;
+    background: rgba(0,0,0,0.18);
+    border: 1px solid rgba(120,200,255,0.25);
+  }
+  .mobileStepText{
+    font-size:18px;
+    color: rgba(255,255,255,0.88);
+  }
+
+  .mobilePhoneWrap{
+    margin-top:14px;
+    display:grid;
+    place-items:center;
+    overflow:hidden;
+    border-radius:18px;
+  }
+
+  /* ✅ anti-collision: forces desktop phone to behave inside mobile slide */
+  .mobilePhoneWrap .phone{
+    width: min(360px, 92vw);
+    transform: none !important;
+    margin: 0 auto;
+  }
+
+  .mobileHowGrid{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    margin-top:8px;
+  }
+  .mobileHowCard{
+    padding:16px 14px;
+    border-radius:18px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.10);
+  }
+
+  .mobileDots{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    padding:12px 0 2px;
+  }
+  .mobileDotItem{
+    width:8px; height:8px;
+    border-radius:999px;
+    background: rgba(255,255,255,0.20);
+  }
+  .mobileDotItem.active{
+    background: rgba(255,255,255,0.65);
+  }
+}
+
+/* desktop: keep swipe hidden, keep grid visible */
+@media (min-width: 901px) {
+  .mobileSwipe { display: none !important; }
+  .heroGrid { display: grid !important; }
+}
