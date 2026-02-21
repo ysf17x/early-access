@@ -21,7 +21,6 @@
   --ctaFill2: rgba(8, 25, 55, 0.78);
 }
 
-/* ===== Base ===== */
 html,body{ margin:0; padding:0; }
 *{ box-sizing:border-box; }
 html{ scroll-behavior:smooth; }
@@ -499,23 +498,19 @@ button, input{ font:inherit; color:inherit; }
 .successSub{ font-size: 14px; opacity: .7; line-height: 1.5; }
 
 /* =========================================================
-   MOBILE SLIDES (ONLY) + CUSTOM SLIDE 3 APP UI
+   MOBILE SLIDES
    ========================================================= */
 .mOnly{ display:none; }
 
 @media (max-width: 768px){
-
-  /* Hide desktop content */
   main#top{ display:none !important; }
 
-  /* Lock page scroll */
   html, body{
     height: 100%;
     overflow: hidden;
     background: #050b18 !important;
   }
 
-  /* Mobile stage */
   .mOnly{
     display: grid;
     place-items: center;
@@ -547,38 +542,6 @@ button, input{ font:inherit; color:inherit; }
   }
   .mCarousel::-webkit-scrollbar{ height: 0; }
 
-  .mDots{
-    position: absolute;
-    left: 50%;
-    bottom: 14px;
-    transform: translateX(-50%);
-    display:flex;
-    gap: 8px;
-    padding: 8px 10px;
-    border-radius: 999px;
-    background: rgba(0,0,0,0.22);
-    border: 1px solid rgba(255,255,255,0.10);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.05);
-    z-index: 5;
-  }
-  .mDot{
-    width: 7px;
-    height: 7px;
-    border: 0;
-    padding: 0;
-    border-radius: 999px;
-    background: rgba(255,255,255,0.28);
-    transition: width 180ms ease, background 180ms ease, opacity 180ms ease;
-    opacity: 0.9;
-  }
-  .mDot.isActive{
-    width: 22px;
-    background: rgba(255,255,255,0.9);
-    opacity: 1;
-  }
-
   .mSlide{
     flex: 0 0 100%;
     height: 100%;
@@ -588,200 +551,211 @@ button, input{ font:inherit; color:inherit; }
     display: grid;
     align-content: start;
     gap: 12px;
-    background:
-      radial-gradient(720px 520px at 25% 10%, rgba(124,92,255,0.14), transparent 66%),
-      radial-gradient(720px 520px at 85% 18%, rgba(51,225,255,0.09), transparent 68%),
-      radial-gradient(980px 640px at 50% 85%, rgba(6,20,46,0.78), transparent 70%),
-      linear-gradient(180deg, rgba(7,11,20,1) 0%, rgba(6,20,46,1) 55%, rgba(7,11,20,1) 100%);
   }
 
-  /* Slide 1 centered (your recent change) */
+  /* Slide 1 centered (override any left-align rules) */
   #mCarousel > .mSlide:nth-child(1){
     text-align: center !important;
     justify-items: center !important;
   }
   #mCarousel > .mSlide:nth-child(1) .pill{
-    margin-left:auto !important; margin-right:auto !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
     justify-content:center !important;
   }
-  #mCarousel > .mSlide:nth-child(1) .heroTitle{
-    text-align:center !important;
-    margin-left:auto !important; margin-right:auto !important;
-  }
+  #mCarousel > .mSlide:nth-child(1) .heroTitle,
   #mCarousel > .mSlide:nth-child(1) .heroLead,
   #mCarousel > .mSlide:nth-child(1) .sub{
-    text-align:center !important;
-    margin-left:auto !important; margin-right:auto !important;
+    text-align: center !important;
   }
 
-  /* Slide 2: remove desktop stagger offsets */
-  .mCarousel .mSlide:nth-child(2) .trustRow{
-    position: relative !important;
+  /* Slide 2 remove offsets */
+  #mCarousel > .mSlide:nth-child(2) .trustRow{
     top: auto !important;
     margin: 0 !important;
     gap: 14px !important;
     max-width: 100% !important;
     justify-items: stretch !important;
   }
-  .mCarousel .mSlide:nth-child(2) .trustItem,
-  .mCarousel .mSlide:nth-child(2) .trustItem:nth-child(1),
-  .mCarousel .mSlide:nth-child(2) .trustItem:nth-child(2),
-  .mCarousel .mSlide:nth-child(2) .trustItem:nth-child(3){
-    position: relative !important;
+  #mCarousel > .mSlide:nth-child(2) .trustItem,
+  #mCarousel > .mSlide:nth-child(2) .trustItem:nth-child(1),
+  #mCarousel > .mSlide:nth-child(2) .trustItem:nth-child(2),
+  #mCarousel > .mSlide:nth-child(2) .trustItem:nth-child(3){
     top: auto !important;
-    transform: none !important;
+    position: relative !important;
   }
 
-  /* Slide 4 stack cards */
-  .mCarousel .mSlide:nth-child(4) .whyGrid{
+  /* Slide 4 stack */
+  #mCarousel > .mSlide:nth-child(4) .whyGrid{
     grid-template-columns: 1fr !important;
   }
 
-  /* =========================
-     SLIDE 3: CUSTOM MOBILE APP UI
-     (NO reuse of .lookCard/.chip/.miniBrand)
-     ========================= */
+  /* Premium dots */
+  .mDots{
+    position: absolute;
+    left: 50%;
+    bottom: 14px;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.05);
+    z-index: 5;
+  }
+  .mDot{
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    border: 0;
+    padding: 0;
+    background: rgba(255,255,255,0.28);
+    transition: width 180ms ease, background 180ms ease, opacity 180ms ease;
+    opacity: 0.9;
+  }
+  .mDot.isActive{
+    width: 22px;
+    background: rgba(255,255,255,0.9);
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   MOBILE SLIDE 3 — CUSTOM APP UI (SHOW ALL 3 POSTS, PERFECT FIT)
+   (App UI never escapes the poster card)
+   ========================================================= */
+@media (max-width: 768px){
 
   .mSlideApp{
-    padding-top: 16px;
+    display: grid;
+    align-content: start;
+    gap: 12px;
   }
 
-  /* The poster card is the phone border. This is the "screen". */
-  .mApp{
+  .mSlideApp .mApp{
     height: 100%;
+    min-height: 0;
     display: grid;
     grid-template-rows: auto 1fr;
     gap: 12px;
   }
 
-  .mAppHeader{
+  .mSlideApp .mAppHeader{
     border-radius: 18px;
     border: 1px solid rgba(255,255,255,0.08);
     background: rgba(0,0,0,0.16);
     box-shadow: 0 14px 40px rgba(0,0,0,0.26);
-    padding: 12px 12px 12px;
-    position: sticky;
-    top: 0;
-    z-index: 2;
+    padding: 10px 12px;
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
   }
 
-  .mAppBrand{
-    display:flex;
-    align-items:center;
+  .mSlideApp .mAppBrand{
+    display: flex;
+    align-items: center;
     gap: 10px;
   }
-  .mAppMark{
+  .mSlideApp .mAppMark{
     width: 26px;
     height: 26px;
     border-radius: 10px;
-    display:grid;
-    place-items:center;
+    display: grid;
+    place-items: center;
     font-weight: 900;
     border: 1px solid rgba(255,255,255,0.10);
     background: linear-gradient(135deg, rgba(11,42,91,1), rgba(7,23,50,1));
     box-shadow: 0 14px 40px rgba(11,42,91,0.18);
   }
-  .mAppTitle{
+  .mSlideApp .mAppTitle{
     font-weight: 850;
     letter-spacing: -0.3px;
   }
 
-  .mAppChips{
-    margin-top: 10px;
-    display:flex;
-    flex-wrap:wrap;
+  .mSlideApp .mAppChips{
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
     gap: 8px;
   }
-  .mChip{
+  .mSlideApp .mChip{
     border: 1px solid rgba(255,255,255,0.12);
     background: rgba(255,255,255,0.04);
-    padding: 8px 10px;
+    padding: 7px 10px;
     border-radius: 999px;
     cursor: pointer;
     font-size: 12.5px;
     color: rgba(255,255,255,0.72);
   }
-  .mChip.isActive{
+  .mSlideApp .mChip.isActive{
     color: rgba(255,255,255,0.92);
     border-color: rgba(51,225,255,0.18);
     background: rgba(10,30,61,0.55);
   }
 
-.mPost{
-  height: 100%;
-  display: grid;
-  grid-template-rows: 1fr auto;   /* image grows, meta stays readable */
-  border-radius: 18px;
-  overflow: hidden;
-}
+  .mSlideApp .mFeed{
+    min-height: 0;
+    height: 100%;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 12px;
+    padding: 2px 2px 0;
+  }
 
-.mImg{ min-height: 0; }
-
-.mMeta{
-  padding: 9px 11px 10px;
-  gap: 6px;
-}
-
-.mPostTitle{ font-size: 14px; }
-.mTiny{ font-size: 11.5px; }
-
-.mTags span{
-  font-size: 11.5px;
-  padding: 3px 7px;
-}
-  .mFeed::-webkit-scrollbar{ display:none; }
-
-  .mPost{
+  .mSlideApp .mPost{
+    height: 100%;
     border-radius: 18px;
     border: 1px solid rgba(255,255,255,0.10);
     background: rgba(255,255,255,0.03);
     box-shadow: 0 18px 50px rgba(0,0,0,0.20);
-    overflow:hidden;
+    overflow: hidden;
     display: grid;
-    grid-template-rows: 132px auto;
+    grid-template-rows: 60% 40%;
   }
 
-  .mImg{
+  .mSlideApp .mImg{
+    min-height: 0;
     position: relative;
     overflow: hidden;
     border-bottom: 1px solid rgba(255,255,255,0.08);
     background: rgba(255,255,255,0.02);
   }
-  .mImg img{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
+  .mSlideApp .mImg img{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center;
-    filter: saturate(1.02) contrast(1.02);
   }
-  .mPosTop img{ object-position: center 6%; }
-  .mPosMed img{ object-position: center 10%; }
-  .mPosBottom img{ object-position: center 30%; }
+  .mSlideApp .mPosTop img{ object-position: center 6%; }
+  .mSlideApp .mPosMed img{ object-position: center 10%; }
+  .mSlideApp .mPosBottom img{ object-position: center 30%; }
 
-  .mMeta{
-    padding: 11px 12px 12px;
+  .mSlideApp .mMeta{
+    min-height: 0;
+    padding: 10px 12px 12px;
     display: grid;
-    gap: 8px;
+    align-content: center;
+    gap: 7px;
   }
 
-  .mRow{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+  .mSlideApp .mRow{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: 10px;
   }
-
-  .mPostTitle{
+  .mSlideApp .mPostTitle{
     font-weight: 800;
     letter-spacing: -0.2px;
-    font-size: 15px;
+    font-size: 14px;
   }
-
-  .mBadge{
+  .mSlideApp .mBadge{
     border: 1px solid rgba(255,255,255,0.12);
     padding: 4px 8px;
     border-radius: 999px;
@@ -791,19 +765,19 @@ button, input{ font:inherit; color:inherit; }
     white-space: nowrap;
   }
 
-  .mTiny{ font-size: 12px; }
-  .mMuted{ color: rgba(255,255,255,0.68); }
+  .mSlideApp .mTiny{ font-size: 11.5px; }
+  .mSlideApp .mMuted{ color: rgba(255,255,255,0.68); }
 
-  .mTags{
-    display:flex;
-    flex-wrap:wrap;
+  .mSlideApp .mTags{
+    display: flex;
+    flex-wrap: wrap;
     gap: 6px;
   }
-  .mTags span{
-    font-size: 12px;
+  .mSlideApp .mTags span{
+    font-size: 11.5px;
     color: rgba(255,255,255,0.72);
     border: 1px dashed rgba(255,255,255,0.16);
-    padding: 4px 8px;
+    padding: 3px 7px;
     border-radius: 999px;
   }
 }

@@ -55,7 +55,7 @@ window.addEventListener("keydown", (e)=>{
 });
 
 /* =========================
-   SCROLL BAR (desktop only effectively)
+   SCROLL BAR
    ========================= */
 const bar = document.getElementById("scrollbar");
 window.addEventListener("scroll", () => {
@@ -77,16 +77,15 @@ if (form){
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    // Fade form out
     formWrap.style.opacity = "0";
     formWrap.style.transform = "translateY(-6px)";
 
     setTimeout(() => {
       formWrap.style.display = "none";
 
-      // Keep header visible so user can close
       modalTop.style.display = "flex";
       modalTop.style.opacity = "1";
+
       const titleEl = document.getElementById("modalTitle");
       if (titleEl) titleEl.textContent = "You’re in.";
 
