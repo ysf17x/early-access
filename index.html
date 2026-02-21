@@ -1,3 +1,4 @@
+<!-- index.html (FULL) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,7 +28,7 @@
     </div>
   </header>
 
-  <!-- Nav + Slides only on mobile (desktop <main> hidden via CSS on mobile) -->
+  <!-- ================= MOBILE SLIDES ================= -->
   <div class="mOnly" id="mOnly" aria-label="Mobile slides">
     <div class="mCard" aria-label="Swipe container">
 
@@ -75,7 +76,7 @@
           </div>
         </section>
 
-        <!-- SLIDE 3 (Mobile custom app UI — poster card is the “phone border”) -->
+        <!-- SLIDE 3 (Premium overlay feed; poster card IS the phone border) -->
         <section class="mSlide mSlideApp" aria-label="Slide 3">
 
           <div class="mApp">
@@ -94,54 +95,69 @@
 
             <div class="mFeed" aria-label="Outfit feed">
 
+              <!-- Post 1 -->
               <article class="mPost">
                 <div class="mImg mPosTop">
                   <img src="images/look1.jpg" alt="Outfit 1">
                 </div>
-                <div class="mMeta">
-                  <div class="mRow">
+
+                <div class="mOverlay">
+                  <div class="mTopRow">
                     <div class="mPostTitle">Casual dinner fit</div>
                     <div class="mBadge">Saved</div>
                   </div>
-                  <div class="mRow mTiny mMuted">
-                    <div>@arman00</div><div>2h</div>
+
+                  <div class="mMidRow">
+                    <div class="mTiny">@arman00</div>
+                    <div class="mTiny">2h</div>
                   </div>
+
                   <div class="mTags">
                     <span>#dinner</span><span>#denim</span><span>#clean</span>
                   </div>
                 </div>
               </article>
 
+              <!-- Post 2 -->
               <article class="mPost">
                 <div class="mImg mPosMed">
                   <img src="images/look2.jpg" alt="Outfit 2">
                 </div>
-                <div class="mMeta">
-                  <div class="mRow">
+
+                <div class="mOverlay">
+                  <div class="mTopRow">
                     <div class="mPostTitle">Weekend essentials</div>
                     <div class="mBadge">Saved</div>
                   </div>
-                  <div class="mRow mTiny mMuted">
-                    <div>@boywhocriedniche</div><div>Yesterday</div>
+
+                  <div class="mMidRow">
+                    <div class="mTiny">@boywhocriedniche</div>
+                    <div class="mTiny">Yesterday</div>
                   </div>
+
                   <div class="mTags">
                     <span>#layered</span><span>#larping</span><span>#rotation</span>
                   </div>
                 </div>
               </article>
 
+              <!-- Post 3 -->
               <article class="mPost">
                 <div class="mImg mPosBottom">
                   <img src="images/look3.jpg" alt="Outfit 3">
                 </div>
-                <div class="mMeta">
-                  <div class="mRow">
+
+                <div class="mOverlay">
+                  <div class="mTopRow">
                     <div class="mPostTitle">Night in paris</div>
                     <div class="mBadge">Saved</div>
                   </div>
-                  <div class="mRow mTiny mMuted">
-                    <div>@sarxxh</div><div>1w</div>
+
+                  <div class="mMidRow">
+                    <div class="mTiny">@sarxxh</div>
+                    <div class="mTiny">1w</div>
                   </div>
+
                   <div class="mTags">
                     <span>#vintage</span><span>#fall</span><span>#leather</span>
                   </div>
@@ -193,7 +209,7 @@
     </div>
   </div>
 
-  <!-- ================= DESKTOP (unchanged) ================= -->
+  <!-- ================= DESKTOP SITE ================= -->
   <main id="top">
     <section class="hero">
       <div class="container heroGrid">
@@ -236,6 +252,7 @@
           </div>
         </div>
 
+        <!-- Desktop phone mock stays as you had it (your existing CSS supports it) -->
         <div class="heroVisual">
           <div class="glow" aria-hidden="true"></div>
 
@@ -351,9 +368,7 @@
 
     <footer class="footer">
       <div class="container footerRow">
-        <div class="muted tiny">
-          © <span id="year"></span> Wearchive
-        </div>
+        <div class="muted tiny">© <span id="year"></span> Wearchive</div>
         <div class="muted tiny">Built with care.</div>
       </div>
     </footer>

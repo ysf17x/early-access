@@ -1,3 +1,4 @@
+/* styles.css (FULL) */
 :root{
   --bg: #070B14;
   --navy: #06142E;
@@ -553,7 +554,7 @@ button, input{ font:inherit; color:inherit; }
     gap: 12px;
   }
 
-  /* Slide 1 centered (override any left-align rules) */
+  /* Slide 1 centered */
   #mCarousel > .mSlide:nth-child(1){
     text-align: center !important;
     justify-items: center !important;
@@ -590,7 +591,7 @@ button, input{ font:inherit; color:inherit; }
     grid-template-columns: 1fr !important;
   }
 
-  /* Premium dots */
+  /* Dots */
   .mDots{
     position: absolute;
     left: 50%;
@@ -625,15 +626,12 @@ button, input{ font:inherit; color:inherit; }
 }
 
 /* =========================================================
-   MOBILE SLIDE 3 — CUSTOM APP UI (SHOW ALL 3 POSTS, PERFECT FIT)
-   (App UI never escapes the poster card)
+   MOBILE SLIDE 3 — PREMIUM OVERLAY DESIGN (always fits)
    ========================================================= */
 @media (max-width: 768px){
 
   .mSlideApp{
-    display: grid;
-    align-content: start;
-    gap: 12px;
+    padding-bottom: 66px !important; /* room for dots */
   }
 
   .mSlideApp .mApp{
@@ -641,35 +639,37 @@ button, input{ font:inherit; color:inherit; }
     min-height: 0;
     display: grid;
     grid-template-rows: auto 1fr;
-    gap: 12px;
+    gap: 10px;
   }
 
   .mSlideApp .mAppHeader{
-    border-radius: 18px;
-    border: 1px solid rgba(255,255,255,0.08);
-    background: rgba(0,0,0,0.16);
-    box-shadow: 0 14px 40px rgba(0,0,0,0.26);
     padding: 10px 12px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(0,0,0,0.18);
+    box-shadow: 0 18px 60px rgba(0,0,0,0.28);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
   }
 
   .mSlideApp .mAppBrand{
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display:flex;
+    align-items:center;
+    gap:10px;
   }
+
   .mSlideApp .mAppMark{
     width: 26px;
     height: 26px;
     border-radius: 10px;
-    display: grid;
-    place-items: center;
+    display:grid;
+    place-items:center;
     font-weight: 900;
     border: 1px solid rgba(255,255,255,0.10);
     background: linear-gradient(135deg, rgba(11,42,91,1), rgba(7,23,50,1));
     box-shadow: 0 14px 40px rgba(11,42,91,0.18);
   }
+
   .mSlideApp .mAppTitle{
     font-weight: 850;
     letter-spacing: -0.3px;
@@ -677,17 +677,18 @@ button, input{ font:inherit; color:inherit; }
 
   .mSlideApp .mAppChips{
     margin-top: 8px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
   }
+
   .mSlideApp .mChip{
     border: 1px solid rgba(255,255,255,0.12);
     background: rgba(255,255,255,0.04);
-    padding: 7px 10px;
+    padding: 6px 10px;
     border-radius: 999px;
-    cursor: pointer;
-    font-size: 12.5px;
+    cursor:pointer;
+    font-size: 12px;
     color: rgba(255,255,255,0.72);
   }
   .mSlideApp .mChip.isActive{
@@ -703,27 +704,24 @@ button, input{ font:inherit; color:inherit; }
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     gap: 12px;
-    padding: 2px 2px 0;
   }
 
   .mSlideApp .mPost{
+    position: relative;
     height: 100%;
     border-radius: 18px;
+    overflow: hidden;
     border: 1px solid rgba(255,255,255,0.10);
     background: rgba(255,255,255,0.03);
-    box-shadow: 0 18px 50px rgba(0,0,0,0.20);
-    overflow: hidden;
-    display: grid;
-    grid-template-rows: 60% 40%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.22);
   }
 
   .mSlideApp .mImg{
-    min-height: 0;
-    position: relative;
+    position: absolute;
+    inset: 0;
     overflow: hidden;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    background: rgba(255,255,255,0.02);
   }
+
   .mSlideApp .mImg img{
     position: absolute;
     inset: 0;
@@ -731,108 +729,91 @@ button, input{ font:inherit; color:inherit; }
     height: 100%;
     object-fit: cover;
     object-position: center;
+    transform: scale(1.02);
+    filter: contrast(1.02) saturate(1.02);
   }
-  .mSlideApp .mPosTop img{ object-position: center 6%; }
-  .mSlideApp .mPosMed img{ object-position: center 10%; }
-  .mSlideApp .mPosBottom img{ object-position: center 30%; }
 
-  .mSlideApp .mMeta{
-    min-height: 0;
-    padding: 10px 12px 12px;
+  .mSlideApp .mPosTop img{ object-position: center 8%; }
+  .mSlideApp .mPosMed img{ object-position: center 12%; }
+  .mSlideApp .mPosBottom img{ object-position: center 28%; }
+
+  .mSlideApp .mOverlay{
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 10px 12px 10px;
     display: grid;
-    align-content: center;
-    gap: 7px;
+    gap: 6px;
+    background:
+      linear-gradient(
+        to top,
+        rgba(6, 14, 30, 0.92) 0%,
+        rgba(6, 14, 30, 0.70) 40%,
+        rgba(6, 14, 30, 0.00) 100%
+      );
   }
 
-  .mSlideApp .mRow{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
+  .mSlideApp .mTopRow{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
   }
+
   .mSlideApp .mPostTitle{
-    font-weight: 800;
-    letter-spacing: -0.2px;
+    font-weight: 850;
+    letter-spacing: -0.25px;
     font-size: 14px;
+    line-height: 1.15;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%;
   }
+
   .mSlideApp .mBadge{
-    border: 1px solid rgba(255,255,255,0.12);
-    padding: 4px 8px;
+    border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(255,255,255,0.06);
+    padding: 4px 9px;
     border-radius: 999px;
     font-size: 12px;
-    color: rgba(255,255,255,0.70);
-    background: rgba(0,0,0,0.10);
+    color: rgba(255,255,255,0.78);
     white-space: nowrap;
   }
 
+  .mSlideApp .mMidRow{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    color: rgba(255,255,255,0.70);
+  }
+
   .mSlideApp .mTiny{ font-size: 11.5px; }
-  .mSlideApp .mMuted{ color: rgba(255,255,255,0.68); }
 
   .mSlideApp .mTags{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
+    display:flex;
+    gap:6px;
+    flex-wrap: nowrap;
+    overflow:hidden;
   }
+
   .mSlideApp .mTags span{
     font-size: 11.5px;
-    color: rgba(255,255,255,0.72);
-    border: 1px dashed rgba(255,255,255,0.16);
     padding: 3px 7px;
     border-radius: 999px;
-  }
-}
-
-/* ===== FINAL MOBILE SLIDE 3 FIX: show full meta (title + tags) and fit perfectly ===== */
-@media (max-width: 768px){
-
-  /* Give the feed a bit more breathing room inside the card */
-  .mSlideApp .mApp{
-    gap: 10px !important;
+    border: 1px dashed rgba(255,255,255,0.18);
+    color: rgba(255,255,255,0.74);
+    background: rgba(255,255,255,0.03);
+    white-space: nowrap;
+    flex: 0 0 auto;
   }
 
-  .mSlideApp .mFeed{
-    gap: 10px !important;
-  }
-
-  /* Make cards slightly shorter visually and stop clipping meta */
-  .mSlideApp .mPost{
-    grid-template-rows: 58% 42% !important; /* more room for meta */
-  }
-
-  /* IMPORTANT: meta should start at top, not centered */
-  .mSlideApp .mMeta{
-    align-content: start !important;
-    justify-content: start !important;
-    padding: 10px 12px 10px !important;
-    gap: 6px !important;
-  }
-
-  /* Ensure title row is visible and doesn't get hidden */
-  .mSlideApp .mPostTitle{
-    display: block !important;
-    font-size: 14px !important;
-    line-height: 1.15 !important;
-  }
-
-  /* Keep tags visible without wrapping into 2-3 lines */
-  .mSlideApp .mTags{
-    gap: 6px !important;
-  }
-  .mSlideApp .mTags span{
-    padding: 3px 7px !important;
-    font-size: 11.5px !important;
-  }
-
-  /* If an iPhone is short height, slightly shrink chip/header */
-  .mSlideApp .mAppHeader{
-    padding: 9px 12px !important;
-  }
-  .mSlideApp .mAppChips{
-    margin-top: 7px !important;
-    gap: 7px !important;
-  }
-  .mSlideApp .mChip{
-    padding: 6px 9px !important;
-    font-size: 12px !important;
+  .mSlideApp .mPost::after{
+    content:"";
+    position:absolute;
+    inset: 0;
+    border-radius: 18px;
+    pointer-events:none;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
   }
 }
