@@ -1,3 +1,4 @@
+html { filter: hue-rotate(120deg) !important; }
 :root{
   --bg: #070B14;
   --navy: #06142E;
