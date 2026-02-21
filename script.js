@@ -126,3 +126,76 @@ if (form){
     });
   }, { passive: true });
 })();
+
+/* =========================
+   MOBILE SLIDE 3 — TAP-TO-PREVIEW MODAL
+   (Only exists on mobile; desktop is untouched)
+   ========================= */
+(function(){
+  const sheet = document.getElementById("mPostModal");
+  if (!sheet) return;
+
+  const closeBtn = document.getElementById("mPostClose");
+  const imgEl = document.getElementById("mPostImg");
+  const titleEl = document.getElementById("mPostTitle");
+  const badgeEl = document.getElementById("mPostBadge");
+  const userEl = document.getElementById("mPostUser");
+  const timeEl = document.getElementById("mPostTime");
+  const tagsWrap = document.getElementById("mPostTags");
+
+  const openSheet = () => {
+    sheet.classList.add("show");
+    sheet.setAttribute("aria-hidden", "false");
+  };
+
+  const closeSheet = () => {
+    sheet.classList.remove("show");
+    sheet.setAttribute("aria-hidden", "true");
+  };
+
+  const setTags = (tagsCsv) => {
+    if (!tagsWrap) return;
+    tagsWrap.innerHTML = "";
+    const tags = String(tagsCsv || "").split(",").map(t => t.trim()).filter(Boolean);
+    tags.forEach(t => {
+      const s = document.createElement("span");
+      s.textContent = t;
+      tagsWrap.appendChild(s);
+    });
+  };
+
+  const populateFromBtn = (btn) => {
+    if (!btn) return;
+    const img = btn.getAttribute("data-img") || "";
+    const title = btn.getAttribute("data-title") || "Post";
+    const user = btn.getAttribute("data-user") || "@user";
+    const time = btn.getAttribute("data-time") || "";
+    const badge = btn.getAttribute("data-badge") || "Saved";
+    const tags = btn.getAttribute("data-tags") || "";
+
+    if (imgEl) imgEl.src = img;
+    if (titleEl) titleEl.textContent = title;
+    if (userEl) userEl.textContent = user;
+    if (timeEl) timeEl.textContent = time;
+    if (badgeEl) badgeEl.textContent = badge;
+    setTags(tags);
+
+    openSheet();
+    if (closeBtn) closeBtn.focus();
+  };
+
+  document.querySelectorAll(".tapCard").forEach((btn) => {
+    btn.addEventListener("click", () => populateFromBtn(btn));
+  });
+
+  if (closeBtn) closeBtn.addEventListener("click", closeSheet);
+
+  sheet.addEventListener("click", (e) => {
+    const t = e.target;
+    if (t && t.getAttribute && t.getAttribute("data-mclose") === "1") closeSheet();
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && sheet.classList.contains("show")) closeSheet();
+  });
+})();

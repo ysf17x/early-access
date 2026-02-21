@@ -75,80 +75,73 @@
           </div>
         </section>
 
-        <!-- SLIDE 3 (Mobile custom app UI — poster card is the “phone border”) -->
-        <section class="mSlide mSlideApp" aria-label="Slide 3">
+        <!-- SLIDE 3 (Tap-to-preview UI — mobile only) -->
+        <section class="mSlide mSlideTap" aria-label="Slide 3">
 
-          <div class="mApp">
-            <div class="mAppHeader">
-              <div class="mAppBrand">
-                <div class="mAppMark">W</div>
-                <div class="mAppTitle">Your Archive</div>
-              </div>
-
-              <div class="mAppChips" aria-label="Archive filters">
-                <button class="mChip isActive" type="button">Saved</button>
-                <button class="mChip" type="button">Tagged</button>
-                <button class="mChip" type="button">Archived</button>
-              </div>
+          <div class="tapHead">
+            <div class="pill">
+              <span class="dot"></span>
+              <span>Tap a post to preview the full UI.</span>
             </div>
 
-            <div class="mFeed" aria-label="Outfit feed">
+            <h2 class="tapTitle">The archive feels like an app.</h2>
+            <p class="tapSub">Blurred for vibe — tap to open the real details.</p>
+          </div>
 
-              <article class="mPost">
-                <div class="mImg mPosTop">
-                  <img src="images/look1.jpg" alt="Outfit 1">
-                </div>
-                <div class="mMeta">
-                  <div class="mRow">
-                    <div class="mPostTitle">Casual dinner fit</div>
-                    <div class="mBadge">Saved</div>
-                  </div>
-                  <div class="mRow mTiny mMuted">
-                    <div>@arman00</div><div>2h</div>
-                  </div>
-                  <div class="mTags">
-                    <span>#dinner</span><span>#denim</span><span>#clean</span>
-                  </div>
-                </div>
-              </article>
+          <div class="tapGrid" aria-label="Tap to preview posts">
 
-              <article class="mPost">
-                <div class="mImg mPosMed">
-                  <img src="images/look2.jpg" alt="Outfit 2">
+            <button class="tapCard" type="button"
+              data-img="images/look1.jpg"
+              data-title="Casual dinner fit"
+              data-user="@arman00"
+              data-time="2h"
+              data-badge="Saved"
+              data-tags="#dinner,#denim,#clean">
+              <div class="tapMedia">
+                <img src="images/look1.jpg" alt="Outfit 1">
+                <div class="tapOverlay" aria-hidden="true">
+                  <div class="tapIcon" aria-hidden="true"></div>
+                  <div class="tapLabel">Tap to preview</div>
                 </div>
-                <div class="mMeta">
-                  <div class="mRow">
-                    <div class="mPostTitle">Weekend essentials</div>
-                    <div class="mBadge">Saved</div>
-                  </div>
-                  <div class="mRow mTiny mMuted">
-                    <div>@boywhocriedniche</div><div>Yesterday</div>
-                  </div>
-                  <div class="mTags">
-                    <span>#layered</span><span>#larping</span><span>#rotation</span>
-                  </div>
-                </div>
-              </article>
+              </div>
+            </button>
 
-              <article class="mPost">
-                <div class="mImg mPosBottom">
-                  <img src="images/look3.jpg" alt="Outfit 3">
+            <button class="tapCard" type="button"
+              data-img="images/look2.jpg"
+              data-title="Weekend essentials"
+              data-user="@boywhocriedniche"
+              data-time="Yesterday"
+              data-badge="Saved"
+              data-tags="#layered,#larping,#rotation">
+              <div class="tapMedia">
+                <img src="images/look2.jpg" alt="Outfit 2">
+                <div class="tapOverlay" aria-hidden="true">
+                  <div class="tapIcon" aria-hidden="true"></div>
+                  <div class="tapLabel">Tap to preview</div>
                 </div>
-                <div class="mMeta">
-                  <div class="mRow">
-                    <div class="mPostTitle">Night in paris</div>
-                    <div class="mBadge">Saved</div>
-                  </div>
-                  <div class="mRow mTiny mMuted">
-                    <div>@sarxxh</div><div>1w</div>
-                  </div>
-                  <div class="mTags">
-                    <span>#vintage</span><span>#fall</span><span>#leather</span>
-                  </div>
-                </div>
-              </article>
+              </div>
+            </button>
 
-            </div>
+            <button class="tapCard" type="button"
+              data-img="images/look3.jpg"
+              data-title="Night in paris"
+              data-user="@sarxxh"
+              data-time="1w"
+              data-badge="Saved"
+              data-tags="#vintage,#fall,#leather">
+              <div class="tapMedia">
+                <img src="images/look3.jpg" alt="Outfit 3">
+                <div class="tapOverlay" aria-hidden="true">
+                  <div class="tapIcon" aria-hidden="true"></div>
+                  <div class="tapLabel">Tap to preview</div>
+                </div>
+              </div>
+            </button>
+
+          </div>
+
+          <div class="tapHint tiny muted" aria-hidden="true">
+            Tip: this is a preview card — the full UI opens in a sheet.
           </div>
 
         </section>
@@ -188,6 +181,40 @@
         <button class="mDot" type="button" aria-label="Slide 2"></button>
         <button class="mDot" type="button" aria-label="Slide 3"></button>
         <button class="mDot" type="button" aria-label="Slide 4"></button>
+      </div>
+
+
+<!-- Mobile post preview modal (only used in Slide 3) -->
+      <div class="mPostModal" id="mPostModal" aria-hidden="true">
+        <div class="mPostBackdrop" data-mclose="1"></div>
+
+        <div class="mPostSheet" role="dialog" aria-modal="true" aria-labelledby="mPostTitle">
+          <div class="mPostSheetTop">
+            <div class="mPostSheetDrag" aria-hidden="true"></div>
+            <button class="mPostClose" id="mPostClose" type="button" aria-label="Close">✕</button>
+          </div>
+
+          <div class="mPostPreview">
+            <div class="mPostHero">
+              <img id="mPostImg" src="" alt="Preview image">
+              <div class="mPostHeroFade" aria-hidden="true"></div>
+            </div>
+
+            <div class="mPostBody">
+              <div class="mPostRow">
+                <div class="mPostTitle" id="mPostTitle">Post</div>
+                <div class="mPostBadge" id="mPostBadge">Saved</div>
+              </div>
+
+              <div class="mPostRow mPostMeta">
+                <div id="mPostUser">@user</div>
+                <div id="mPostTime">1w</div>
+              </div>
+
+              <div class="mPostTags" id="mPostTags" aria-label="Tags"></div>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
