@@ -709,15 +709,28 @@ button, input{ font:inherit; color:inherit; }
     background: rgba(10,30,61,0.55);
   }
 
-  .mFeed{
-    min-height: 0;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    display: grid;
-    gap: 12px;
-    padding: 2px 2px 0;
-  }
+.mPost{
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;   /* image grows, meta stays readable */
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.mImg{ min-height: 0; }
+
+.mMeta{
+  padding: 9px 11px 10px;
+  gap: 6px;
+}
+
+.mPostTitle{ font-size: 14px; }
+.mTiny{ font-size: 11.5px; }
+
+.mTags span{
+  font-size: 11.5px;
+  padding: 3px 7px;
+}
   .mFeed::-webkit-scrollbar{ display:none; }
 
   .mPost{
