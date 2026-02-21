@@ -27,6 +27,10 @@ function openModal(){
     modalTop.style.opacity = "1";
   }
 
+  // Reset title
+  const titleEl = document.getElementById("modalTitle");
+  if (titleEl) titleEl.textContent = "Request early access";
+
   modal.classList.add("show");
   modal.setAttribute("aria-hidden","false");
 
@@ -78,69 +82,21 @@ if (form){
     // Fade form out
     formWrap.style.opacity = "0";
     formWrap.style.transform = "translateY(-6px)";
-    modalTop.style.opacity = "0";
 
     setTimeout(() => {
       formWrap.style.display = "none";
-      modalTop.style.display = "none";
+
+      // Keep modal top visible so user can close (✕) after success
+      modalTop.style.display = "flex";
+      modalTop.style.opacity = "1";
+      const titleEl = document.getElementById("modalTitle");
+      if (titleEl) titleEl.textContent = "You’re in.";
 
       successState.style.display = "block";
       successState.setAttribute("aria-hidden","false");
     }, 350);
 
-    // Close modal after showing success briefly (with fade)
-    const modalBackdrop = document.getElementById("modal");
-    const modalEl = modalBackdrop ? modalBackdrop.querySelector(".modal") : null;
-
-    const SUCCESS_VISIBLE_MS = 1600;
-    const FADE_MS = 260;
-
-    setTimeout(() => {
-      if (modalEl) modalEl.classList.add("isClosing");
-      if (modalBackdrop) modalBackdrop.classList.add("isClosing");
-
-      setTimeout(() => {
-        closeModal();
-
-        if (modalEl) modalEl.classList.remove("isClosing");
-        if (modalBackdrop) modalBackdrop.classList.remove("isClosing");
-      }, FADE_MS);
-
-    }, SUCCESS_VISIBLE_MS);
-  });
-}
-
-/* =========================
-   MOBILE DOTS (carousel indicator)
-   ========================= */
-const carousel = document.getElementById("mCarousel");
-const dotsWrap = document.getElementById("mDots");
-const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll(".mDot")) : [];
-
-function setActiveDot(i){
-  dots.forEach((d, idx) => d.classList.toggle("isActive", idx === i));
-}
-
-if (carousel && dots.length){
-  const slides = Array.from(carousel.querySelectorAll(".mSlide"));
-
-  // Update active dot on swipe/scroll
-  let raf = 0;
-  carousel.addEventListener("scroll", () => {
-    cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(() => {
-      const w = carousel.clientWidth || 1;
-      const idx = Math.round(carousel.scrollLeft / w);
-      setActiveDot(Math.max(0, Math.min(dots.length - 1, idx)));
-    });
-  }, { passive: true });
-
-  // Tap dots to jump
-  dots.forEach((dot, idx) => {
-    dot.addEventListener("click", () => {
-      slides[idx]?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
-      setActiveDot(idx);
-    });
+    // Keep the success state open until the user closes it (tap outside or ✕)
   });
 }
 

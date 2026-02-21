@@ -518,249 +518,39 @@ button, input{ font:inherit; color:inherit; }
 @keyframes backdropOut{ to { opacity: 0; } }
 
 /* =========================================================
-   MOBILE APP-LIKE SLIDES (nav + slides ONLY)
+   MOBILE (<=768px): NAV + SWIPABLE SLIDES ONLY
+   Goal:
+   - No page scroll (carousel handles horizontal; slide 3 feed scrolls internally)
+   - Slide 3 UI matches desktop phone UI (same cards/meta)
    ========================================================= */
 
-/* Desktop: keep mobile slider hidden */
-.mOnly{ display: none; }
+.mOnly{ display:none; } /* hidden on desktop */
 
 @media (max-width: 768px){
-  
 
-  /* ===== MOBILE: Card is the ONLY frame ===== */
-
-/* kill any leftover phone mock if it still exists */
-.mOnly .heroVisual,
-.mOnly .glow,
-.mOnly .phone,
-.mOnly .phoneTop,
-.mOnly .screen { display: none !important; }
-
-/* your poster card = the frame */
-.mOnly .mCard{
-  border-radius: 22px;              /* poster shape */
-  overflow: hidden;                 /* clip everything to poster */
-  padding: 0;                       /* no inner “frame padding” */
-}
-
-/* carousel takes full card */
-.mOnly .mCarousel{
-  height: 100%;
-}
-
-/* slides are the content area of the poster */
-.mOnly .mSlide{
-  height: 100%;
-  padding: 16px 14px 62px;          /* bottom space for dots */
-  overflow: hidden;                 /* no spill outside poster */
-  align-content: start;
-}
-
-/* Slide 3 = app screen layout */
-/* ===== Slide 3: Poster card = app screen (keep meta visible) ===== */
-
-/* Make slide 3 layout allocate space properly */
-.mOnly .mSlideFeed{
-  display: grid;
-  grid-template-rows: auto 1fr;
-  gap: 12px;
-  padding: 16px 14px 62px;
-}
-
-/* Header stays, feed scrolls */
-.mOnly .appFeed{
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  display: grid;
-  gap: 12px;
-  padding: 2px;
-  min-height: 0;              /* IMPORTANT: allows inner scroll */
-}
-
-/* Each look card must be a 2-part layout: image + meta */
-.mOnly .lookCard{
-  display: grid;
-  grid-template-rows: 140px auto;  /* image height + meta */
-  border-radius: 18px;
-  overflow: hidden;
-}
-
-/* Image fixed height inside grid */
-.mOnly .lookImg{
-  height: auto;               /* let grid control height */
-  min-height: 140px;
-}
-
-/* Meta MUST show */
-.mOnly .lookMeta{
-  display: grid;
-  gap: 8px;
-  padding: 10px 12px;
-}
-
-/* Make tags fit nicely on mobile */
-.mOnly .tags{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-/* Slightly tighter text so it fits */
-.mOnly .lookMeta strong{ font-size: 18px; }
-.mOnly .row.tiny{ font-size: 12.5px; }
-
-/* Header looks like an app header (NOT a phone) */
-.mOnly .appHeader{
-  padding: 12px 12px 10px;
-  border-radius: 18px;
-  background: rgba(0,0,0,0.16);
-  border: 1px solid rgba(255,255,255,0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-/* Feed scrolls inside the poster */
-.mOnly .appFeed{
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  display: grid;
-  gap: 12px;
-  padding: 2px 2px 0;
-}
-.mOnly .appFeed::-webkit-scrollbar{ display:none; }
-
-/* Make cards fit the poster width cleanly */
-.mOnly .lookCard{
-  border-radius: 18px;
-}
-
-/* Images sized for the poster */
-.mOnly .lookImg{
-  height: 132px;   /* adjust if you want more/less */
-}
-
-  /* ===== Slide 3: card IS the app UI ===== */
-.mSlideFeed{
-  align-content: start;
-  gap: 12px;
-}
-
-/* App header (sticky inside the slide) */
-.appHeader{
-  position: sticky;
-  top: 0;
-  z-index: 2;
-
-  padding: 10px 12px 12px;
-  border-radius: 18px;
-  background: rgba(0,0,0,0.18);
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 12px 34px rgba(0,0,0,0.28);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-}
-
-/* Feed scrolls INSIDE the card (not the page) */
-.appFeed{
-  flex: 1;
-  max-height: 420px; /* safe inside your mCard */
-  overflow: auto;
-  display: grid;
-  gap: 12px;
-  padding: 2px 2px 0;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.appFeed::-webkit-scrollbar{ display:none; }
-
-/* Make the look cards more “app” */
-.mSlideFeed .lookCard{
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.03);
-  box-shadow: 0 16px 44px rgba(0,0,0,0.22);
-}
-
-.mSlideFeed .lookImg{
-  height: 128px; /* slightly taller, feels more app-like */
-}
-
-/* Slightly tighter meta spacing for mobile */
-.mSlideFeed .lookMeta{
-  padding: 10px 12px 12px;
-  gap: 8px;
-}
-
-/* Chips: make them feel more iOS segmented */
-.mSlideFeed .chipRow{
-  margin-top: 10px;
-  gap: 8px;
-}
-.mSlideFeed .chip{
-  padding: 8px 10px;
-  border-radius: 999px;
-}
-
-  /* Hide desktop page content entirely */
+  /* Hide desktop layout on mobile */
   main#top{ display:none !important; }
-  footer.footer{ display:none !important; }
 
-  /* Lock page scroll on mobile (carousel handles movement) */
+  /* Lock page scrolling on mobile (only inner areas can scroll) */
   html, body{
     height: 100%;
     overflow: hidden;
-    background: #050b18 !important;
+    background: #050b18;
   }
 
-  /* Make header feel more premium on mobile */
-  .header{
-    background: rgba(8, 16, 35, 0.78);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    box-shadow: 0 10px 34px rgba(0,0,0,0.42);
-    padding-top: env(safe-area-inset-top);
-  }
-
-  /* NAV polish */
-  .nav{
-    height: 66px !important;
-    padding: 10px 0 !important;
-    align-items: center !important;
-  }
-  .brand{ gap:10px; }
-  .brandMark{
-    width: 34px !important;
-    height: 34px !important;
-    border-radius: 13px !important;
-    box-shadow: 0 18px 50px rgba(11,42,91,0.22) !important;
-  }
-  .brandText{
-    font-size: 17px !important;
-    font-weight: 820 !important;
-    letter-spacing: -0.3px !important;
-  }
-  .navCta{
-    padding: 10px 14px !important;
-    border-radius: 18px !important;
-    font-size: 14px !important;
-    border: 1px solid rgba(51,225,255,0.16) !important;
-    box-shadow: 0 16px 46px rgba(11,42,91,0.22) !important;
-  }
-
-  /* Mobile slider stage under nav */
+  /* Mobile stage */
   .mOnly{
     display: grid;
     place-items: center;
-    height: calc(100dvh - 66px);
-    padding: 14px 12px 16px;
+    height: calc(100dvh - 72px); /* header height */
+    padding: 14px 12px calc(14px + env(safe-area-inset-bottom));
   }
 
-  /* Post card container */
+  /* Poster card (frame) */
   .mCard{
-    position: relative; /* required for dots */
+    position: relative;
     width: min(420px, 100%);
     height: 100%;
-    max-height: 680px;
     border-radius: 22px;
     overflow: hidden;
 
@@ -781,14 +571,11 @@ button, input{ font:inherit; color:inherit; }
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-
     scrollbar-width: none;
   }
   .mCarousel::-webkit-scrollbar{ height: 0; }
-  .mCarousel::-webkit-scrollbar-track{ background: transparent; }
-  .mCarousel::-webkit-scrollbar-thumb{ background: transparent; }
 
-  /* Premium Apple-like dots */
+  /* Dots */
   .mDots{
     position: absolute;
     left: 50%;
@@ -798,8 +585,8 @@ button, input{ font:inherit; color:inherit; }
     gap: 8px;
     padding: 8px 10px;
     border-radius: 999px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(0,0,0,0.22);
+    border: 1px solid rgba(255,255,255,0.10);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     box-shadow: 0 12px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.05);
@@ -808,9 +595,9 @@ button, input{ font:inherit; color:inherit; }
   .mDot{
     width: 7px;
     height: 7px;
-    border-radius: 999px;
     border: 0;
     padding: 0;
+    border-radius: 999px;
     background: rgba(255,255,255,0.28);
     transition: width 180ms ease, background 180ms ease, transform 180ms ease, opacity 180ms ease;
     opacity: 0.9;
@@ -820,15 +607,15 @@ button, input{ font:inherit; color:inherit; }
     background: rgba(255,255,255,0.9);
     opacity: 1;
   }
-  .mDot:active{ transform: scale(0.95); }
 
   /* Slides */
   .mSlide{
     flex: 0 0 100%;
     height: 100%;
-    padding: 18px 16px 54px; /* bottom reserved for dots */
+    padding: 18px 16px 64px; /* bottom reserved for dots */
     scroll-snap-align: start;
     overflow: hidden;
+
     display: grid;
     align-content: center;
     gap: 12px;
@@ -840,30 +627,7 @@ button, input{ font:inherit; color:inherit; }
       linear-gradient(180deg, rgba(7,11,20,1) 0%, rgba(6,20,46,1) 55%, rgba(7,11,20,1) 100%);
   }
 
-  /* Subtle per-slide atmosphere */
-  .mCarousel .mSlide:nth-child(1){
-    background:
-      radial-gradient(720px 520px at 22% 12%, rgba(124,92,255,0.18), transparent 66%),
-      linear-gradient(180deg, rgba(7,11,20,1) 0%, rgba(6,20,46,1) 100%);
-  }
-  .mCarousel .mSlide:nth-child(2){
-    background:
-      radial-gradient(720px 520px at 80% 20%, rgba(51,225,255,0.10), transparent 70%),
-      linear-gradient(180deg, rgba(7,11,20,1) 0%, rgba(6,20,46,1) 100%);
-  }
-  .mCarousel .mSlide:nth-child(3){
-    background:
-      radial-gradient(720px 520px at 55% 12%, rgba(124,92,255,0.12), transparent 72%),
-      radial-gradient(720px 520px at 50% 85%, rgba(51,225,255,0.07), transparent 72%),
-      linear-gradient(180deg, rgba(7,11,20,1) 0%, rgba(6,20,46,1) 100%);
-  }
-  .mCarousel .mSlide:nth-child(4){
-    background:
-      radial-gradient(720px 520px at 22% 20%, rgba(10,30,61,0.55), transparent 70%),
-      linear-gradient(180deg, rgba(7,11,20,1) 0%, rgba(6,20,46,1) 100%);
-  }
-
-  /* Slide 1 typography */
+  /* Slide 1 typography: left aligned on mobile */
   .mSlide .heroTitle{
     text-align: left !important;
     margin: 0 !important;
@@ -878,12 +642,9 @@ button, input{ font:inherit; color:inherit; }
     margin: 0 !important;
     max-width: 46ch;
   }
-  .mSlide .pill{
-    width: fit-content;
-    max-width: 100%;
-  }
+  .mSlide .pill{ width: fit-content; max-width: 100%; }
 
-  /* ===== Slide 2 redesign: timeline stepper (same text) ===== */
+  /* Slide 2: remove desktop stagger offsets */
   .mCarousel .mSlide:nth-child(2) .trustRow{
     position: relative !important;
     top: auto !important;
@@ -892,8 +653,6 @@ button, input{ font:inherit; color:inherit; }
     max-width: 100% !important;
     justify-items: stretch !important;
   }
-
-  /* Kill desktop stagger offsets */
   .mCarousel .mSlide:nth-child(2) .trustItem,
   .mCarousel .mSlide:nth-child(2) .trustItem:nth-child(1),
   .mCarousel .mSlide:nth-child(2) .trustItem:nth-child(2),
@@ -903,382 +662,58 @@ button, input{ font:inherit; color:inherit; }
     transform: none !important;
   }
 
-  .mCarousel .mSlide:nth-child(2) .trustRow::before{
-    content:"";
-    position: absolute;
-    left: 26px;
-    top: 10px;
-    bottom: 10px;
-    width: 2px;
-    background: linear-gradient(180deg, rgba(124,92,255,0.0), rgba(255,255,255,0.14), rgba(51,225,255,0.0));
-    opacity: 0.9;
-  }
-
-  .mCarousel .mSlide:nth-child(2) .trustItem{
-    padding: 16px 16px 16px 58px !important;
-    border-radius: 18px !important;
-    background: rgba(255,255,255,0.03) !important;
-    border: 1px solid rgba(255,255,255,0.09) !important;
-    box-shadow: 0 18px 50px rgba(0,0,0,0.24) !important;
-  }
-
-  .mCarousel .mSlide:nth-child(2) .trustNum{
-    position: absolute !important;
-    left: 12px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    width: 30px !important;
-    height: 30px !important;
-    border-radius: 12px !important;
-    background: rgba(10,30,61,0.7) !important;
-    border: 1px solid rgba(255,255,255,0.10) !important;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
-  }
-
-  .mCarousel .mSlide:nth-child(2) .trustText{
-    font-size: 16px !important;
-    font-weight: 650 !important;
-  }
-
-  /* ===== Slide 3 redesign: app preview panel (fits always) ===== */
-  .mSlidePreview{ align-content: center; }
-
-  .appPreview{
-    width: 100%;
-    max-width: 390px;
-    border-radius: 22px;
-    border: 1px solid rgba(255,255,255,0.09);
-    background: rgba(255,255,255,0.025);
-    box-shadow: 0 26px 80px rgba(0,0,0,0.48), inset 0 1px 0 rgba(255,255,255,0.05);
-    overflow: hidden;
-  }
-
-  .appTop{
-    padding: 14px 14px 10px;
-    background: rgba(0,0,0,0.14);
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-  }
-
-  .appBrand{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-
-  .appMark{
-    width: 28px;
-    height: 28px;
-    border-radius: 11px;
+  /* ===== Slide 3: Match DESKTOP phone UI ===== */
+  .mOnly .mSlideFeed{
     display: grid;
-    place-items: center;
-    font-weight: 900;
-    background: linear-gradient(135deg, rgba(11,42,91,1), rgba(7,23,50,1));
-    border: 1px solid rgba(255,255,255,0.10);
+    grid-template-rows: auto 1fr;
+    align-content: start;
+    gap: 12px;
   }
 
-  .appTitle{
-    font-weight: 850;
-    letter-spacing: -0.2px;
+  .mOnly .mSlideFeed .appHeader{
+    padding: 12px 12px 12px;
+    border-radius: 18px;
+    background: rgba(0,0,0,0.16);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 12px 34px rgba(0,0,0,0.28);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    position: sticky;
+    top: 0;
+    z-index: 2;
   }
 
-  .appPills{
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .appPill{
-    padding: 7px 10px;
-    border-radius: 999px;
-    font-size: 12.5px;
-    color: rgba(255,255,255,0.72);
-    border: 1px solid rgba(255,255,255,0.10);
-    background: rgba(255,255,255,0.03);
-  }
-
-  .appPill.isActive{
-    color: rgba(255,255,255,0.92);
-    border-color: rgba(51,225,255,0.18);
-    background: rgba(10,30,61,0.55);
-  }
-
-  .appFeed{
-    max-height: 420px;
+  .mOnly .mSlideFeed .appFeed{
+    min-height: 0;
     overflow: auto;
-    padding: 12px;
+    -webkit-overflow-scrolling: touch;
     display: grid;
     gap: 12px;
-    -webkit-overflow-scrolling: touch;
+    padding: 2px 2px 0;
     scrollbar-width: none;
   }
-  .appFeed::-webkit-scrollbar{ display:none; }
+  .mOnly .mSlideFeed .appFeed::-webkit-scrollbar{ display:none; }
 
-  .appCard{
+  .mOnly .mSlideFeed .lookCard{
     border-radius: 18px;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.10);
-    background: rgba(255,255,255,0.03);
   }
 
-  .appImg{
-    height: 118px;
-    position: relative;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-  .appImg img{
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .mOnly .mSlideFeed .lookImg{
+    height: 128px;
   }
 
-  .appMeta{
-    padding: 10px 12px 12px;
+  .mOnly .mSlideFeed .lookMeta{
     display: grid;
     gap: 8px;
+    padding: 10px 12px 12px;
   }
 
-  .appRow{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-  }
+  .mOnly .mSlideFeed .lookMeta strong{ font-size: 16px; }
+  .mOnly .mSlideFeed .row.tiny{ font-size: 12px; }
 
-  .appBadge{
-    padding: 4px 8px;
-    border-radius: 999px;
-    font-size: 12px;
-    color: rgba(255,255,255,0.72);
-    border: 1px solid rgba(255,255,255,0.10);
-    background: rgba(0,0,0,0.10);
-  }
-
-  .appTags{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .appTags span{
-    font-size: 12px;
-    color: rgba(255,255,255,0.72);
-    border: 1px dashed rgba(255,255,255,0.16);
-    padding: 4px 8px;
-    border-radius: 999px;
-  }
-
-  /* ===== Slide 4: “panel header” cards (looks different from slide 2) ===== */
-  .mCarousel .mSlide:nth-child(4) .howBlock{
-    margin: 0 !important;
-    padding: 16px !important;
-    border-radius: 18px !important;
-  }
+  /* Slide 4: stack cards on mobile */
   .mCarousel .mSlide:nth-child(4) .whyGrid{
     grid-template-columns: 1fr !important;
-    gap: 12px !important;
-    margin-top: 14px !important;
-  }
-  .mCarousel .mSlide:nth-child(4) .whyCard{
-    padding: 0 !important;
-    overflow: hidden !important;
-    border-radius: 18px !important;
-    border: 1px solid rgba(255,255,255,0.09) !important;
-    background: rgba(255,255,255,0.02) !important;
-  }
-  .mCarousel .mSlide:nth-child(4) .whyCard h3{
-    margin: 0 !important;
-    padding: 14px 14px 10px !important;
-    font-size: 15px !important;
-    font-weight: 800 !important;
-    text-align: left !important;
-    background: rgba(0,0,0,0.14);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-  .mCarousel .mSlide:nth-child(4) .whyCard p{
-    margin: 0 !important;
-    padding: 12px 14px 14px !important;
-    font-size: 14px !important;
-    text-align: left !important;
-    line-height: 1.65 !important;
-    opacity: 0.78 !important;
-  }
-  /* ===== MOBILE SLIDES: ONLY nav + poster + swipe ===== */
-.mOnly{ display:block; }
-main{ display:none; } /* desktop hidden on phone */
-
-.mOnly{
-  padding-top: 10px;
-  padding-bottom: calc(10px + env(safe-area-inset-bottom));
-}
-
-.mCard{
-  position: relative;
-  width: calc(100% - 24px);
-  margin: 10px auto 0;
-  height: calc(100dvh - 120px);
-  border-radius: 24px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.03);
-  box-shadow: 0 18px 60px rgba(0,0,0,0.55);
-  overflow: hidden; /* poster is the ONLY frame */
-}
-
-.mCarousel{
-  height: 100%;
-  display:flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.mCarousel::-webkit-scrollbar{ display:none; }
-
-.mSlide{
-  flex: 0 0 100%;
-  height: 100%;
-  padding: 16px 14px 70px;
-  scroll-snap-align: start;
-  display:grid;
-  align-content:center;
-  gap: 12px;
-  overflow: hidden;
-  background:
-    radial-gradient(720px 520px at 25% 10%, rgba(124,92,255,0.14), transparent 66%),
-    radial-gradient(720px 520px at 85% 18%, rgba(51,225,255,0.09), transparent 68%),
-    radial-gradient(980px 640px at 50% 85%, rgba(6,20,46,0.78), transparent 70%),
-    linear-gradient(180deg, rgba(7,11,20,1) 0%, rgba(6,20,46,1) 55%, rgba(7,11,20,1) 100%);
-}
-
-/* Slide 3: app UI inside poster card (NO phone mock) */
-.mSlideFeed{
-  align-content: start;
-  grid-template-rows: auto 1fr;
-}
-
-.appHeader{
-  padding: 12px;
-  border-radius: 18px;
-  background: rgba(0,0,0,0.16);
-  border: 1px solid rgba(255,255,255,0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.appFeed{
-  min-height: 0; /* allows scrolling */
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  display: grid;
-  gap: 12px;
-  padding: 2px;
-  scrollbar-width: none;
-}
-.appFeed::-webkit-scrollbar{ display:none; }
-
-/* Keep ALL meta visible (Saved, username, tags) */
-.lookCard{
-  display:grid;
-  grid-template-rows: 140px auto;
-  border-radius: 18px;
-  overflow:hidden;
-}
-.lookImg{ height:auto; min-height:140px; }
-.lookMeta{
-  display:grid;
-  gap: 8px;
-  padding: 10px 12px;
-}
-
-/* Premium Apple-like dots */
-.mDots{
-  position:absolute;
-  left: 50%;
-  bottom: 16px;
-  transform: translateX(-50%);
-  display:flex;
-  align-items:center;
-  gap: 8px;
-  padding: 10px 12px;
-  border-radius: 999px;
-  background: rgba(0,0,0,0.22);
-  border: 1px solid rgba(255,255,255,0.10);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-}
-
-.mDot{
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.22);
-  background: rgba(255,255,255,0.26);
-  opacity: 0.7;
-}
-.mDot.isActive{
-  width: 28px;
-  background: rgba(255,255,255,0.92);
-  opacity: 1;
-}
-}
-
-/* =========================================================
-   HARD OVERRIDE PATCH (mobile Slide 3 meta missing)
-   Put this at the VERY BOTTOM of styles.css
-   ========================================================= */
-@media (max-width: 768px){
-
-  /* Make sure Slide 3 is using the app layout */
-  .mOnly .mSlideFeed{
-    display: grid !important;
-    grid-template-rows: auto 1fr !important;
-    align-content: start !important;
-    gap: 12px !important;
-  }
-
-  /* Feed scroll area */
-  .mOnly .appFeed{
-    min-height: 0 !important;
-    overflow: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    display: grid !important;
-    gap: 12px !important;
-    padding: 2px !important;
-  }
-
-  /* FORCE cards to be Image + Meta (not image-only) */
-  .mOnly .lookCard{
-    display: grid !important;
-    grid-template-rows: 150px auto !important;
-    height: auto !important;
-    overflow: hidden !important;
-  }
-
-  .mOnly .lookImg{
-    height: 150px !important;
-    min-height: 150px !important;
-  }
-
-  /* THIS is the key: your meta is currently being hidden somewhere */
-  .mOnly .lookMeta{
-    display: grid !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    height: auto !important;
-    padding: 10px 12px !important;
-    gap: 8px !important;
-    position: relative !important;
-    z-index: 2 !important;
-  }
-
-  .mOnly .tags{
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 6px !important;
-  }
-
-  .mOnly .badge{
-    display: inline-flex !important;
   }
 }
