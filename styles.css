@@ -625,142 +625,116 @@ button, input{ font:inherit; color:inherit; }
 }
 
 /* =========================================================
-   MOBILE SLIDE 3 — TAP-TO-PREVIEW (BLUR CARDS + SHEET MODAL)
+   MOBILE SLIDE 3 — TAP-TO-PREVIEW (REFINED)
    Desktop stays untouched; this is mobile-only.
    ========================================================= */
 @media (max-width: 768px){
 
   .mSlideTap{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     height: 100%;
     min-height: 0;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    gap: 12px;
   }
 
-  .tapHead{ display: grid; gap: 10px; justify-items: center; text-align: center; }
   .tapTitle{
-    margin: 2px 0 0;
-    font-size: 18px;
-    letter-spacing: -0.4px;
-  }
-  .tapSub{
     margin: 0;
-    color: rgba(255,255,255,0.70);
-    font-size: 13.5px;
-    line-height: 1.45;
-    max-width: 34ch;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.4px;
+    text-align: left;
   }
 
-  .tapGrid{
-    min-height: 0;
-    height: 100%;
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    gap: 12px;
-    padding: 2px 2px 0;
+  /* Top mini header (W + Saved/Tagged/Archived) */
+  .tapFilterBar{
+    display: flex;
+    align-items: center;
+    gap: 14px;
   }
 
-  .tapCard{
-    border: 1px solid rgba(255,255,255,0.10);
-    background: rgba(255,255,255,0.03);
-    border-radius: 18px;
-    overflow: hidden;
-    padding: 0;
-    cursor: pointer;
-    box-shadow: 0 18px 50px rgba(0,0,0,0.22);
-    transition: transform 140ms ease, filter 140ms ease, border-color 140ms ease;
-  }
-  .tapCard:active{ transform: scale(0.995); }
-  .tapCard:focus{ outline: none; border-color: rgba(51,225,255,0.18); box-shadow: 0 0 0 4px rgba(51,225,255,0.08), 0 18px 50px rgba(0,0,0,0.22); }
-
-  .tapMedia{
-    position: relative;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    background:
-      radial-gradient(380px 180px at 28% 20%, rgba(124,92,255,0.14), transparent 62%),
-      radial-gradient(380px 180px at 75% 25%, rgba(51,225,255,0.10), transparent 62%),
-      linear-gradient(135deg, rgba(10,30,61,0.55), rgba(7,11,20,0.12));
-  }
-  .tapMedia img{
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    filter: blur(1.35px) saturate(1.05) brightness(0.90);
-    transform: scale(1.03);
-  }
-
-  .tapOverlay{
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
+  .tapFilters{
+    display: flex;
     gap: 8px;
-    text-align: center;
-    background:
-      radial-gradient(560px 280px at 50% 30%, rgba(124,92,255,0.12), transparent 62%),
-      linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.40));
+    flex-wrap: wrap;
   }
 
-  .tapIcon{
-    width: 52px;
-    height: 52px;
-    border-radius: 18px;
-    display: grid;
-    place-items: center;
-    background: rgba(7,11,20,0.58);
-    border: 1px solid rgba(255,255,255,0.14);
-    box-shadow: 0 16px 46px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.06);
-    position: relative;
-  }
-  .tapIcon::before{
-    content:"";
-    width: 12px;
-    height: 12px;
+  .tapFilter{
+    padding: 6px 12px;
     border-radius: 999px;
-    background: rgba(255,255,255,0.82);
-    box-shadow: 0 0 0 6px rgba(255,255,255,0.10);
-  }
-  .tapIcon::after{
-    content:"";
-    position: absolute;
-    inset: -10px;
-    border-radius: 22px;
-    border: 1px solid rgba(51,225,255,0.14);
-    opacity: 0;
-    animation: tapPulse 1.6s ease-in-out infinite;
-  }
-  @keyframes tapPulse{
-    0%   { opacity: 0; transform: scale(0.96); }
-    35%  { opacity: 1; transform: scale(1.00); }
-    100% { opacity: 0; transform: scale(1.10); }
-  }
-
-  .tapLabel{
     font-size: 13px;
-    font-weight: 750;
-    letter-spacing: -0.2px;
-    color: rgba(255,255,255,0.92);
-    padding: 8px 12px;
-    border-radius: 999px;
-    border: 1px solid rgba(255,255,255,0.12);
-    background: rgba(7,11,20,0.38);
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.03);
+    color: rgba(255,255,255,0.72);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
   }
 
-  .tapHint{
-    justify-self: center;
-    margin-top: 2px;
-    opacity: 0.85;
+  .tapFilter.active{
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.92);
+    border-color: rgba(255,255,255,0.18);
   }
 
-  /* ===== Slide 3 modal (sheet) ===== */
+  /* Preview cards */
+  .tapGrid{
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 14px;
+    min-height: 0;
+    height: 100%;
+  }
+
+  .tapCard{
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+    padding: 0;
+    cursor: pointer;
+    box-shadow: 0 18px 55px rgba(0,0,0,0.22);
+    transition: transform .15s ease, border-color .15s ease, filter .15s ease;
+  }
+
+  .tapCard:active{ transform: scale(0.985); }
+  .tapCard:focus{
+    outline: none;
+    border-color: rgba(51,225,255,0.16);
+    box-shadow: 0 0 0 4px rgba(51,225,255,0.07), 0 18px 55px rgba(0,0,0,0.22);
+  }
+
+  /* The preview image: slightly blurred for vibe */
+  .tapCard img{
+    width: 100%;
+    height: 100%;
+    min-height: 140px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    filter: blur(1.1px) saturate(1.05) brightness(0.92);
+    transform: scale(1.03);
+  }
+
+  /* Overlay label */
+  .tapLabel{
+    position: absolute;
+    left: 50%;
+    bottom: 12px;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.52);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.92);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 650;
+    letter-spacing: -0.15px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  /* ===== Bottom-sheet modal ===== */
   .mPostModal{
     position: fixed;
     inset: 0;
@@ -781,14 +755,15 @@ button, input{ font:inherit; color:inherit; }
 
   .mPostSheet{
     position: absolute;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
+    left: 12px;
+    right: 12px;
+    bottom: 14px;
     max-height: calc(100dvh - 96px);
-    border-radius: 22px;
-    border: 1px solid rgba(255,255,255,0.10);
-    background: rgba(7,11,20,0.86);
-    box-shadow: 0 24px 80px rgba(0,0,0,0.58);
+    border-radius: 28px;
+    /* slightly lighter than page background for separation */
+    background: #0b1224;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 40px 120px rgba(0,0,0,0.72), inset 0 1px 0 rgba(255,255,255,0.04);
     overflow: hidden;
     transform: translateY(14px);
     opacity: 0;
@@ -799,44 +774,53 @@ button, input{ font:inherit; color:inherit; }
   }
 
   .mPostSheetTop{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 44px;
+    height: 48px;
     position: relative;
-    background: rgba(0,0,0,0.16);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.02);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
   }
+
   .mPostSheetDrag{
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    transform: translateX(-50%);
     width: 44px;
     height: 6px;
     border-radius: 999px;
     background: rgba(255,255,255,0.18);
   }
+
   .mPostClose{
     position: absolute;
-    right: 10px;
-    top: 8px;
-    border: 1px solid rgba(255,255,255,0.12);
-    background: rgba(255,255,255,0.04);
+    top: 10px;
+    right: 12px;
     width: 34px;
     height: 34px;
-    border-radius: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+    line-height: 1;
     cursor: pointer;
   }
-  .mPostClose:hover{ background: rgba(255,255,255,0.06); }
+  .mPostClose:hover{ background: rgba(255,255,255,0.08); }
 
   .mPostPreview{
     display: grid;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: auto 1fr;
     min-height: 0;
   }
+
   .mPostHero{
     position: relative;
-    min-height: 0;
     height: min(42dvh, 320px);
     background: rgba(255,255,255,0.02);
   }
+
+  /* “Squircle” feel: round the image edges too */
   .mPostHero img{
     position: absolute;
     inset: 0;
@@ -844,7 +828,10 @@ button, input{ font:inherit; color:inherit; }
     height: 100%;
     object-fit: cover;
     object-position: center;
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
   }
+
   .mPostHeroFade{
     position: absolute;
     inset: 0;
@@ -852,21 +839,25 @@ button, input{ font:inherit; color:inherit; }
   }
 
   .mPostBody{
-    padding: 12px 14px 14px;
+    padding: 16px;
+    background: #0b1224;
     display: grid;
     gap: 10px;
   }
+
   .mPostRow{
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
   }
+
   .mPostTitle{
     font-weight: 900;
     letter-spacing: -0.3px;
     font-size: 16px;
   }
+
   .mPostBadge{
     border: 1px solid rgba(255,255,255,0.12);
     padding: 5px 9px;
@@ -876,15 +867,18 @@ button, input{ font:inherit; color:inherit; }
     background: rgba(0,0,0,0.12);
     white-space: nowrap;
   }
+
   .mPostMeta{
     font-size: 12px;
     color: rgba(255,255,255,0.70);
   }
+
   .mPostTags{
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
   }
+
   .mPostTags span{
     font-size: 12px;
     color: rgba(255,255,255,0.76);
