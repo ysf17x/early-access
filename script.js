@@ -10,7 +10,6 @@ const closeBtn = document.getElementById("closeModal");
 function openModal(){
   if (!modal) return;
 
-  // Reset modal to form state every time it opens
   const formWrap = document.getElementById("formWrap");
   const successState = document.getElementById("successState");
   const modalTop = document.getElementById("modalTop");
@@ -26,6 +25,9 @@ function openModal(){
     modalTop.style.display = "flex";
     modalTop.style.opacity = "1";
   }
+
+  const titleEl = document.getElementById("modalTitle");
+  if (titleEl) titleEl.textContent = "Request early access";
 
   modal.classList.add("show");
   modal.setAttribute("aria-hidden","false");
@@ -63,7 +65,6 @@ window.addEventListener("scroll", () => {
   bar.style.width = ((h.scrollTop / denom) * 100) + "%";
 }, { passive: true });
 
-
 /* =========================
    FORM SUBMIT (DEMO)
    ========================= */
@@ -77,30 +78,21 @@ if (form){
     e.preventDefault();
 
     // Fade form out
-    if (formWrap){
-      formWrap.style.opacity = "0";
-      formWrap.style.transform = "translateY(-6px)";
-    }
+    formWrap.style.opacity = "0";
+    formWrap.style.transform = "translateY(-6px)";
 
     setTimeout(() => {
-      if (formWrap) formWrap.style.display = "none";
+      formWrap.style.display = "none";
 
-      // Keep top visible so user can close (✕) or tap outside
-      if (modalTop){
-        modalTop.style.display = "flex";
-        modalTop.style.opacity = "1";
-      }
-
+      // Keep header visible so user can close
+      modalTop.style.display = "flex";
+      modalTop.style.opacity = "1";
       const titleEl = document.getElementById("modalTitle");
       if (titleEl) titleEl.textContent = "You’re in.";
 
-      if (successState){
-        successState.style.display = "block";
-        successState.setAttribute("aria-hidden","false");
-      }
+      successState.style.display = "block";
+      successState.setAttribute("aria-hidden","false");
     }, 350);
-
-    // Do NOT auto-close — better UX + trust.
   });
 }
 
@@ -117,16 +109,14 @@ if (form){
     dots.forEach((d,i) => d.classList.toggle("isActive", i === idx));
   };
 
-  // click dots -> scroll
   dots.forEach((dot, idx) => {
     dot.addEventListener("click", () => {
-      const w = carousel.clientWidth;
+      const w = carousel.clientWidth || 1;
       carousel.scrollTo({ left: idx * w, behavior: "smooth" });
       setActive(idx);
     });
   });
 
-  // swipe -> update dots
   let raf = null;
   carousel.addEventListener("scroll", () => {
     if (raf) cancelAnimationFrame(raf);
