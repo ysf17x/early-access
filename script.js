@@ -27,10 +27,6 @@ function openModal(){
     modalTop.style.opacity = "1";
   }
 
-  // Reset title
-  const titleEl = document.getElementById("modalTitle");
-  if (titleEl) titleEl.textContent = "Request early access";
-
   modal.classList.add("show");
   modal.setAttribute("aria-hidden","false");
 
@@ -67,6 +63,7 @@ window.addEventListener("scroll", () => {
   bar.style.width = ((h.scrollTop / denom) * 100) + "%";
 }, { passive: true });
 
+
 /* =========================
    FORM SUBMIT (DEMO)
    ========================= */
@@ -80,23 +77,30 @@ if (form){
     e.preventDefault();
 
     // Fade form out
-    formWrap.style.opacity = "0";
-    formWrap.style.transform = "translateY(-6px)";
+    if (formWrap){
+      formWrap.style.opacity = "0";
+      formWrap.style.transform = "translateY(-6px)";
+    }
 
     setTimeout(() => {
-      formWrap.style.display = "none";
+      if (formWrap) formWrap.style.display = "none";
 
-      // Keep modal top visible so user can close (✕) after success
-      modalTop.style.display = "flex";
-      modalTop.style.opacity = "1";
+      // Keep top visible so user can close (✕) or tap outside
+      if (modalTop){
+        modalTop.style.display = "flex";
+        modalTop.style.opacity = "1";
+      }
+
       const titleEl = document.getElementById("modalTitle");
       if (titleEl) titleEl.textContent = "You’re in.";
 
-      successState.style.display = "block";
-      successState.setAttribute("aria-hidden","false");
+      if (successState){
+        successState.style.display = "block";
+        successState.setAttribute("aria-hidden","false");
+      }
     }, 350);
 
-    // Keep the success state open until the user closes it (tap outside or ✕)
+    // Do NOT auto-close — better UX + trust.
   });
 }
 

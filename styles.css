@@ -518,10 +518,17 @@ button, input{ font:inherit; color:inherit; }
 @keyframes backdropOut{ to { opacity: 0; } }
 
 /* =========================================================
+   MOBILE APP-LIKE SLIDES (nav + slides ONLY)
+   ========================================================= */
+
+/* Desktop: keep mobile slider hidden */
+.mOnly{ display: none; }
+
+
+/* =========================================================
    MOBILE (<=768px): NAV + SWIPABLE SLIDES ONLY
-   Goal:
-   - No page scroll (carousel handles horizontal; slide 3 feed scrolls internally)
-   - Slide 3 UI matches desktop phone UI (same cards/meta)
+   - No page scroll (carousel handles movement)
+   - Slide 3 feed scrolls internally and matches desktop phone UI (image + meta)
    ========================================================= */
 
 .mOnly{ display:none; } /* hidden on desktop */
@@ -531,14 +538,14 @@ button, input{ font:inherit; color:inherit; }
   /* Hide desktop layout on mobile */
   main#top{ display:none !important; }
 
-  /* Lock page scrolling on mobile (only inner areas can scroll) */
+  /* Lock page scrolling on mobile */
   html, body{
     height: 100%;
     overflow: hidden;
     background: #050b18;
   }
 
-  /* Mobile stage */
+  /* Stage under nav */
   .mOnly{
     display: grid;
     place-items: center;
@@ -546,7 +553,6 @@ button, input{ font:inherit; color:inherit; }
     padding: 14px 12px calc(14px + env(safe-area-inset-bottom));
   }
 
-  /* Poster card (frame) */
   .mCard{
     position: relative;
     width: min(420px, 100%);
@@ -563,7 +569,6 @@ button, input{ font:inherit; color:inherit; }
       inset 0 1px 0 rgba(255,255,255,0.05);
   }
 
-  /* Horizontal swipe area */
   .mCarousel{
     height: 100%;
     display: flex;
@@ -604,7 +609,7 @@ button, input{ font:inherit; color:inherit; }
   }
   .mDot.isActive{
     width: 22px;
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.90);
     opacity: 1;
   }
 
@@ -612,12 +617,12 @@ button, input{ font:inherit; color:inherit; }
   .mSlide{
     flex: 0 0 100%;
     height: 100%;
-    padding: 18px 16px 64px; /* bottom reserved for dots */
+    padding: 28px 16px 64px; /* top, sides, bottom reserved for dots */
     scroll-snap-align: start;
     overflow: hidden;
 
     display: grid;
-    align-content: center;
+    align-content: start; /* IMPORTANT: remove big empty top area */
     gap: 12px;
 
     background:
@@ -627,7 +632,7 @@ button, input{ font:inherit; color:inherit; }
       linear-gradient(180deg, rgba(7,11,20,1) 0%, rgba(6,20,46,1) 55%, rgba(7,11,20,1) 100%);
   }
 
-  /* Slide 1 typography: left aligned on mobile */
+  /* Slide 1 text left on mobile */
   .mSlide .heroTitle{
     text-align: left !important;
     margin: 0 !important;
@@ -662,7 +667,7 @@ button, input{ font:inherit; color:inherit; }
     transform: none !important;
   }
 
-  /* ===== Slide 3: Match DESKTOP phone UI ===== */
+  /* Slide 3: match desktop phone card layout */
   .mOnly .mSlideFeed{
     display: grid;
     grid-template-rows: auto 1fr;
@@ -671,7 +676,7 @@ button, input{ font:inherit; color:inherit; }
   }
 
   .mOnly .mSlideFeed .appHeader{
-    padding: 12px 12px 12px;
+    padding: 12px;
     border-radius: 18px;
     background: rgba(0,0,0,0.16);
     border: 1px solid rgba(255,255,255,0.08);
@@ -689,105 +694,31 @@ button, input{ font:inherit; color:inherit; }
     -webkit-overflow-scrolling: touch;
     display: grid;
     gap: 12px;
-    padding: 2px 2px 0;
+    padding: 2px 2px 12px;
     scrollbar-width: none;
   }
   .mOnly .mSlideFeed .appFeed::-webkit-scrollbar{ display:none; }
 
   .mOnly .mSlideFeed .lookCard{
+    display: grid;
+    grid-template-rows: 140px auto;
     border-radius: 18px;
     overflow: hidden;
   }
-
   .mOnly .mSlideFeed .lookImg{
-    height: 128px;
+    height: 140px;
+    min-height: 140px;
   }
-
   .mOnly .mSlideFeed .lookMeta{
     display: grid;
     gap: 8px;
-    padding: 10px 12px 12px;
+    padding: 12px 12px 14px;
   }
-
-  .mOnly .mSlideFeed .lookMeta strong{ font-size: 16px; }
+  .mOnly .mSlideFeed .lookMeta strong{ font-size: 16px; letter-spacing: -0.2px; }
   .mOnly .mSlideFeed .row.tiny{ font-size: 12px; }
 
-  /* Slide 4: stack cards on mobile */
+  /* Slide 4: stack cards */
   .mCarousel .mSlide:nth-child(4) .whyGrid{
     grid-template-columns: 1fr !important;
-  }
-}
-
-/* =========================================================
-   FINAL MOBILE PATCH (fix spacing + Slide 3 meta)
-   Paste at VERY BOTTOM of styles.css
-   ========================================================= */
-@media (max-width: 768px){
-
-  /* 1) REMOVE the huge empty top area on slides */
-  .mSlide{
-    align-content: start !important;     /* was centering content */
-    padding-top: 28px !important;        /* consistent top spacing */
-  }
-
-  /* Slide 2 + 4 need a bit more breathing room */
-  .mCarousel .mSlide:nth-child(2),
-  .mCarousel .mSlide:nth-child(4){
-    padding-top: 34px !important;
-  }
-
-  /* 2) FORCE Slide 3 to match desktop phone UI layout (image + meta) */
-  .mOnly .mSlideFeed{
-    align-content: start !important;
-  }
-
-  .mOnly .mSlideFeed .appFeed{
-    min-height: 0 !important;
-    overflow: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    padding-bottom: 12px !important;
-  }
-
-  /* Each card MUST be a 2-row grid: image then meta */
-  .mOnly .mSlideFeed .lookCard{
-    display: grid !important;
-    grid-template-rows: 140px auto !important;
-    height: auto !important;
-    overflow: hidden !important;
-  }
-
-  /* Image occupies first row cleanly */
-  .mOnly .mSlideFeed .lookImg{
-    height: 140px !important;
-    min-height: 140px !important;
-  }
-
-  /* Meta MUST show (no hiding, no collapsing) */
-  .mOnly .mSlideFeed .lookMeta{
-    display: grid !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    height: auto !important;
-    padding: 12px 12px 14px !important;
-    gap: 8px !important;
-    position: relative !important;
-    z-index: 2 !important;
-  }
-
-  /* Make text feel like desktop phone UI */
-  .mOnly .mSlideFeed .lookMeta strong{
-    font-size: 16px !important;
-    letter-spacing: -0.2px !important;
-  }
-  .mOnly .mSlideFeed .row.tiny{
-    font-size: 12px !important;
-  }
-  .mOnly .mSlideFeed .badge{
-    display: inline-flex !important;
-  }
-  .mOnly .mSlideFeed .tags{
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 6px !important;
   }
 }
